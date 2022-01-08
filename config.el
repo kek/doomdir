@@ -76,3 +76,6 @@
       "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t)
      ("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
       "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))))
+
+(after! elixir
+  (setq lsp-elixir-local-server-command "E:/src/elixir-ls/release/language_server.bat"))
