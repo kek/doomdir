@@ -61,6 +61,9 @@
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"])
 (map! :n "§" #'evil-execute-in-emacs-state)
+
+(server-start)
+
 (after! deft
   (setq deft-directory (concat user-home-directory "/Documents/org")))
 (after! org
