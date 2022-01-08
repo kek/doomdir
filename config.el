@@ -9,6 +9,10 @@
 (setq user-full-name "Karl Eklund"
       user-mail-address "localpart@gmail.com")
 
+(setq user-home-directory
+      (cond ((equal system-type 'windows-nt) (getenv "USERPROFILE"))
+            (t "~")))
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -30,7 +34,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "c:/Users/kalle/Documents/org/")
+(setq org-directory (concat user-home-directory "/Documents/org/"))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -56,3 +60,15 @@
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"])
+(after! deft
+  (setq deft-directory (concat user-home-directory "/Documents/org")))
+(after! org
+  (set-variable
+   'org-capture-templates
+   `(
+     ("c" "Note" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+      "* %? %U" :prepend t)
+     ("P" "Protocol" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+      "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t)
+     ("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+      "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))))
