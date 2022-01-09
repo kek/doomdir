@@ -91,6 +91,7 @@
 
 (after! deft
   (setq deft-directory (concat user-home-directory "/Documents/org")))
+
 (after! org
   (set-variable
    'org-capture-templates
@@ -110,3 +111,6 @@
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(display-battery-mode)
+
