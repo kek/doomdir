@@ -102,8 +102,7 @@
      ("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
       "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))))
 
-(after! elixir
-  (setq lsp-elixir-local-server-command "E:/src/elixir-ls/release/language_server.bat"))
+(setq lsp-elixir-local-server-command (concat src-directory "/elixir-ls/release/language_server.bat"))
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
