@@ -62,8 +62,9 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-
+(setq display-line-numbers-type nil)
+(remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
+              #'display-line-numbers-mode)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
