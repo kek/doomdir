@@ -103,6 +103,10 @@
       "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))))
 
 (setq lsp-elixir-local-server-command (concat src-directory "/elixir-ls/release/language_server.bat"))
+
+(setq mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
+
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
