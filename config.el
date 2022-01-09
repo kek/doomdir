@@ -13,29 +13,13 @@
       (if (equal system-type 'windows-nt)
           (getenv "USERPROFILE")
         "~"))
-(message (system-name))
+
 (setq src-directory
       (if (equal system-type 'windows-nt)
           (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
                 ((equal (downcase (system-name)) "potatis") "E:/src")
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
-
-(cond ((equal system-type 'windows-nt)
-       (progn
-         (setq user-home-directory (getenv "USERPROFILE"))
-         (message "windows")
-         (cond ((equal (system-name) "sill")
-                (progn
-                  (message "sill")
-                  (setq src-directory "C:/Users/kalle/src")))
-               ((equal (system-name) "Potatis")
-                (progn
-                  (setq src-directory "E:/src"))))))
-      (t
-       (progn
-         (setq user-home-directory "~")
-         (setq src-directory "~/src"))))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
