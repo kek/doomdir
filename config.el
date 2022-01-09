@@ -120,3 +120,5 @@
 (add-hook 'help-mode-hook #'variable-pitch-mode)
 (add-hook 'Info-mode-hook #'variable-pitch-mode)
 (add-hook 'emacs-startup-hook #'toggle-frame-fullscreen)
+
+(map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
