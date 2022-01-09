@@ -79,3 +79,6 @@
 
 (after! elixir
   (setq lsp-elixir-local-server-command "E:/src/elixir-ls/release/language_server.bat"))
+(setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
