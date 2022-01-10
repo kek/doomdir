@@ -110,7 +110,8 @@
 (remove-hook 'helpful-mode-hook #'variable-pitch-mode)
 (remove-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(add-hook 'emacs-startup-hook #'toggle-frame-maximized)
-
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
+
+(if (equal system-type 'windows-nt)
+    (add-hook 'emacs-startup-hook #'toggle-frame-maximized))
