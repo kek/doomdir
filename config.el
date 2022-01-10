@@ -79,15 +79,12 @@
 ;; they are implemented.
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
-(setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"])
-(map! :n "§" #'evil-execute-in-emacs-state)
-
-(server-start)
 
 (after! deft
   (setq deft-directory (concat user-home-directory "/Documents/org")))
 
 (after! org
+  ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
                `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
                  "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t) t)
@@ -95,14 +92,14 @@
                `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
                  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t))
 
-(setq lsp-elixir-local-server-command (concat src-directory "/elixir-ls/release/language_server.bat"))
-
-(setq mouse-wheel-progressive-speed nil
-      mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))
-
-(setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"]
+      lsp-elixir-local-server-command
+      (if (equal system-type 'windows-nt)
+          (concat src-directory "/elixir-ls/release/language_server.bat")
+        (concat src-directory "/elixir-ls/release/language_server.sh"))
+      mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
+      )
 
 (display-battery-mode)
 
@@ -111,9 +108,16 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
+(map! :n "§" #'evil-execute-in-emacs-state)
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
 
 (if (equal system-type 'windows-nt)
     (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
   (set-frame-size (window-frame) 120 45))
+
+(setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(server-start)
