@@ -116,4 +116,5 @@
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
 
 (if (equal system-type 'windows-nt)
-    (add-hook 'emacs-startup-hook #'toggle-frame-maximized))
+    (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
+  (set-frame-size (window-frame) 120 45))
