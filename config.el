@@ -43,9 +43,11 @@
 (when (equal system-type 'gnu/linux)
   (progn
     (setq doom-font (font-spec :family "Hack" :size 18)
-          doom-big-font (font-spec :family "Hack" :size 24))
-    (load-theme 'leuven)
-    (set-face-attribute 'hl-line nil :background "#f5f5fc")))
+          doom-big-font (font-spec :family "Hack" :size 24)
+          doom-theme 'leuven)
+    (add-hook 'hl-line-mode-hook
+              (lambda ()
+                (set-face-attribute 'hl-line nil :background "#f5f5fc")))))
 
 ;; opera-light nord-light homage-white tomorrow-day doom-acario-light
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
