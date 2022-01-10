@@ -104,9 +104,11 @@
 
 (display-battery-mode)
 
-(add-hook 'org-mode-hook #'variable-pitch-mode)
+(remove-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'help-mode-hook #'variable-pitch-mode)
-(add-hook 'Info-mode-hook #'variable-pitch-mode)
+(remove-hook 'helpful-mode-hook #'variable-pitch-mode)
+(remove-hook 'Info-mode-hook #'variable-pitch-mode)
+
 (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
 
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
