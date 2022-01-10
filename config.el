@@ -36,7 +36,7 @@
                   (set-face-attribute 'hl-line nil :background "#f5f5fc"))))))
 
 (unless window-system
-  (setq doom-theme 'doom-plain-dark)
+  (setq doom-theme 'doom-dark+)
   (add-hook 'hl-line-mode-hook
             (lambda ()
               (global-hl-line-mode -1))))
