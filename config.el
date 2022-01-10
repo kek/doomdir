@@ -36,7 +36,10 @@
 (if (equal system-type 'windows-nt)
     (setq doom-font (font-spec :family "Hack NF" :size 18)
           doom-variable-pitch-font (font-spec :family "Ebrima" :size 20)
-          doom-big-font (font-spec :family "Hack NF" :size 24)))
+          doom-big-font (font-spec :family "Hack NF" :size 24))
+  (setq doom-font (font-spec :family "Hack" :size 18)
+        doom-big-font (font-spec :family "Hack" :size 24))
+  )
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
