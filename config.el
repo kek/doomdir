@@ -104,10 +104,10 @@
 
 (display-battery-mode)
 
-(remove-hook 'org-mode-hook #'variable-pitch-mode)
+;; (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'help-mode-hook #'variable-pitch-mode)
-(remove-hook 'helpful-mode-hook #'variable-pitch-mode)
-(remove-hook 'Info-mode-hook #'variable-pitch-mode)
+;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
+;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
