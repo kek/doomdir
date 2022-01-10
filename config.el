@@ -18,21 +18,28 @@
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
-(when (equal system-type 'windows-nt)
-  (progn
-    (setq doom-theme 'doom-wilmersdorf)
-    (setq doom-font (font-spec :family "Hack NF" :size 18)
-          doom-variable-pitch-font (font-spec :family "Ebrima" :size 20)
-          doom-big-font (font-spec :family "Hack NF" :size 24))))
+(when window-system
+  (when (equal system-type 'windows-nt)
+    (progn
+      (setq doom-theme 'doom-wilmersdorf)
+      (setq doom-font (font-spec :family "Hack NF" :size 18)
+            doom-variable-pitch-font (font-spec :family "Ebrima" :size 20)
+            doom-big-font (font-spec :family "Hack NF" :size 24))))
 
-(when (equal system-type 'gnu/linux)
-  (progn
-    (setq doom-font (font-spec :family "Hack" :size 18)
-          doom-big-font (font-spec :family "Hack" :size 24)
-          doom-theme 'leuven)
-    (add-hook 'hl-line-mode-hook
-              (lambda ()
-                (set-face-attribute 'hl-line nil :background "#f5f5fc")))))
+  (when (equal system-type 'gnu/linux)
+    (progn
+      (setq doom-font (font-spec :family "Hack" :size 18)
+            doom-big-font (font-spec :family "Hack" :size 24)
+            doom-theme 'leuven)
+      (add-hook 'hl-line-mode-hook
+                (lambda ()
+                  (set-face-attribute 'hl-line nil :background "#f5f5fc"))))))
+
+(unless window-system
+  (setq doom-theme 'doom-plain-dark)
+  (add-hook 'hl-line-mode-hook
+            (lambda ()
+              (global-hl-line-mode -1))))
 
 ;; opera-light nord-light homage-white tomorrow-day doom-acario-light
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
@@ -97,9 +104,10 @@
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
 
-(if (equal system-type 'windows-nt)
-    (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
-  (set-frame-size (window-frame) 120 45))
+(when window-system
+  (if (equal system-type 'windows-nt)
+      (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
+    (set-frame-size (window-frame) 120 45)))
 
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
