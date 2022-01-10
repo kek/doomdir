@@ -44,12 +44,17 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-wilmersdorf)
+(when (equal system-type 'windows-nt)
+  (setq doom-theme 'doom-wilmersdorf))
+
+(when (equal system-type 'gnu/linux)
+  (progn
+    (setq doom-theme 'leuven)
+    (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
 ;; opera-light nord-light homage-white tomorrow-day doom-acario-light
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
-;; (set-face-attribute 'hl-line nil :background "#f5f5fc") ; for leuven
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
