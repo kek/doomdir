@@ -101,7 +101,8 @@
       mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       )
 
-(display-battery-mode)
+(unless (equal "N/A" (battery-format "%L" (funcall battery-status-function)))
+    (display-battery-mode))
 
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
 (add-hook 'help-mode-hook #'variable-pitch-mode)
