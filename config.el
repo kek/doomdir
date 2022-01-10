@@ -112,3 +112,4 @@
 (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
 
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
+(map! :map 'helpful-mode-map :n "å" #'+popup/raise)
