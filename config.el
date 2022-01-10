@@ -11,7 +11,7 @@
 
 (setq user-home-directory
       (if (equal system-type 'windows-nt)
-          (getenv "USERPROFILE")
+          (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
         "~"))
 
 (setq src-directory
@@ -50,7 +50,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory (concat user-home-directory "/Documents/org/"))
+(setq org-directory (concat user-home-directory "/Documents/org"))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -85,15 +85,13 @@
   (setq deft-directory (concat user-home-directory "/Documents/org")))
 
 (after! org
-  (set-variable
-   'org-capture-templates
-   `(
-     ("c" "Note" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
-      "* %? %U" :prepend t)
-     ("P" "Protocol" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
-      "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t)
-     ("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
-      "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))))
+  (add-to-list 'org-capture-templates
+               `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+                 "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t))
+  (add-to-list 'org-capture-templates
+               `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+                 "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t)
+               ))
 
 (setq lsp-elixir-local-server-command (concat src-directory "/elixir-ls/release/language_server.bat"))
 
