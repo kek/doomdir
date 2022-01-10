@@ -3,9 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
 (setq user-full-name "Karl Eklund"
       user-mail-address "localpart@gmail.com")
 
@@ -21,18 +18,6 @@
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (when (equal system-type 'windows-nt)
   (progn
     (setq doom-theme 'doom-wilmersdorf)
@@ -53,12 +38,8 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
 (setq org-directory (concat user-home-directory "/Documents/org"))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
               #'display-line-numbers-mode)
