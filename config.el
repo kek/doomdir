@@ -112,5 +112,3 @@
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
-
-(server-start)
