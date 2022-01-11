@@ -20,11 +20,13 @@
 
 (when window-system
   (when (equal system-type 'windows-nt)
-    (progn
-      (setq doom-theme 'doom-wilmersdorf)
-      (setq doom-font (font-spec :family "Hack NF" :size 18)
-            doom-variable-pitch-font (font-spec :family "Ebrima" :size 20)
-            doom-big-font (font-spec :family "Hack NF" :size 24))))
+    (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
+                           (t 18))))
+      (progn
+        (setq doom-theme 'doom-wilmersdorf)
+        (setq doom-font (font-spec :family "Hack NF" :size font-size)
+              doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
+              doom-big-font (font-spec :family "Hack NF" :size 24)))))
 
   (when (equal system-type 'gnu/linux)
     (progn
