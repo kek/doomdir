@@ -19,23 +19,25 @@
         "~/src"))
 
 (when window-system
-  (when (equal system-type 'windows-nt)
-    (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
+  (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
                            (t 18))))
+    (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme 'doom-wilmersdorf)
         (setq doom-font (font-spec :family "Hack NF" :size font-size)
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
-              doom-big-font (font-spec :family "Hack NF" :size 24)))))
+              doom-big-font (font-spec :family "Hack NF" :size 24))))
 
   (when (equal system-type 'gnu/linux)
     (progn
-      (setq doom-font (font-spec :family "Hack" :size 18)
+      (setq doom-font (font-spec :family "Hack" :size font-size)
             doom-big-font (font-spec :family "Hack" :size 24)
-            doom-theme 'leuven)
-      (add-hook 'hl-line-mode-hook
-                (lambda ()
-                  (set-face-attribute 'hl-line nil :background "#f5f5fc"))))))
+            doom-theme 'doom-opera-light)
+
+      ))))
+;; (add-hook 'hl-line-mode-hook
+;;           (lambda ()
+;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
 (unless window-system
   (setq doom-theme 'doom-dark+)
