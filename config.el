@@ -93,7 +93,7 @@
         (concat src-directory "/elixir-ls/release/language_server.sh"))
       mouse-wheel-progressive-speed nil
       mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
-      frame-title-format '("%b – Doom Emacs")
+      frame-title-format `("%b – Doom Emacsy (" ,(symbol-name system-type) ")")
       )
 
 (after! battery
