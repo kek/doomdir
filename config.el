@@ -20,7 +20,7 @@
 
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
-                           (t 18))))
+                           (t 14))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme 'doom-wilmersdorf)
