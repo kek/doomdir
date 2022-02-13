@@ -20,7 +20,7 @@
 
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
-                           (t 14))))
+                           (t 16))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme 'doom-wilmersdorf)
@@ -110,9 +110,9 @@
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
 
 (when window-system
-  (if (equal system-type 'windows-nt)
-      (add-hook 'emacs-startup-hook #'toggle-frame-maximized)
-    (set-frame-size (window-frame) 120 45)))
+  (set-frame-size (window-frame) 120 55)
+  (if (equal system-type 'windows-nt-disabled)
+      (add-hook 'emacs-startup-hook #'toggle-frame-maximized)))
 
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
