@@ -1,4 +1,4 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -80,10 +80,10 @@
 (after! org
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
-               `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+               `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
                  "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t) t)
   (add-to-list 'org-capture-templates
-               `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "Notes.org") "Inbox")
+               `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
                  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t))
 
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"]
