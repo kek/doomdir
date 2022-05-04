@@ -86,6 +86,21 @@
                `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
                  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t))
 
+(defun my-file-description ()
+  (let* ((home-with-slash (concat (getenv "HOME") "/"))
+         (project-or-home (if (projectile-project-root)
+                              (let ((project-name
+                                     (upcase
+                                      (car (last
+                                            (split-string (projectile-project-root) "/" t))))))
+                                (concat project-name " - "))
+                            "HOME - "))
+         (home-or-project (or (projectile-project-root)
+                              home-with-slash)))
+    (if (eq buffer-file-name nil)
+        (buffer-name)
+      (s-replace home-or-project project-or-home (buffer-file-name)))))
+
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"]
       lsp-elixir-local-server-command
       (if (equal system-type 'windows-nt)
@@ -93,7 +108,8 @@
         (concat src-directory "/elixir-ls/release/language_server.sh"))
       mouse-wheel-progressive-speed nil
       mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
-      frame-title-format `("%b – Doom Emacs (" ,(symbol-name system-type) ")")
+      ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
+      frame-title-format `(:eval (my-file-description))
       )
 
 (after! battery
@@ -108,6 +124,17 @@
 (map! :n "§" #'evil-execute-in-emacs-state)
 (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
 (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
+(map! :n "C-s" #'save-buffer)
+(map! :i "C-s" (lambda () nil (interactive)
+                 (save-buffer)
+                 (evil-normal-state)))
+(map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
+                                       (company-abort)
+                                       (save-buffer)
+                                       (evil-normal-state)))
+
+(map! :after company :map company-active-map "<escape>" #'company-abort)
+(map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
