@@ -51,3 +51,4 @@
 
 
 (package! fish-mode)
+(package! elpher)
