@@ -20,7 +20,7 @@
 
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
-                           (t 16))))
+                           (t 18))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme 'doom-wilmersdorf)
@@ -121,20 +121,41 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(map! :n "§" #'evil-execute-in-emacs-state)
-(map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
-(map! :map 'helpful-mode-map :n "å" #'+popup/raise)
-(map! :n "C-s" #'save-buffer)
-(map! :i "C-s" (lambda () nil (interactive)
-                 (save-buffer)
-                 (evil-normal-state)))
-(map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
-                                       (company-abort)
-                                       (save-buffer)
-                                       (evil-normal-state)))
+;; EVIL
+(if nil
+    (progn
+      (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
+      (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
+      (map! :n "C-s" #'save-buffer)
+      (map! :i "C-s" (lambda () nil (interactive)
+                       (save-buffer)
+                       (evil-normal-state)))
+      (map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
+                                                           (company-abort)
+                                                           (save-buffer)
+                                                           (evil-normal-state)))
 
-(map! :after company :map company-active-map "<escape>" #'company-abort)
-(map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
+      (map! :after company :map company-active-map "<escape>" #'company-abort)
+      (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
+      (map! :map elpher-mode-map "DEL" #'transient-noop)
+      (map! :n "§" #'evil-execute-in-emacs-state)
+      )
+  ;; END EVIL
+  ;; NO EVIL
+  (progn
+    ;; (define-key global-map (kbd "§") doom-leader-map)
+    (setq doom-leader-key "§")
+    (setq doom-leader-alt-key "§")
+    (which-key-add-key-based-replacements "C-c !" "flycheck")
+    (which-key-add-key-based-replacements "C-c &" "snippets")
+    (which-key-add-key-based-replacements "C-c @" "outline")
+    (which-key-add-key-based-replacements "C-c l" "lisp")
+    (define-key doom-leader-map (kbd "§") #'projectile-find-file)
+
+
+)
+  ;; END NO EVIL
+  )
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
