@@ -151,9 +151,9 @@
     (which-key-add-key-based-replacements "C-c @" "outline")
     (which-key-add-key-based-replacements "C-c l" "lisp")
     (define-key doom-leader-map (kbd "§") #'projectile-find-file)
-
-
-)
+    (global-set-key (kbd "C-§") #'+popup/raise)
+    ;; popup raise
+    )
   ;; END NO EVIL
   )
 
