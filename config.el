@@ -4,7 +4,7 @@
 ;; sync' after modifying this file!
 
 (setq user-full-name "Karl Eklund"
-      user-mail-address "localpart@gmail.com")
+     user-mail-address "localpart@gmail.com")
 
 (setq user-home-directory
       (if (equal system-type 'windows-nt)
@@ -20,7 +20,7 @@
 
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
-                           (t 18))))
+                         (t 18))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme 'doom-wilmersdorf)
@@ -28,13 +28,13 @@
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
               doom-big-font (font-spec :family "Hack NF" :size 24))))
 
-  (when (equal system-type 'gnu/linux)
-    (progn
-      (setq doom-font (font-spec :family "Hack" :size font-size)
-            doom-big-font (font-spec :family "Hack" :size 24)
-            doom-theme 'doom-wilmersdorf) ; 'dichromacy
+   (when (equal system-type 'gnu/linux)
+     (progn
+       (setq doom-font (font-spec :family "Hack" :size font-size)
+             doom-big-font (font-spec :family "Hack" :size 24)
+             doom-theme 'doom-wilmersdorf))))) ; 'dichromacy
 
-      ))))
+      
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
@@ -109,8 +109,8 @@
       mouse-wheel-progressive-speed nil
       mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
-      frame-title-format `(:eval (my-file-description))
-      )
+      frame-title-format `(:eval (my-file-description)))
+      
 
 (after! battery
   (unless (equal "N/A" (battery-format "%L" (funcall battery-status-function)))
@@ -121,26 +121,26 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-;; EVIL
-(if nil
-    (progn
-      (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
-      (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
-      (map! :n "C-s" #'save-buffer)
-      (map! :i "C-s" (lambda () nil (interactive)
-                       (save-buffer)
-                       (evil-normal-state)))
-      (map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
-                                                           (company-abort)
-                                                           (save-buffer)
-                                                           (evil-normal-state)))
 
-      (map! :after company :map company-active-map "<escape>" #'company-abort)
-      (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
-      (map! :map elpher-mode-map "DEL" #'transient-noop)
-      (map! :n "§" #'evil-execute-in-emacs-state)
-      )
-  ;; END EVIL
+(if nil
+    ;; EVIL
+    (progn
+         (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
+         (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
+         (map! :n "C-s" #'save-buffer)
+         (map! :i "C-s" (lambda () nil (interactive)
+                          (save-buffer)
+                          (evil-normal-state)))
+         (map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
+                                                              (company-abort)
+                                                              (save-buffer)
+                                                              (evil-normal-state)))
+
+         (map! :after company :map company-active-map "<escape>" #'company-abort)
+         (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
+         (map! :map elpher-mode-map "DEL" #'transient-noop)
+         (map! :n "§" #'evil-execute-in-emacs-state))
+      
   ;; NO EVIL
   (progn
     ;; (define-key global-map (kbd "§") doom-leader-map)
@@ -151,11 +151,8 @@
     (which-key-add-key-based-replacements "C-c @" "outline")
     (which-key-add-key-based-replacements "C-c l" "lisp")
     (define-key doom-leader-map (kbd "§") #'projectile-find-file)
-    (global-set-key (kbd "C-§") #'+popup/raise)
-    ;; popup raise
-    )
-  ;; END NO EVIL
-  )
+    (global-set-key (kbd "C-§") #'+popup/raise)))
+
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
