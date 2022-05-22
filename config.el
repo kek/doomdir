@@ -117,7 +117,7 @@
     (display-battery-mode)))
 
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
-(add-hook 'help-mode-hook #'variable-pitch-mode)
+;(add-hook 'help-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
