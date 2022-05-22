@@ -143,8 +143,13 @@
   ;; NO EVIL
   (progn
     ;; (define-key global-map (kbd "§") doom-leader-map)
-    (setq doom-leader-key "§")
     (setq doom-leader-alt-key "§")
+    (setq doom-localleader-alt-key "§ l")
+    (setq! persp-keymap-prefix (kbd "§ z"))
+    (after! projectile
+      (define-key projectile-mode-map (kbd "§ p") 'projectile-command-map)
+      (define-key projectile-mode-map (kbd "C-c p") nil))
+    (setq! projectile-keymap-prefix (kbd "§ p"))
     (which-key-add-key-based-replacements "C-c !" "flycheck")
     (which-key-add-key-based-replacements "C-c &" "snippets")
     (which-key-add-key-based-replacements "C-c @" "outline")
@@ -154,9 +159,11 @@
     (define-key doom-leader-map (kbd "B") #'consult-buffer)
     (define-key doom-leader-map (kbd "1") #'delete-other-windows)
     (define-key doom-leader-map (kbd "2") #'split-window)
-    (define-key doom-leader-map (kbd "3") #'split-window-vertically)
+    (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
     (define-key doom-leader-map (kbd "g") #'elpher)
-    (global-set-key (kbd "C-§") #'+popup/raise)))
+    (global-set-key (kbd "C-§") #'+popup/raise)
+    (global-set-key (kbd "C-<tab>") #'other-window)
+    (global-set-key (kbd "M-RET") #'hippie-expand)))
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
