@@ -121,7 +121,6 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-
 (if nil
     ;; EVIL
     (progn
@@ -151,8 +150,9 @@
     (which-key-add-key-based-replacements "C-c @" "outline")
     (which-key-add-key-based-replacements "C-c l" "lisp")
     (define-key doom-leader-map (kbd "§") #'projectile-find-file)
+    (define-key doom-leader-map (kbd "b") #'bookmark-bmenu-list)
+    (define-key doom-leader-map (kbd "g") #'elpher)
     (global-set-key (kbd "C-§") #'+popup/raise)))
-
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
