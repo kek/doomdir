@@ -146,6 +146,13 @@
     (setq doom-leader-alt-key "§")
     (setq doom-localleader-alt-key "§ l")
     (setq! persp-keymap-prefix (kbd "§ z"))
+    (after! yasnippet
+      ;; (which-key-add-key-based-replacements "C-c &" nil)
+      ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
+      ;; (define-key yas-minor-mode-map (kbd "C-c & C-s") nil)
+      ;; (define-key yas-minor-mode-map (kbd "C-c & C-v") nil)
+      (define-key yas-minor-mode-map (kbd "§ & C-n") #'+snippets/new)
+      (define-key yas-minor-mode-map (kbd "§ & C-v") #'+snippets/edit))
     (after! projectile
       (define-key projectile-mode-map (kbd "§ p") 'projectile-command-map)
       (define-key projectile-mode-map (kbd "C-c p") nil))
