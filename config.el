@@ -160,7 +160,7 @@
     (which-key-add-key-based-replacements "C-c !" "flycheck")
     (which-key-add-key-based-replacements "C-c &" "snippets")
     (which-key-add-key-based-replacements "C-c @" "outline")
-    (which-key-add-key-based-replacements "C-c l" "lisp")
+    (which-key-add-key-based-replacements "C-c C-p" "parinfer")
     (define-key doom-leader-map (kbd "§") #'projectile-find-file)
     (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
     (define-key doom-leader-map (kbd "B") #'consult-buffer)
