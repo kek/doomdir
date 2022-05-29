@@ -18,6 +18,7 @@
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
+
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
                          (t 18))))
@@ -30,11 +31,10 @@
 
    (when (equal system-type 'gnu/linux)
      (progn
-       (setq doom-font (font-spec :family "Hack" :size font-size)
+       (setq doom-font (font-spec :family "Hack" :size 18)
              doom-big-font (font-spec :family "Hack" :size 24)
              doom-theme 'doom-moonlight))))) ; 'dichromacy
 
-      
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
@@ -111,7 +111,6 @@
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description)))
       
-
 (after! battery
   (unless (equal "N/A" (battery-format "%L" (funcall battery-status-function)))
     (display-battery-mode)))
@@ -185,3 +184,12 @@
 (setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+
+           (setq doom-font (font-spec :family "Hack" :size 18)
+                        doom-big-font (font-spec :family "Hack" :size 24)
+                        doom-theme 'doom-moonlight)
+           (doom/reload-font)
+           (doom/reload-theme)))
