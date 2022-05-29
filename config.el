@@ -170,7 +170,12 @@
     (define-key doom-leader-map (kbd "g") #'elpher)
     (global-set-key (kbd "C-§") #'+popup/raise)
     (global-set-key (kbd "C-<tab>") #'other-window)
-    (global-set-key (kbd "M-RET") #'hippie-expand)))
+    (global-set-key (kbd "M-RET") #'hippie-expand)
+    (map! :after company :map company-active-map "<escape>" #'company-abort)
+    (after! alchemist
+     (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)))) ; Workaround because of deprecated variable find-tag-marker-ring
+
+
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
