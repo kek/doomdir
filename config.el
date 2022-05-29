@@ -32,7 +32,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme 'doom-wilmersdorf))))) ; 'dichromacy
+             doom-theme 'doom-moonlight))))) ; 'dichromacy
 
       
 ;; (add-hook 'hl-line-mode-hook
