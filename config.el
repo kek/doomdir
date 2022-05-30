@@ -174,8 +174,6 @@
     (after! alchemist
      (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)))) ; Workaround because of deprecated variable find-tag-marker-ring
 
-
-
 (when window-system
   (set-frame-size (window-frame) 120 55)
   (if (equal system-type 'windows-nt-disabled)
