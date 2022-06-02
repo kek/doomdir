@@ -81,7 +81,7 @@
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
                `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
-                 "* [[%:link][%:description]] %U\n%?" :prepend t :immediate-finish t :jump-to-captured t) t)
+                 "* [[%:link][%:description]] %U%?" :prepend t :immediate-finish t :jump-to-captured t) t)
   (add-to-list 'org-capture-templates
                `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
                  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t))
