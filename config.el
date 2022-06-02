@@ -183,6 +183,9 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(add-hook 'elixir-mode-hook (lambda ()
+                              (show-paren-local-mode -1)))
+
 (add-hook 'after-make-frame-functions
           (lambda (frame)
 
