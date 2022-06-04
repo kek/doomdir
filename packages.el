@@ -52,3 +52,4 @@
 
 (package! fish-mode)
 (package! elpher)
+(package! smooth-scroll)

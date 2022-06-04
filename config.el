@@ -194,3 +194,7 @@
                         doom-theme 'doom-moonlight)
            (doom/reload-font)
            (doom/reload-theme)))
+
+(require 'smooth-scroll)
+(smooth-scroll-mode)
+(setq smooth-scroll/vscroll-step-size 5)
