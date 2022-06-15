@@ -33,14 +33,15 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size 18)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme 'doom-moonlight))))) ; 'dichromacy
+             doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-acario-light 'doom-moonlight)))))) ; 'dichromacy
+
 
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
 (unless window-system
-  (setq doom-theme 'doom-dark+)
+  ;; (setq doom-theme 'doom-dark+)
   (add-hook 'hl-line-mode-hook
             (lambda ()
               (global-hl-line-mode -1))))
@@ -192,9 +193,13 @@
 
            (setq doom-font (font-spec :family "Hack" :size 18)
                         doom-big-font (font-spec :family "Hack" :size 24)
-                        doom-theme 'doom-moonlight)
+                        doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-acario-light 'doom-moonlight))
            (doom/reload-font)
            (doom/reload-theme)))
+
+(if (equal (downcase (system-name))) "fedora"
+  (doom-themes-set-faces nil
+    '(vhl/default-face :background "#ccf")))
 
 (require 'smooth-scroll)
 (smooth-scroll-mode)
