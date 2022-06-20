@@ -33,8 +33,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size 18)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-acario-light 'doom-moonlight)))))) ; 'dichromacy
-
+             doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-moonlight 'doom-moonlight)))))) ; doom-acario-light, dichromacy
 
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
@@ -193,7 +192,7 @@
 
            (setq doom-font (font-spec :family "Hack" :size 18)
                         doom-big-font (font-spec :family "Hack" :size 24)
-                        doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-acario-light 'doom-moonlight))
+                        doom-theme (if (equal (downcase (system-name))) "fedora" 'doom-moonlight 'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
            (doom/reload-theme)))
 
