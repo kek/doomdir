@@ -31,7 +31,7 @@
 
    (when (equal system-type 'gnu/linux)
      (progn
-       (setq doom-font (font-spec :family "Hack" :size 18)
+       (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
              doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)))))) ; doom-acario-light, dichromacy
 
@@ -190,7 +190,13 @@
 (add-hook 'after-make-frame-functions
           (lambda (frame)
 
-           (setq doom-font (font-spec :family "Hack" :size 18)
+           (setq doom-font (font-spec :family "Hack"
+                                      :size (cond
+                                             ((equal
+                                               (downcase (system-name))
+                                               "potatis")
+                                              14)
+                                             (t 18)))
                         doom-big-font (font-spec :family "Hack" :size 24)
                         doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
