@@ -174,8 +174,10 @@
     (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
     (define-key doom-leader-map (kbd "B") #'consult-buffer)
     (define-key doom-leader-map (kbd "1") #'delete-other-windows)
-    (define-key doom-leader-map (kbd "2") #'split-window)
+    (define-key doom-leader-map (kbd "2") #'split-window-vertically)
     (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
+    (define-key doom-leader-map (kbd "0") #'delete-window)
+    (define-key doom-leader-map (kbd "TAB") #'other-window)
     (define-key doom-leader-map (kbd "g") #'elpher)
     (global-set-key (kbd "C-§") #'+popup/toggle)
     (global-set-key (kbd "C-½") #'+popup/raise)
@@ -198,6 +200,7 @@
 
     (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
     (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
+    (setq kill-whole-line t)
 
     (map! :after company :map company-active-map "<escape>" #'company-abort)
     (after! alchemist
@@ -233,8 +236,6 @@
 (if (equal (downcase (system-name)) "fedora")
   (doom-themes-set-faces nil
     '(vhl/default-face :background "#555")))
-
-(setq kill-whole-line t)
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;; (require 'smooth-scroll)
