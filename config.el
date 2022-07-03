@@ -147,7 +147,9 @@
          (map! :after company :map company-active-map "<escape>" #'company-abort)
          (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
-         (map! :n "§" #'evil-execute-in-emacs-state))
+         (map! :n "§" #'evil-execute-in-emacs-state)
+         (map! :n "C-<left>" #'previous-buffer)
+         (map! :n "C-<right>" #'next-buffer))
       
   ;; NO EVIL
   (progn
