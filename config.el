@@ -170,7 +170,7 @@
     (which-key-add-key-based-replacements "C-c &" "snippets")
     (which-key-add-key-based-replacements "C-c @" "outline")
     (which-key-add-key-based-replacements "C-c C-p" "parinfer")
-    (define-key doom-leader-map (kbd "§") #'projectile-find-file)
+    (define-key doom-leader-map (kbd "§") #'save-buffer)
     (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
     (define-key doom-leader-map (kbd "B") #'consult-buffer)
     (define-key doom-leader-map (kbd "1") #'delete-other-windows)
@@ -181,6 +181,24 @@
     (global-set-key (kbd "C-½") #'+popup/raise)
     (global-set-key (kbd "C-<tab>") #'other-window)
     (global-set-key (kbd "M-RET") #'hippie-expand)
+
+    (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
+    (global-set-key (kbd "C-ä") #'consult-buffer)
+    (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
+    (global-set-key (kbd "C-S-d") #'duplicate-line)
+    (global-set-key (kbd "C-.") nil)
+    (global-set-key (kbd "C-:") nil)
+
+    (global-set-key (kbd "<f1>") #'info)
+    (global-set-key (kbd "<f2>") #'save-buffer)
+    (global-set-key (kbd "<f3>") #'find-file)
+    (global-set-key (kbd "<f4>") nil)
+    (global-set-key (kbd "<f9>") #'+vterm/toggle)
+    (after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
+
+    (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
+    (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
+
     (map! :after company :map company-active-map "<escape>" #'company-abort)
     (after! alchemist
      (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)))) ; Workaround because of deprecated variable find-tag-marker-ring
