@@ -130,7 +130,7 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if nil
+(if t
     ;; EVIL
     (progn
          (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
