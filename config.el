@@ -191,13 +191,6 @@
     (global-set-key (kbd "C-.") nil)
     (global-set-key (kbd "C-:") nil)
 
-    (global-set-key (kbd "<f1>") #'info)
-    (global-set-key (kbd "<f2>") #'save-buffer)
-    (global-set-key (kbd "<f3>") #'find-file)
-    (global-set-key (kbd "<f4>") nil)
-    (global-set-key (kbd "<f9>") #'+vterm/toggle)
-    (after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
-
     (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
     (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
     (setq kill-whole-line t)
@@ -247,3 +240,10 @@
 
 (setq confirm-kill-emacs nil)
 (menu-bar-mode)
+
+(global-set-key (kbd "<f1>") #'info)
+(global-set-key (kbd "<f2>") #'save-buffer)
+(global-set-key (kbd "<f3>") #'find-file)
+(global-set-key (kbd "<f4>") nil)
+(global-set-key (kbd "<f9>") #'+vterm/toggle)
+(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
