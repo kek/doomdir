@@ -204,7 +204,9 @@
 
 (if (equal (downcase (system-name)) "fedora")
   (doom-themes-set-faces nil
-    '(vhl/default-face :background "#ccf")))
+    '(vhl/default-face :background "#555")))
+
+(setq kill-whole-line t)
 
 (require 'smooth-scroll)
 (smooth-scroll-mode)
