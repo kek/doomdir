@@ -33,7 +33,15 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)))))) ; doom-acario-light, dichromacy
+             doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)) ; doom-acario-light, dichromacy
+       (if (equal emacs-version "29.0.50")
+           (progn
+             (setq line-spacing nil)
+             (pixel-scroll-precision-mode)
+             (setq pixel-scroll-precision-interpolate-page nil)
+             (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
+             (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
+             (message "Pixel scroll precision mode is almost great!")))))))
 
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
@@ -54,6 +62,8 @@
 (setq display-line-numbers-type nil)
 (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
               #'display-line-numbers-mode)
+
+(setq company-global-modes '(not org-mode erc-mode circe-mode message-mode help-mode gud-mode vterm-mode))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -106,8 +116,8 @@
       (if (equal system-type 'windows-nt)
           (concat src-directory "/elixir-ls/release/language_server.bat")
         (concat src-directory "/elixir-ls/release/language_server.sh"))
-      mouse-wheel-progressive-speed nil
-      mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
+      ;; mouse-wheel-progressive-speed nil
+      ;; mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description)))
       
@@ -208,6 +218,13 @@
 
 (setq kill-whole-line t)
 
-(require 'smooth-scroll)
-(smooth-scroll-mode)
-(setq smooth-scroll/vscroll-step-size 5)
+;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
+;; (require 'smooth-scroll)
+;; (smooth-scroll-mode)
+;; (setq smooth-scroll/vscroll-step-size 1)
+
+;; (auto-save-visited-mode)
+;; (setq auto-save-visited-interval 1)
+
+(setq confirm-kill-emacs nil)
+(menu-bar-mode)
