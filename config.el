@@ -39,11 +39,11 @@
 ;;           (lambda ()
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
-(unless window-system
-  ;; (setq doom-theme 'doom-dark+)
-  (add-hook 'hl-line-mode-hook
-            (lambda ()
-              (global-hl-line-mode -1))))
+;; (unless window-system
+;;   ;; (setq doom-theme 'doom-dark+)
+;;   (add-hook 'hl-line-mode-hook
+;;             (lambda ()
+;;               (global-hl-line-mode -1))))
 
 ;; opera-light nord-light homage-white tomorrow-day doom-acario-light
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
