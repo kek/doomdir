@@ -150,7 +150,9 @@
          (map! :map elpher-mode-map "DEL" #'transient-noop)
          (map! :n "§" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
-         (map! :n "C-<right>" #'next-buffer))
+         (map! :n "C-<right>" #'next-buffer)
+         (add-hook 'org-mode-hook #'evil-org-mode))
+
       
   ;; NO EVIL
   (progn
