@@ -53,3 +53,4 @@
 (package! fish-mode)
 (package! elpher)
 (package! smooth-scroll)
+(package! ace-window)

@@ -136,9 +136,14 @@
          (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
          (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
          (map! :n "C-s" #'save-buffer)
+         (map! "C-§" #'+popup/toggle)
+         (map! "C-½" #'+popup/raise)
          (map! :i "C-s" (lambda () nil (interactive)
                           (save-buffer)
                           (evil-normal-state)))
+         (map! :r "C-s" (lambda () nil (interactive)
+                         (save-buffer)
+                         (evil-normal-state)))
          (map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
                                                               (company-abort)
                                                               (save-buffer)
@@ -148,10 +153,13 @@
          (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
          (map! :map doom-leader-map "d" #'duplicate-line)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
-         (map! :n "§" #'evil-execute-in-emacs-state)
+         (map! :n "§" #'execute-extended-command)
+         (map! :n "½" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
          (map! :n "C-<right>" #'next-buffer)
-         (add-hook 'org-mode-hook #'evil-org-mode))
+         (add-hook 'org-mode-hook (lambda () "" nil
+                                    (message "Org mode hook")
+                                    (evil-org-mode))))
 
       
   ;; NO EVIL
