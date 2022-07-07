@@ -144,6 +144,8 @@
          (map! :r "C-s" (lambda () nil (interactive)
                          (save-buffer)
                          (evil-normal-state)))
+
+         (map! :map 'evil-window-map "C-a" #'ace-window)
          (map! :after company :map company-active-map "C-s" (lambda () nil (interactive)
                                                               (company-abort)
                                                               (save-buffer)
@@ -157,9 +159,11 @@
          (map! :n "½" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
          (map! :n "C-<right>" #'next-buffer)
-         (add-hook 'org-mode-hook (lambda () "" nil
-                                    (message "Org mode hook")
-                                    (evil-org-mode))))
+         (add-hook 'find-file-hook (lambda () "Set evil-org-mode if not set" nil
+                                     (if (eq major-mode 'org-mode)
+                                      (progn
+                                       (message "Adding evil to org mode!")
+                                       (evil-org-mode))))))
 
       
   ;; NO EVIL
@@ -237,7 +241,8 @@
                         doom-big-font (font-spec :family "Hack" :size 24)
                         doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
-           (doom/reload-theme)))
+           (doom/reload-theme)
+           (pixel-scroll-precision-mode)))
 
 (if (equal (downcase (system-name)) "fedora")
   (doom-themes-set-faces nil
@@ -252,7 +257,7 @@
 ;; (setq auto-save-visited-interval 1)
 
 (setq confirm-kill-emacs nil)
-(menu-bar-mode)
+;; (menu-bar-mode)
 
 (global-set-key (kbd "<f1>") (lambda () "open config.el" (interactive) (find-file (concat doom-private-dir "config.el"))))
 (global-set-key (kbd "<f2>") #'save-buffer)
