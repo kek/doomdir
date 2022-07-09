@@ -155,8 +155,7 @@
          (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
          (map! :map doom-leader-map "d" #'duplicate-line)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
-         (map! :n "§" #'execute-extended-command)
-         (map! :n "½" #'evil-execute-in-emacs-state)
+         (map! :n "<f9>" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
          (map! :n "C-<right>" #'next-buffer)
          ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
@@ -264,5 +263,7 @@
 (global-set-key (kbd "<f2>") #'save-buffer)
 (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f4>") nil)
-(global-set-key (kbd "<f9>") #'+vterm/toggle)
+(global-set-key (kbd "§") #'+vterm/toggle)
+(global-set-key (kbd "½") #'+vterm/here)
+
 (after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
