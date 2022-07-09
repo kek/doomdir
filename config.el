@@ -159,14 +159,15 @@
          (map! :n "½" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
          (map! :n "C-<right>" #'next-buffer)
-         (add-hook 'find-file-hook (lambda () "Set evil-org-mode if not set" nil
-                                     (if (eq major-mode 'org-mode)
-                                      (progn
-                                       (message "Adding evil to org mode!")
-                                       (evil-org-mode))))))
+         ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
+         ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
+         (add-hook 'org-after-refile-insert-hook (lambda () "Set evil-org-mode if not set" nil
+                                                   (if (eq major-mode 'org-mode)
+                                                    (progn
+                                                     (message "Setting evil in org mode in %s!" buffer-file-name)
+                                                     (evil-org-mode))))))
 
-      
-  ;; NO EVIL
+  ;;; NO EVIL
   (progn
     ;; (define-key global-map (kbd "§") doom-leader-map)
     (setq doom-leader-alt-key "§")
