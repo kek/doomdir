@@ -164,7 +164,8 @@
                                                    (if (eq major-mode 'org-mode)
                                                     (progn
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
-                                                     (evil-org-mode))))))
+                                                     (evil-org-mode)))))
+         (map! :i "M-<tab>" #'hippie-expand))
 
   ;;; NO EVIL
   (progn
