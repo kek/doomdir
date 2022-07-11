@@ -166,7 +166,8 @@
                                                     (progn
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
                                                      (evil-org-mode)))))
-         (map! :i "M-<tab>" #'hippie-expand))
+         (map! :i "M-<tab>" #'hippie-expand)
+         (map! :i "<backtab>" #'company-complete))
 
   ;;; NO EVIL
   (progn
