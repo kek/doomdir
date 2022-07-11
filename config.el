@@ -277,3 +277,4 @@
          (message "org capture: %s" org-capture-current-plist)
          (notifications-notify :title "Org Capture" :body description :timeout 1500)))
 (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
+
