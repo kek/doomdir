@@ -92,9 +92,10 @@
   (add-to-list 'org-capture-templates
                `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
                  "* [[%:link][%:description]] %U%?" :prepend t :immediate-finish t :jump-to-captured t) t)
-  (add-to-list 'org-capture-templates
-               `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
-                 "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t))
+  ;; (add-to-list 'org-capture-templates
+  ;;              `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
+  ;;                "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t)
+)
 
 (defun my-file-description ()
   (let* ((home-with-slash (concat (getenv "HOME") "/"))
