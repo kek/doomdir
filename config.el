@@ -270,3 +270,10 @@
 (global-set-key (kbd "½") #'+vterm/here)
 
 (after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
+
+(require 'notifications)
+(defun my-notify-org-capture () "Notify org capture" nil nil
+       (let ((description (plist-get org-capture-current-plist :annotation)))
+         (message "org capture: %s" org-capture-current-plist)
+         (notifications-notify :title "Org Capture" :body description :timeout 1500)))
+(add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
