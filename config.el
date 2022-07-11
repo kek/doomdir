@@ -270,7 +270,7 @@
 (global-set-key (kbd "§") #'+vterm/toggle)
 (global-set-key (kbd "½") #'+vterm/here)
 
-(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
+;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 (require 'notifications)
 (defun my-notify-org-capture () "Notify org capture" nil nil
