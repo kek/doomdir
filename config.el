@@ -167,7 +167,8 @@
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
                                                      (evil-org-mode)))))
          (map! :i "M-<tab>" #'hippie-expand)
-         (map! :i "<backtab>" #'company-complete))
+         (map! :i "<backtab>" #'company-complete)
+         (map! :map doom-leader-map "o g" #'elpher))
 
   ;;; NO EVIL
   (progn
