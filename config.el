@@ -176,7 +176,9 @@
          (map! :i "<backtab>" #'company-complete)
          (map! :map doom-leader-map "o g" #'elpher)
          (map! :n "C-å" #'recompile)
-         (setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox"))))
+         (setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox")))
+         (global-set-key (kbd "§") #'+vterm/toggle)
+         (global-set-key (kbd "½") #'+vterm/here))
 
   ;;; NO EVIL
   (progn
@@ -275,8 +277,6 @@
 (global-set-key (kbd "<f2>") #'save-buffer)
 (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f4>") nil)
-(global-set-key (kbd "§") #'+vterm/toggle)
-(global-set-key (kbd "½") #'+vterm/here)
 
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
