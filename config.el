@@ -131,7 +131,7 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if t
+(if nil
     ;; EVIL
     (progn
          (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
@@ -176,7 +176,6 @@
          (map! :i "<backtab>" #'company-complete)
          (map! :map doom-leader-map "o g" #'elpher)
          (map! :n "C-å" #'recompile)
-         (setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox")))
          (global-set-key (kbd "§") #'+vterm/toggle)
          (global-set-key (kbd "½") #'+vterm/here))
 
@@ -287,4 +286,5 @@
          (notifications-notify :title "Org Capture" :body description :timeout 1500)))
 (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
+(setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox")))
 (setq +notmuch-mail-folder "~/mail/account.gmail")
