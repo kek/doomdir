@@ -175,6 +175,7 @@
          (map! :i "M-<tab>" #'hippie-expand)
          (map! :i "<backtab>" #'company-complete)
          (map! :map doom-leader-map "o g" #'elpher))
+         (map! :n "C-å" #'recompile)
 
   ;;; NO EVIL
   (progn
