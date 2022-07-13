@@ -185,6 +185,11 @@
     (setq doom-leader-alt-key "§")
     (setq doom-localleader-alt-key "§ l")
     (setq! persp-keymap-prefix (kbd "§ z"))
+    (global-set-key (kbd "<backtab>") #'company-complete)
+    (global-set-key (kbd "M-<tab>") #'hippie-expand)
+    (map! :after company :map company-active-map "<return>" #'newline-and-indent)
+    (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
+    (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
     (after! yasnippet
       ;; (which-key-add-key-based-replacements "C-c &" nil)
       ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
@@ -201,8 +206,10 @@
     (which-key-add-key-based-replacements "C-c @" "outline")
     (which-key-add-key-based-replacements "C-c C-p" "parinfer")
     (define-key doom-leader-map (kbd "§") #'save-buffer)
-    (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
-    (define-key doom-leader-map (kbd "B") #'consult-buffer)
+    ;; (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
+    ;; (define-key doom-leader-map (kbd "B") #'consult-buffer)
+    (define-key doom-leader-map (kbd "b") #'consult-buffer)
+    (define-key doom-leader-map (kbd "B") #'consult-buffer-other-frame)
     (define-key doom-leader-map (kbd "1") #'delete-other-windows)
     (define-key doom-leader-map (kbd "2") #'split-window-vertically)
     (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
@@ -214,8 +221,8 @@
     (global-set-key (kbd "C-<tab>") #'other-window)
     (global-set-key (kbd "M-RET") #'hippie-expand)
 
-    (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
-    (global-set-key (kbd "C-ä") #'consult-buffer)
+    ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
+    ;; (global-set-key (kbd "C-ä") #'consult-buffer)
     (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
     (global-set-key (kbd "C-S-d") #'duplicate-line)
     (global-set-key (kbd "C-.") nil)
@@ -279,6 +286,7 @@
 
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
+;; Notifications for org
 (require 'notifications)
 (defun my-notify-org-capture () "Notify org capture" nil nil
        (let ((description (plist-get org-capture-current-plist :annotation)))
