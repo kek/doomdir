@@ -174,8 +174,9 @@
                                                      (evil-org-mode)))))
          (map! :i "M-<tab>" #'hippie-expand)
          (map! :i "<backtab>" #'company-complete)
-         (map! :map doom-leader-map "o g" #'elpher))
+         (map! :map doom-leader-map "o g" #'elpher)
          (map! :n "C-å" #'recompile)
+         (setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox"))))
 
   ;;; NO EVIL
   (progn
@@ -286,3 +287,4 @@
          (notifications-notify :title "Org Capture" :body description :timeout 1500)))
 (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
+(setq +notmuch-mail-folder "~/mail/account.gmail")
