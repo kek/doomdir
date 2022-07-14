@@ -294,5 +294,14 @@
          (notifications-notify :title "Org Capture" :body description :timeout 1500)))
 (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
+;; Mail
 (setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox")))
 (setq +notmuch-mail-folder "~/mail/account.gmail")
+;; (setq sendmail-program "gmi")
+;; (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/mail/account.gmail"))
+(setq sendmail-program "msmtp")
+(setq message-sendmail-extra-arguments ())
+(setq mail-specify-envelope-from t)
+(setq message-sendmail-envelope-from 'header)
+(setq mail-envelope-from 'header)
+;; https://github.com/gauteh/lieer/wiki/GNU-Emacs-and-Lieer
