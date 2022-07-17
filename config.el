@@ -222,6 +222,7 @@
     ;; (global-set-key (kbd "C-ä") #'consult-buffer)
     (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
     (global-set-key (kbd "C-S-d") #'duplicate-line)
+    (global-set-key (kbd "C-S-j") (lambda () nil (interactive) (join-line t)))
     (global-set-key (kbd "C-.") nil)
     (global-set-key (kbd "C-:") nil)
 
@@ -276,11 +277,11 @@
 (setq confirm-kill-emacs nil)
 ;; (menu-bar-mode)
 
-(global-set-key (kbd "<f1>") (lambda () "open config.el" (interactive) (find-file (concat doom-private-dir "config.el"))))
+(global-set-key (kbd "<f1>") #'+lookup/documentation)
 (global-set-key (kbd "<f2>") #'save-buffer)
 (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f4>") nil)
-
+(global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive) (find-file (concat doom-private-dir "config.el"))))
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 ;; Notifications for org
