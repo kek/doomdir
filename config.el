@@ -3,9 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-(setq user-full-name "Karl Eklund"
-     user-mail-address "localpart@gmail.com")
-
 (setq user-home-directory
       (if (equal system-type 'windows-nt)
           (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
@@ -295,7 +292,7 @@
 (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
 ;; Mail
-(setq +notmuch-home-function (lambda () (notmuch-search "tag:inbox")))
+(setq +notmuch-home-function (lambda () (notmuch-search "path:/account.gmail/ tag:inbox")))
 (setq +notmuch-mail-folder "~/mail/account.gmail")
 ;; (setq sendmail-program "gmi")
 ;; (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/mail/account.gmail"))
@@ -305,3 +302,43 @@
 (setq message-sendmail-envelope-from 'header)
 (setq mail-envelope-from 'header)
 ;; https://github.com/gauteh/lieer/wiki/GNU-Emacs-and-Lieer
+(setq mm-text-html-renderer 'w3m)
+(setq shr-use-colors nil)
+
+(defun notmuch-search-stash-authors ()
+  "Copy thread ID of current thread to kill-ring."
+  (interactive)
+  (notmuch-common-do-stash (notmuch-search-find-authors)))
+
+(defun notmuch-search-authors ()
+  "Copy thread ID of current thread to kill-ring."
+  (interactive)
+  (notmuch-search (concat "from:\"" (notmuch-search-find-authors) "\"")))
+
+
+(defun notmuch-filter-authors ()
+  "Copy thread ID of current thread to kill-ring."
+  (interactive)
+  (notmuch-search-filter (concat "from:\"" (notmuch-search-find-authors) "\"")))
+
+
+(define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
+(define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors)
+
+;; Face adjustments
+
+(defun my-face-adjustments ()
+  (after! notmuch
+    (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
+    (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
+  (after! org
+    (set-face-attribute 'org-headline-done nil :foreground "#94a7a3"))
+  (if (equal (downcase (system-name)) "fedora")
+      (doom-themes-set-faces nil
+        '(vhl/default-face :background "#555"))))
+
+(my-face-adjustments)
+
+;; Local settings
+
+(load "~/.secrets.el")

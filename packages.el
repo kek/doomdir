@@ -54,3 +54,4 @@
 (package! elpher)
 (package! smooth-scroll)
 (package! ace-window)
+(package! w3m)
