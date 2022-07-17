@@ -249,22 +249,19 @@
 (add-hook 'after-make-frame-functions
           (lambda (frame)
 
-           (setq doom-font (font-spec :family "Hack"
-                                      :size (cond
-                                             ((equal
-                                               (downcase (system-name))
-                                               "potatis")
-                                              14)
-                                             (t 18)))
-                        doom-big-font (font-spec :family "Hack" :size 24)
-                        doom-theme (if (equal (downcase (system-name)) "fedora") 'doom-moonlight 'doom-moonlight)) ; doom-acario-light
+           (setq doom-font
+                 (font-spec :family "Hack"
+                            :size (cond
+                                   ((equal (downcase (system-name)) "potatis") 14)
+                                   (t 18)))
+                 doom-big-font (font-spec :family "Hack" :size 24)
+                 doom-theme (if (equal (downcase (system-name)) "fedora")
+                                'doom-moonlight
+                              'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
            (doom/reload-theme)
-           (pixel-scroll-precision-mode)))
-
-(if (equal (downcase (system-name)) "fedora")
-  (doom-themes-set-faces nil
-    '(vhl/default-face :background "#555")))
+           (pixel-scroll-precision-mode)
+           (my-face-adjustments)))
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;; (require 'smooth-scroll)
