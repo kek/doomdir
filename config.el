@@ -297,9 +297,9 @@
 
 ;; Mail
 (setq +notmuch-home-function (lambda () (notmuch-search "path:/account.gmail/ tag:inbox")))
-(setq +notmuch-mail-folder "~/mail/account.gmail")
+(setq +notmuch-mail-folder "~/.mail/account.gmail")
 ;; (setq sendmail-program "gmi")
-;; (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/mail/account.gmail"))
+;; (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/account.gmail"))
 (setq sendmail-program "msmtp")
 (setq message-sendmail-extra-arguments ())
 (setq mail-specify-envelope-from t)
