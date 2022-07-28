@@ -326,8 +326,9 @@
   (notmuch-search-filter (concat "from:\"" (notmuch-search-find-authors) "\"")))
 
 
+(after! notmuch
 (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
-(define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors)
+(define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))
 
 ;; Face adjustments
 
