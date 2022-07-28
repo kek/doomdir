@@ -216,6 +216,7 @@
     (global-set-key (kbd "C-§") #'+popup/toggle)
     (global-set-key (kbd "C-½") #'+popup/raise)
     (global-set-key (kbd "C-<tab>") #'other-window)
+    (global-set-key (kbd "C-<iso-lefttab>") (lambda () nil (interactive) (other-window -1)))
     (global-set-key (kbd "M-RET") #'hippie-expand)
 
     ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
@@ -278,7 +279,12 @@
 (global-set-key (kbd "<f2>") #'save-buffer)
 (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f4>") nil)
-(global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive) (find-file (concat doom-private-dir "config.el"))))
+(global-set-key (kbd "<f5>") #'recompile)
+(global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
+                                (find-file (concat doom-private-dir "config.el"))))
+(global-set-key (kbd "M-§") (lambda () "save and recompile" (interactive)
+                              (save-buffer)
+                              (recompile)))
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 ;; Notifications for org
