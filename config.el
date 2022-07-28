@@ -343,6 +343,9 @@
 
 (my-face-adjustments)
 
+(after! org
+  (add-hook 'org-mode-hook #'my-face-adjustments))
+
 ;; Local settings
 
 (load "~/.secrets.el")
