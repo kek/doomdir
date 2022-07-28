@@ -306,7 +306,7 @@
 (setq message-sendmail-envelope-from 'header)
 (setq mail-envelope-from 'header)
 ;; https://github.com/gauteh/lieer/wiki/GNU-Emacs-and-Lieer
-(setq mm-text-html-renderer 'w3m)
+(setq mm-text-html-renderer 'shr)
 (setq shr-use-colors nil)
 
 (defun notmuch-search-stash-authors ()
