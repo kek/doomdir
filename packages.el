@@ -55,3 +55,4 @@
 (package! smooth-scroll)
 (package! ace-window)
 (package! w3m)
+(package! graphviz-dot-mode)
