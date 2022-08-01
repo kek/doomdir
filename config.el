@@ -347,6 +347,19 @@
 (after! org
   (add-hook 'org-mode-hook #'my-face-adjustments))
 
+(defun my-clear-completion () (interactive)
+  (copilot-clear-overlay))
+
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("M-S-TAB" . 'copilot-accept-completion-by-word)
+         ("M-S-<tab>" . 'copilot-accept-completion-by-word)
+         ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("M-<tab>" . 'copilot-accept-completion)
+         ("M-TAB" . 'copilot-accept-completion)
+         ("<escape>" . 'copilot-clear-overlay)))
+
 ;; Local settings
 
 (load "~/.secrets.el")
