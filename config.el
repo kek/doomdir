@@ -179,6 +179,8 @@
   ;;; NO EVIL
   (progn
     ;; (define-key global-map (kbd "§") doom-leader-map)
+    (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
+    (define-key global-map (kbd "C-S-z") #'undo-fu-only-redo)
     (setq doom-leader-alt-key "§")
     (setq doom-localleader-alt-key "§ l")
     (setq! persp-keymap-prefix (kbd "§ z"))
