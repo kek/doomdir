@@ -360,6 +360,7 @@
          :map copilot-completion-map
          ("M-<tab>" . 'copilot-accept-completion)
          ("M-TAB" . 'copilot-accept-completion)
+         ("C-M-<tab>" . 'copilot-next-completion)
          ("<escape>" . 'copilot-clear-overlay)))
 
 ;; Local settings
