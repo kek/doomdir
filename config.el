@@ -363,6 +363,10 @@
          ("C-M-<tab>" . 'copilot-next-completion)
          ("<escape>" . 'copilot-clear-overlay)))
 
+(org-babel-do-load-languages
+    'org-babel-load-languages
+    '((dot . t)))
+
 ;; Local settings
 
 (load "~/.secrets.el")
