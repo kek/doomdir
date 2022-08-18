@@ -155,15 +155,23 @@
          (map! :after company :map company-active-map "<return>" #'newline-and-indent)
          (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
          (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
+
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
-           :bind (("M-C-TAB" . 'copilot-accept-completion-by-word)
-                  ("M-C-<tab>" . 'copilot-accept-completion-by-word)
+           :bind (("S-C-RET" . 'copilot-accept-completion-by-word)
                   :map copilot-completion-map
-                  ("M-<tab>" . 'copilot-accept-completion)
-                  ("M-TAB" . 'copilot-accept-completion)
-                  ("M-S-<tab>" . 'copilot-next-completion)
-                  ("M-<iso-lefttab>" . 'copilot-next-completion)))
+                  ("C-RET" . 'copilot-accept-completion)
+                  ("C-<return>" . 'copilot-accept-completion)
+                  ("M-C-<return>" . 'copilot-next-completion)))
+
+         ;; (use-package! copilot
+         ;;   :hook (prog-mode . copilot-mode)
+         ;;   :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+         ;;          ("C-<tab>" . 'copilot-accept-completion-by-word)
+         ;;          :map copilot-completion-map
+         ;;          ("<tab>" . 'copilot-accept-completion)
+         ;;          ("TAB" . 'copilot-accept-completion)))
+
          (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
          (map! :map doom-leader-map "d" #'duplicate-line)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
@@ -177,8 +185,8 @@
                                                     (progn
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
                                                      (evil-org-mode)))))
-         ;; (map! :i "M-<tab>" #'dabbrev-expand)
-         ;; (map! :i "<backtab>" #'hippie-expand)
+         (map! :i "M-<tab>" #'dabbrev-expand)
+         (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
          (map! :map doom-leader-map "o g" #'elpher)
          (map! :n "C-å" #'recompile)
