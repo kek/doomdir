@@ -178,8 +178,9 @@
                                                     (progn
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
                                                      (evil-org-mode)))))
-         (map! :i "M-<tab>" #'hippie-expand)
-         (map! :i "<backtab>" #'company-complete)
+         (map! :i "M-<tab>" #'dabbrev-expand)
+         (map! :i "<backtab>" #'hippie-expand)
+         (map! :i "M-RET" #'hippie-expand)
          (map! :map doom-leader-map "o g" #'elpher)
          (map! :n "C-å" #'recompile)
          (global-set-key (kbd "§") #'+vterm/toggle)
