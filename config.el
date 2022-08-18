@@ -128,7 +128,7 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if nil
+(if t
     ;; EVIL
     (progn
          (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
@@ -142,7 +142,6 @@
          (map! :r "C-s" (lambda () nil (interactive)
                          (save-buffer)
                          (evil-normal-state)))
-
          (map! :map 'evil-window-map "C-a" #'ace-window)
          (map! :after company :map company-active-map "C-s"
                (lambda () nil (interactive)
@@ -156,6 +155,16 @@
          (map! :after company :map company-active-map "<return>" #'newline-and-indent)
          (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
          (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
+         (use-package! copilot
+           :hook (prog-mode . copilot-mode)
+           :bind (("M-S-TAB" . 'copilot-accept-completion-by-word)
+                  ("M-S-<tab>" . 'copilot-accept-completion-by-word)
+                  ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+                  :map copilot-completion-map
+                  ("M-<tab>" . 'copilot-accept-completion)
+                  ("M-TAB" . 'copilot-accept-completion)
+                  ("C-M-<tab>" . 'copilot-next-completion)
+                  ))
          (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
          (map! :map doom-leader-map "d" #'duplicate-line)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
@@ -189,6 +198,16 @@
     (map! :after company :map company-active-map "<return>" #'newline-and-indent)
     (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
     (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
+    (use-package! copilot
+      :hook (prog-mode . copilot-mode)
+      :bind (("M-S-TAB" . 'copilot-accept-completion-by-word)
+             ("M-S-<tab>" . 'copilot-accept-completion-by-word)
+             ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+             :map copilot-completion-map
+             ("M-<tab>" . 'copilot-accept-completion)
+             ("M-TAB" . 'copilot-accept-completion)
+             ("C-M-<tab>" . 'copilot-next-completion)
+             ("<escape>" . 'copilot-clear-overlay)))
     (after! yasnippet
       ;; (which-key-add-key-based-replacements "C-c &" nil)
       ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
@@ -351,17 +370,6 @@
 
 (defun my-clear-completion () (interactive)
   (copilot-clear-overlay))
-
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("M-S-TAB" . 'copilot-accept-completion-by-word)
-         ("M-S-<tab>" . 'copilot-accept-completion-by-word)
-         ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("M-<tab>" . 'copilot-accept-completion)
-         ("M-TAB" . 'copilot-accept-completion)
-         ("C-M-<tab>" . 'copilot-next-completion)
-         ("<escape>" . 'copilot-clear-overlay)))
 
 (org-babel-do-load-languages
     'org-babel-load-languages
