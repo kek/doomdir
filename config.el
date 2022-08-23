@@ -159,13 +159,19 @@
          (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
          (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
 
+         (defun my-copilot-accept-completion ()
+           (interactive)
+           (if (symbolp 'copilot-accept-completion)
+             (unless (copilot-accept-completion)
+               (dabbrev-expand 0)))
+           (dabbrev-expand 0))
+
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
-           :bind (("S-C-RET" . 'copilot-accept-completion-by-word)
+           :bind (("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+                  ("M-<tab>" . 'my-copilot-accept-completion)
                   :map copilot-completion-map
-                  ("C-RET" . 'copilot-accept-completion)
-                  ("C-<return>" . 'copilot-accept-completion)
-                  ("M-C-<return>" . 'copilot-next-completion)))
+                  ("M-C-<tab>" . 'copilot-next-completion)))
 
          ;; (use-package! copilot
          ;;   :hook (prog-mode . copilot-mode)
@@ -188,11 +194,10 @@
                                                     (progn
                                                      (message "Setting evil in org mode in %s!" buffer-file-name)
                                                      (evil-org-mode)))))
-         (map! :i "M-<tab>" #'dabbrev-expand)
+         ;; (map! :i "M-<tab>" #'dabbrev-expand)
          (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
          (map! :map doom-leader-map "o g" #'elpher)
-         (map! :n "C-å" #'recompile)
          (global-set-key (kbd "§") #'+vterm/toggle)
          (global-set-key (kbd "½") #'+vterm/here))
 
