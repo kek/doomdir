@@ -168,10 +168,18 @@
 
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
-           :bind (("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
-                  ("M-<tab>" . 'my-copilot-accept-completion)
-                  :map copilot-completion-map
-                  ("M-C-<tab>" . 'copilot-next-completion)))
+           :bind (:map copilot-completion-map
+                  ("C-M-<return>" . 'copilot-accept-completion)
+                  ("C-S-M-<return>" . 'copilot-accept-completion-by-word)
+                  ("C-M-<right>" . 'copilot-next-completion)
+                  ("C-M-<left>" . 'copilot-previous-completion)))
+
+
+                  ;; ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+                  ;; ("M-<tab>" . 'my-copilot-accept-completion)
+                  ;; ("M-C-<tab>" . 'copilot-next-completion)))
+
+
 
          ;; (use-package! copilot
          ;;   :hook (prog-mode . copilot-mode)
