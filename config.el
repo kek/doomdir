@@ -16,6 +16,7 @@
         "~/src"))
 
 (setq my-light-theme 'doom-one-light)
+(setq my-dark-theme 'doom-moonlight)
 
 (setq evil-respect-visual-line-mode t)
 
@@ -33,7 +34,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme (if (equal (downcase (system-name)) "fedora") my-light-theme 'doom-moonlight)) ; doom-acario-light, dichromacy
+             doom-theme (if (equal (downcase (system-name)) "fedora") my-dark-theme 'doom-moonlight)) ; doom-acario-light, dichromacy
        (if (equal emacs-version "29.0.50")
            (progn
              (setq line-spacing nil)
@@ -302,7 +303,7 @@
                                    (t 18)))
                  doom-big-font (font-spec :family "Hack" :size 24)
                  doom-theme (if (equal (downcase (system-name)) "fedora")
-                                my-light-theme
+                                my-dark-theme
                               'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
            (doom/reload-theme)
