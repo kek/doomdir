@@ -370,10 +370,16 @@
   (interactive)
   (notmuch-search-filter (concat "from:\"" (notmuch-search-find-authors) "\"")))
 
+;; No evil
+;; (after! notmuch
+;;   (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
+;;   (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))
 
+;; Evil
 (after! notmuch
-(define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
-(define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))
+  (map! :map notmuch-search-mode-map
+        :n "c A" #'notmuch-search-authors
+        :n "c a" #'notmuch-filter-authors))
 
 ;; Face adjustments
 
