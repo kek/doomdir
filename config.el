@@ -170,8 +170,8 @@
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
            :bind (("C-M-<return>" . 'copilot-accept-completion)
-                  :map copilot-completion-map
                   ("C-S-M-<return>" . 'copilot-accept-completion-by-word)
+                  :map copilot-completion-map
                   ("C-M-<right>" . 'copilot-next-completion)
                   ("C-M-<left>" . 'copilot-previous-completion)))
 
