@@ -135,6 +135,10 @@
 (if t
     ;; EVIL
     (progn
+         ;; (defun rename-thing-at-point-in-defun () "" (interactive)
+         ;;        (isearch-forward-symbol-at-point)
+         ;;        (query-replace)
+         ;;        )
          (map! :map '+popup-buffer-mode-map :n "å" #'+popup/raise)
          (map! :map 'helpful-mode-map :n "å" #'+popup/raise)
          (map! :n "C-s" #'save-buffer)
