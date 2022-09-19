@@ -173,7 +173,9 @@
                   ("C-S-M-<return>" . 'copilot-accept-completion-by-word)
                   :map copilot-completion-map
                   ("C-M-<right>" . 'copilot-next-completion)
-                  ("C-M-<left>" . 'copilot-previous-completion)))
+                  ("C-M-<left>" . 'copilot-previous-completion)
+                  ("<escape>" . 'copilot-clear-overlay)
+                  ))
 
                   ;; ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
                   ;; ("M-<tab>" . 'my-copilot-accept-completion)
