@@ -18,6 +18,12 @@
 (setq my-light-theme 'doom-one-light)
 (setq my-dark-theme 'doom-moonlight)
 
+(defun my-fix-title-bar ()
+  (frame-hide-title-bar-when-maximized (selected-frame)))
+(remove-hook 'after-save-hook #'my-fix-title-bar)
+(defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
+  (my-fix-title-bar))
+
 (setq evil-respect-visual-line-mode t)
 
 (when window-system
