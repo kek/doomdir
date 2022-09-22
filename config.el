@@ -207,6 +207,7 @@
          (map! :map doom-leader-map "d" #'duplicate-line)
          (map! :map elpher-mode-map "DEL" #'transient-noop)
          (map! :n "<f9>" #'evil-execute-in-emacs-state)
+         (map! :n "ä" #'evil-execute-in-emacs-state)
          (map! :n "C-<left>" #'previous-buffer)
          (map! :n "C-<right>" #'next-buffer)
          ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
