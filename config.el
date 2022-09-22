@@ -133,6 +133,8 @@
   (unless (equal "N/A" (battery-format "%L" (funcall battery-status-function)))
     (display-battery-mode)))
 
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
 ;(add-hook 'help-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
