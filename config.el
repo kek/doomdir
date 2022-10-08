@@ -127,8 +127,32 @@
       ;; mouse-wheel-progressive-speed nil
       ;; mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
-      frame-title-format `(:eval (my-file-description)))
-      
+      frame-title-format `(:eval (my-file-description))
+      dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
+      deft-strip-title-regexp
+      (concat "\\(?:"
+              "^%+" ; line beg with %
+              "\\|^#\\+TITLE: *" ; org-mode title
+              "\\|^#\\+title: *" ; org-mode title
+              "\\|^[#* ]+" ; line beg with #, * and/or space
+              "\\|-\\*-[[:alpha:]]+-\\*-" ; -*- .. -*- lines
+              "\\|^Title:[\t ]*" ; MultiMarkdown metadata
+              "\\|#+" ; line with just # chars
+              "$\\)")
+      deft-strip-summary-regexp
+      (concat "\\("
+              "[\n\t]" ;; blank
+              "\\|^#\\+[[:upper:]_]+:.*$" ;; org-mode metadata
+              "\\|^#\\+[[:lower:]_]+:.*$" ;; org-mode metadata
+              "\\)"))
+
+;; https://stackoverflow.com/a/43632653
+;; (setq dired-omit-files
+;;       (rx (or (seq bol (? ".") "#")
+;;               (seq bol "." eol)
+;;               (seq bol ".." eol)
+;;               )))
+
 (after! battery
   (unless (equal "N/A" (battery-format "%L" (funcall battery-status-function)))
     (display-battery-mode)))
@@ -192,8 +216,6 @@
                   ;; ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
                   ;; ("M-<tab>" . 'my-copilot-accept-completion)
                   ;; ("M-C-<tab>" . 'copilot-next-completion)))
-
-
 
          ;; (use-package! copilot
          ;;   :hook (prog-mode . copilot-mode)
