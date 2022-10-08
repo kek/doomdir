@@ -128,23 +128,43 @@
       ;; mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description))
-      dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
-      deft-strip-title-regexp
-      (concat "\\(?:"
-              "^%+" ; line beg with %
-              "\\|^#\\+TITLE: *" ; org-mode title
-              "\\|^#\\+title: *" ; org-mode title
-              "\\|^[#* ]+" ; line beg with #, * and/or space
-              "\\|-\\*-[[:alpha:]]+-\\*-" ; -*- .. -*- lines
-              "\\|^Title:[\t ]*" ; MultiMarkdown metadata
-              "\\|#+" ; line with just # chars
-              "$\\)")
-      deft-strip-summary-regexp
-      (concat "\\("
-              "[\n\t]" ;; blank
-              "\\|^#\\+[[:upper:]_]+:.*$" ;; org-mode metadata
-              "\\|^#\\+[[:lower:]_]+:.*$" ;; org-mode metadata
-              "\\)"))
+
+      ;; dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
+      dired-omit-files (or (seq bos (opt ".") "#")
+                           (seq bos "." eos)
+                           (seq bol ".DS_Store" eos)
+                           (seq bol ".project" (opt "ile") eos)
+                           (seq bol "." (or "svn" "git") eos)
+                           (seq bol ".ccls-cache" eos)
+                           (seq (opt ".js") ".meta" eos)
+                           (seq "." (or "elc" "o" "pyo" "swp" "class") eos))
+
+      ;; deft-strip-title-regexp (concat "\\(?:"
+      ;;                                 "^%+" ; line beg with %
+      ;;                                 "\\|^#\\+TITLE: *" ; org-mode title
+      ;;                                 "\\|^#\\+title: *" ; org-mode title
+      ;;                                 "\\|^[#* ]+" ; line beg with #, * and/or space
+      ;;                                 "\\|-\\*-[[:alpha:]]+-\\*-" ; -*- .. -*- lines
+      ;;                                 "\\|^Title:[\t ]*" ; MultiMarkdown metadata
+      ;;                                 "\\|#+" ; line with just # chars
+      ;;                                 "$\\)")
+      deft-strip-title-regexp (or (seq bol (one-or-more "%"))
+                                  (seq bol "#+TITLE:" (zero-or-more " "))
+                                  (seq bol "#+title:" (zero-or-more " "))
+                                  (seq bol (one-or-more (any " #*")))
+                                  (seq "-*-" (one-or-more alpha) "-*-")
+                                  (seq bol "Title:" (zero-or-more (any "\t ")))
+                                  (seq (one-or-more "#") eol))
+
+      ;; deft-strip-summary-regexp (concat "\\("
+      ;;                                   "[\n\t]" ;; blank
+      ;;                                   "\\|^#\\+[[:upper:]_]+:.*$" ;; org-mode metadata
+      ;;                                   "\\|^#\\+[[:lower:]_]+:.*$" ;; org-mode metadata
+      ;;                                   "\\)")
+      deft-strip-summary-regexp (group (or (any "\t\n")
+                                           (seq bol "#+" (one-or-more (any "_" upper)) ":" (zero-or-more nonl) eol)
+                                           (seq bol "#+" (one-or-more (any "_" lower)) ":" (zero-or-more nonl) eol))))
+
 
 ;; https://stackoverflow.com/a/43632653
 ;; (setq dired-omit-files

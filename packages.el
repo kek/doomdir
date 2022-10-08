@@ -50,12 +50,13 @@
 ;(unpin! t)
 
 
-(package! fish-mode)
-(package! elpher)
-(package! smooth-scroll)
-(package! ace-window)
-(package! w3m)
-(package! graphviz-dot-mode)
-(package! copilot
+(package! fish-mode) ; fish script file mode
+(package! elpher) ; Gopher and Gemini client
+(package! smooth-scroll) ; smooth scrolling
+(package! ace-window) ; window switching
+(package! w3m) ; Web browser
+(package! graphviz-dot-mode) ; dot language mode
+(package! copilot ; github copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
-(package! nov)
+(package! nov) ; Epub reader
+(package! xr) ; Convert from string regexp to rx form
