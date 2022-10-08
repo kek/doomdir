@@ -475,6 +475,11 @@
     (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
   (after! org
     (set-face-attribute 'org-headline-done nil :foreground "#94a7a3"))
+  (after! magit
+    (if (eq window-system nil)
+        (progn
+          (global-hl-line-mode nil)
+          (set-face-attribute magit-diff-added-highlight nil :background nil))))
   (if (equal (downcase (system-name)) "fedora")
       (doom-themes-set-faces nil
         '(vhl/default-face :background "#555"))))
