@@ -130,14 +130,14 @@
       frame-title-format `(:eval (my-file-description))
 
       ;; dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
-      dired-omit-files (or (seq bos (opt ".") "#")
+      dired-omit-files (rx (or (seq bos (opt ".") "#")
                            (seq bos "." eos)
                            (seq bol ".DS_Store" eos)
                            (seq bol ".project" (opt "ile") eos)
                            (seq bol "." (or "svn" "git") eos)
                            (seq bol ".ccls-cache" eos)
                            (seq (opt ".js") ".meta" eos)
-                           (seq "." (or "elc" "o" "pyo" "swp" "class") eos))
+                           (seq "." (or "elc" "o" "pyo" "swp" "class") eos)))
 
       ;; deft-strip-title-regexp (concat "\\(?:"
       ;;                                 "^%+" ; line beg with %
@@ -148,23 +148,51 @@
       ;;                                 "\\|^Title:[\t ]*" ; MultiMarkdown metadata
       ;;                                 "\\|#+" ; line with just # chars
       ;;                                 "$\\)")
-      deft-strip-title-regexp (or (seq bol (one-or-more "%"))
-                                  (seq bol "#+TITLE:" (zero-or-more " "))
-                                  (seq bol "#+title:" (zero-or-more " "))
-                                  (seq bol (one-or-more (any " #*")))
-                                  (seq "-*-" (one-or-more alpha) "-*-")
-                                  (seq bol "Title:" (zero-or-more (any "\t ")))
-                                  (seq (one-or-more "#") eol))
+      deft-strip-title-regexp (rx (or (seq bol (one-or-more "%"))
+                                      (seq bol "#+TITLE:" (zero-or-more " "))
+                                      (seq bol "#+title:" (zero-or-more " "))
+                                      (seq bol (one-or-more (any " #*")))
+                                      (seq "-*-" (one-or-more alpha) "-*-")
+                                      (seq bol "Title:" (zero-or-more (any "\t ")))
+                                      (seq (one-or-more "#") eol)))
 
       ;; deft-strip-summary-regexp (concat "\\("
       ;;                                   "[\n\t]" ;; blank
       ;;                                   "\\|^#\\+[[:upper:]_]+:.*$" ;; org-mode metadata
       ;;                                   "\\|^#\\+[[:lower:]_]+:.*$" ;; org-mode metadata
       ;;                                   "\\)")
-      deft-strip-summary-regexp (group (or (any "\t\n")
-                                           (seq bol "#+" (one-or-more (any "_" upper)) ":" (zero-or-more nonl) eol)
-                                           (seq bol "#+" (one-or-more (any "_" lower)) ":" (zero-or-more nonl) eol))))
+      deft-strip-summary-regexp (rx (group (or (any "\t\n")
+                                               (seq bol "#+" (one-or-more (any "_" upper)) ":" (zero-or-more nonl) eol)
+                                               (seq bol "#+" (one-or-more (any "_" lower)) ":" (zero-or-more nonl) eol)))))
 
+;; https://emacs.stackexchange.com/questions/35392/result-of-arithmetic-evaluation-in-buffer-not-echo-area
+(defun eval-and-substitute-last-sexp ()
+  "Replace sexp before point by result of its evaluation."
+  (interactive)
+  (let ((result  (pp-to-string (eval (pp-last-sexp) lexical-binding))))
+    (delete-region (save-excursion (backward-sexp) (point)) (point))
+    (insert result)))
+
+;; apply function to region
+;; https://stackoverflow.com/questions/14201740/replace-region-with-result-of-calling-a-function-on-region
+;; it doesn't really work for xr because function must take a string and return a string.
+(defun apply-function-to-region (fn)
+  (interactive "XFunction to apply to region: ")
+  (save-excursion
+    (let* ((beg (region-beginning))
+           (end (region-end))
+           (resulting-text
+            (funcall
+             fn
+             (buffer-substring-no-properties beg end))))
+      (kill-region beg end)
+      (insert resulting-text))))
+
+;; wip
+;; doesn't work because it considers surrounding quotes as part of the regexp
+(defun apply-xr-to-region ()
+    (interactive)
+  (apply-function-to-region (lambda (s) (xr-pp-rx-to-str (xr s)))))
 
 ;; https://stackoverflow.com/a/43632653
 ;; (setq dired-omit-files
