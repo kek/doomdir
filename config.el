@@ -16,7 +16,7 @@
         "~/src"))
 
 (setq my-light-theme 'doom-one-light)
-(setq my-dark-theme 'doom-moonlight)
+(setq my-dark-theme 'doom-wilmersdorf)
 
 (defun my-fix-title-bar ()
   (frame-hide-title-bar-when-maximized (selected-frame)))
@@ -40,7 +40,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme (if (equal (downcase (system-name)) "fedora") my-dark-theme 'doom-moonlight)) ; doom-acario-light, dichromacy
+             doom-theme (if (equal (downcase (system-name)) "fedora") my-dark-theme 'doom-wilmersdorf)) ; doom-acario-light, dichromacy
        (if (equal emacs-version "29.0.50")
            (progn
              (setq line-spacing nil)
@@ -389,7 +389,7 @@
                  doom-big-font (font-spec :family "Hack" :size 24)
                  doom-theme (if (equal (downcase (system-name)) "fedora")
                                 my-dark-theme
-                              'doom-moonlight)) ; doom-acario-light
+                              'doom-wilmersdorf)) ; doom-acario-light
            (doom/reload-font)
            (doom/reload-theme)
            (pixel-scroll-precision-mode)
@@ -480,9 +480,10 @@
         (progn
           (global-hl-line-mode nil)
           (set-face-attribute magit-diff-added-highlight nil :background nil))))
-  (if (equal (downcase (system-name)) "fedora")
-      (doom-themes-set-faces nil
-        '(vhl/default-face :background "#555"))))
+  ;; (if (equal (downcase (system-name)) "fedora")
+  ;;     (doom-themes-set-faces nil
+  ;;       '(vhl/default-face :background "#555")))
+  )
 
 (my-face-adjustments)
 
