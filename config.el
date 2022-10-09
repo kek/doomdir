@@ -251,13 +251,19 @@
                (dabbrev-expand 0)))
            (dabbrev-expand 0))
 
+         (after! copilot
+           (setq copilot-idle-delay nil)
+           (map! :i "§" 'copilot-complete))
+
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
-           :bind (("C-M-<return>" . 'copilot-accept-completion)
-                  ("C-S-M-<return>" . 'copilot-accept-completion-by-word)
+           :bind (("C-M-<return>" . 'copilot-complete)
+                  ("C-<tab>" . 'copilot-complete)
                   :map copilot-completion-map
-                  ("C-M-<right>" . 'copilot-next-completion)
-                  ("C-M-<left>" . 'copilot-previous-completion)
+                  ("<tab>" . 'copilot-accept-completion)
+                  ("<backtab>" . 'copilot-accept-completion-by-word)
+                  ("M-<left>" . 'copilot-previous-completion)
+                  ("M-<right>" . 'copilot-next-completion)
                   ("<escape>" . 'copilot-clear-overlay)
                   ))
 
@@ -294,6 +300,7 @@
          (map! :map doom-leader-map "o g" #'elpher)
          (global-set-key (kbd "§") #'+vterm/toggle)
          (global-set-key (kbd "½") #'+vterm/here))
+         )
 
   ;;; NO EVIL
   (progn
