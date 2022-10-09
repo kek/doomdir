@@ -300,7 +300,6 @@
          (map! :map doom-leader-map "o g" #'elpher)
          (global-set-key (kbd "§") #'+vterm/toggle)
          (global-set-key (kbd "½") #'+vterm/here))
-         )
 
   ;;; NO EVIL
   (progn
