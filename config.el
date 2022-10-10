@@ -252,8 +252,13 @@
            (dabbrev-expand 0))
 
          (after! copilot
+           (defun my-toggle-vterm-or-copilot-complete () (interactive)
+                  (if (eq major-mode 'vterm-mode)
+                      (+vterm/toggle nil)
+                    (message "Copilot complete")
+                    (copilot-complete)))
            (setq copilot-idle-delay nil)
-           (map! :i "§" 'copilot-complete))
+           (map! :i "§" 'my-toggle-vterm-or-copilot-complete))
 
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
