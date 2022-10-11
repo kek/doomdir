@@ -16,7 +16,7 @@
         "~/src"))
 
 (setq my-light-theme 'doom-one-light)
-(setq my-dark-theme 'doom-wilmersdorf)
+(setq my-dark-theme 'doom-moonlight)
 
 (defun my-fix-title-bar ()
   (frame-hide-title-bar-when-maximized (selected-frame)))
@@ -31,7 +31,7 @@
                          (t 18))))
     (when (equal system-type 'windows-nt)
       (progn
-        (setq doom-theme 'doom-wilmersdorf)
+        (setq doom-theme 'doom-moonlight)
         (setq doom-font (font-spec :family "Hack NF" :size font-size)
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
               doom-big-font (font-spec :family "Hack NF" :size 24))))
@@ -40,7 +40,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size 24)
-             doom-theme (if (equal (downcase (system-name)) "fedora") my-dark-theme 'doom-wilmersdorf)) ; doom-acario-light, dichromacy
+             doom-theme (if (equal (downcase (system-name)) "fedora") my-dark-theme 'doom-moonlight)) ; doom-acario-light, dichromacy
        (if (equal emacs-version "29.0.50")
            (progn
              (setq line-spacing nil)
@@ -400,7 +400,7 @@
                  doom-big-font (font-spec :family "Hack" :size 24)
                  doom-theme (if (equal (downcase (system-name)) "fedora")
                                 my-dark-theme
-                              'doom-wilmersdorf)) ; doom-acario-light
+                              'doom-moonlight)) ; doom-acario-light
            (doom/reload-font)
            (doom/reload-theme)
            (pixel-scroll-precision-mode)
