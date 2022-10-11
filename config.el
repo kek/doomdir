@@ -95,6 +95,9 @@
   (setq deft-directory (concat user-home-directory "/Documents/org")))
 
 (after! org
+  (add-hook 'org-mode-hook #'my-face-adjustments)
+  (setq org-cycle-emulate-tab nil)
+
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
                `("L" "Protocol Link" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
@@ -497,9 +500,6 @@
   )
 
 (my-face-adjustments)
-
-(after! org
-  (add-hook 'org-mode-hook #'my-face-adjustments))
 
 (defun my-clear-completion () (interactive)
   (copilot-clear-overlay))
