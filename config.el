@@ -131,6 +131,7 @@
       ;; mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description))
+      sentence-end-double-space nil
 
       ;; dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
       dired-omit-files (rx (or (seq bos (opt ".") "#")
