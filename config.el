@@ -18,6 +18,7 @@
 (setq my-light-theme 'doom-one-light)
 (setq my-dark-theme 'doom-moonlight)
 
+;; Does not seem to work in KDE
 (defun my-fix-title-bar ()
   (frame-hide-title-bar-when-maximized (selected-frame)))
 (remove-hook 'after-save-hook #'my-fix-title-bar)
