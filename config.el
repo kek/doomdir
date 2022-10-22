@@ -3,6 +3,11 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; Doom default keybindings
+;; https://github.com/doomemacs/doomemacs/blob/develop/modules/config/default/+evil-bindings.el
+;; Doom Emacs Workflows
+;; https://noelwelsh.com/posts/doom-emacs/
+
 (setq user-home-directory
       (if (equal system-type 'windows-nt)
           (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
