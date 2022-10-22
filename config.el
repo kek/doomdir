@@ -230,12 +230,8 @@
          (map! :n "C-s" #'save-buffer)
          (map! "C-§" #'+popup/toggle)
          (map! "C-½" #'+popup/raise)
-         (map! :i "C-s" (lambda () nil (interactive)
-                          (save-buffer)
-                          (evil-normal-state)))
-         (map! :r "C-s" (lambda () nil (interactive)
-                         (save-buffer)
-                         (evil-normal-state)))
+         (map! :i "C-s" (lambda () nil (interactive) (save-buffer) (evil-normal-state)))
+         (map! :r "C-s" (lambda () nil (interactive) (save-buffer) (evil-normal-state)))
          (map! :map 'evil-window-map "C-a" #'ace-window)
          (map! :after company :map company-active-map "C-s"
                (lambda () nil (interactive)
@@ -246,6 +242,17 @@
                (lambda () nil (interactive)
                  (company-abort)
                  (evil-normal-state)))
+
+         (map! :map doom-leader-map "TAB §" #'+workspace/other)
+         (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
+         (map! :map doom-leader-map "d" #'duplicate-line)
+         (map! :map elpher-mode-map "DEL" #'transient-noop)
+         (map! :n "<f9>" #'evil-execute-in-emacs-state)
+         (map! :n "å" #'evil-execute-in-emacs-state)
+         (map! :n "ä" nil)
+         (map! :n "C-<left>" #'previous-buffer)
+         (map! :n "C-<right>" #'next-buffer)
+
          (map! :after company :map company-active-map "<return>" #'newline-and-indent)
          (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
          (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
@@ -290,14 +297,6 @@
          ;;          ("<tab>" . 'copilot-accept-completion)
          ;;          ("TAB" . 'copilot-accept-completion)))
 
-         (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
-         (map! :map doom-leader-map "d" #'duplicate-line)
-         (map! :map elpher-mode-map "DEL" #'transient-noop)
-         (map! :n "<f9>" #'evil-execute-in-emacs-state)
-         (map! :n "å" #'evil-execute-in-emacs-state)
-         (map! :n "ä" nil)
-         (map! :n "C-<left>" #'previous-buffer)
-         (map! :n "C-<right>" #'next-buffer)
          ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
          ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
          (add-hook 'org-after-refile-insert-hook (lambda () "Set evil-org-mode if not set" nil
