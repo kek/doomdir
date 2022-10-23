@@ -301,6 +301,15 @@
          ;;          :map copilot-completion-map
          ;;          ("<tab>" . 'copilot-accept-completion)
          ;;          ("TAB" . 'copilot-accept-completion)))
+         (defun my-open-notes-inbox () "Open notes" (interactive)
+                (find-file "~/Documents/org/notes.org"))
+         (map! :map doom-leader-map "z" #'my-open-notes-inbox)
+         (map! :map doom-leader-notes-map "z" #'my-open-notes-inbox)
+         (which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
+         (which-key-add-keymap-based-replacements doom-leader-notes-map "z" "Open notes")
+
+         ;; (which-key-add-key-based-replacements doom-leader-map "SPC n d" "Open notes inbox")
+         ;; (map! :map doom-leader-notes-map "D" #'deft)
 
          ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
          ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
