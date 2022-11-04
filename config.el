@@ -35,18 +35,18 @@
 
 (when window-system
   (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
-                         (t 18))))
+                         (t 20))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme my-theme)
         (setq doom-font (font-spec :family "Hack NF" :size font-size)
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
-              doom-big-font (font-spec :family "Hack NF" :size 24))))
+              doom-big-font (font-spec :family "Hack NF" :size (+ font-size 4)))))
 
    (when (equal system-type 'gnu/linux)
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
-             doom-big-font (font-spec :family "Hack" :size 24)
+             doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
              doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-theme)) ; doom-acario-light, dichromacy
        (if (equal emacs-version "29.0.50")
            (progn
