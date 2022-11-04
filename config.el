@@ -217,6 +217,7 @@
     (display-battery-mode)))
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(add-to-list 'auto-mode-alist '("\\.livemd\\'" . markdown-mode))
 
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
 ;(add-hook 'help-mode-hook #'variable-pitch-mode)
