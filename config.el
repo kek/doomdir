@@ -24,6 +24,8 @@
 (setq my-dark-theme 'doom-moonlight)
 (setq my-theme my-dark-theme)
 
+(setq warning-suppress-types '(defvaralias))
+
 ;; Does not seem to work in KDE
 (defun my-fix-title-bar ()
   (frame-hide-title-bar-when-maximized (selected-frame)))
@@ -34,7 +36,7 @@
 (setq evil-respect-visual-line-mode t)
 
 (when window-system
-  (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 14)
+  (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 16)
                          (t 20))))
     (when (equal system-type 'windows-nt)
       (progn
@@ -415,7 +417,7 @@
            (setq doom-font
                  (font-spec :family "Hack"
                             :size (cond
-                                   ((equal (downcase (system-name)) "potatis") 14)
+                                   ((equal (downcase (system-name)) "potatis") 16)
                                    (t 18)))
                  doom-big-font (font-spec :family "Hack" :size 24)
                  doom-theme (if (equal (downcase (system-name)) "fedora")
