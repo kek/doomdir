@@ -20,6 +20,12 @@
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
+(if (equal system-type 'windows-nt)
+    (progn
+      (setq find-program "C:/Scoop/shims/gfind.exe"
+            projectile-indexing-method 'native
+            )))
+
 (setq my-light-theme 'doom-acario-light)
 (setq my-dark-theme 'doom-moonlight)
 (setq my-theme my-dark-theme)
@@ -27,11 +33,14 @@
 (setq warning-suppress-types '(defvaralias))
 
 ;; Does not seem to work in KDE
-(defun my-fix-title-bar ()
-  (frame-hide-title-bar-when-maximized (selected-frame)))
-(remove-hook 'after-save-hook #'my-fix-title-bar)
-(defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
-  (my-fix-title-bar))
+
+(if (not (equal system-type 'windows-nt))
+    (progn
+      (defun my-fix-title-bar ()
+        (frame-hide-title-bar-when-maximized (selected-frame)))
+      (remove-hook 'after-save-hook #'my-fix-title-bar)
+      (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
+        (my-fix-title-bar))))
 
 (setq evil-respect-visual-line-mode t)
 
@@ -41,9 +50,9 @@
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme my-theme)
-        (setq doom-font (font-spec :family "Hack NF" :size font-size)
+        (setq doom-font (font-spec :family "Hack NF" :size (+ font-size 4))
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
-              doom-big-font (font-spec :family "Hack NF" :size (+ font-size 4)))))
+              doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8)))))
 
    (when (equal system-type 'gnu/linux)
      (progn
