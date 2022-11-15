@@ -60,3 +60,4 @@
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! nov) ; Epub reader
 (package! xr) ; Convert from string regexp to rx form
+(package! org-roam)
