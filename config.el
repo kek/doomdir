@@ -23,8 +23,12 @@
 (if (equal system-type 'windows-nt)
     (progn
       (setq find-program "C:/Scoop/shims/gfind.exe"
-            projectile-indexing-method 'native
-            )))
+            projectile-indexing-method 'native)
+      (set-selection-coding-system 'utf-16-le)
+      (set-clipboard-coding-system 'utf-16-le)
+      ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
+      ;; (modify-coding-system-alist 'file "" 'utf-8-unix)
+      ))
 
 (setq my-light-theme 'doom-acario-light)
 (setq my-dark-theme 'doom-moonlight)
