@@ -153,13 +153,17 @@
         (buffer-name)
       (s-replace home-or-project project-or-home (buffer-file-name)))))
 
+(if (equal system-type 'windows-nt)
+    (progn
+      (setq mouse-wheel-progressive-speed nil
+            mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))))
+
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"]
       lsp-elixir-local-server-command
       (if (equal system-type 'windows-nt)
           (concat src-directory "/elixir-ls/release/language_server.bat")
         (concat src-directory "/elixir-ls/release/language_server.sh"))
-      ;; mouse-wheel-progressive-speed nil
-      ;; mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
+
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description))
       sentence-end-double-space nil
