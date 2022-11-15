@@ -86,7 +86,14 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-(setq org-directory (concat user-home-directory "/Documents/org"))
+(setq org-directory (concat user-home-directory "/Documents/org/pages"))
+(setq org-roam-directory org-directory)
+(require 'org-roam)
+(setq org-roam-mode-sections
+      (list #'org-roam-backlinks-section
+            #'org-roam-reflinks-section
+            ;; #'org-roam-unlinked-references-section
+            ))
 
 (setq display-line-numbers-type nil)
 (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
@@ -318,7 +325,7 @@
          ;;          ("<tab>" . 'copilot-accept-completion)
          ;;          ("TAB" . 'copilot-accept-completion)))
          (defun my-open-notes-inbox () "Open notes" (interactive)
-                (find-file "~/Documents/org/notes.org"))
+                (find-file "~/Documents/org/pages/notes.org"))
          (map! :map doom-leader-map "z" #'my-open-notes-inbox)
          (map! :map doom-leader-notes-map "z" #'my-open-notes-inbox)
          (which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
