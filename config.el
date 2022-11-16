@@ -30,6 +30,8 @@
       ;; (modify-coding-system-alist 'file "" 'utf-8-unix)
       ))
 
+;; (require 'org-roam)
+;; (require 'org-roam-protocol)
 (setq my-light-theme 'doom-acario-light)
 (setq my-dark-theme 'doom-moonlight)
 (setq my-theme my-dark-theme)
