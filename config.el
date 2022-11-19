@@ -367,14 +367,13 @@
     (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
     (use-package! copilot
       :hook (prog-mode . copilot-mode)
-      :bind (("M-S-TAB" . 'copilot-accept-completion-by-word)
-             ("M-S-<tab>" . 'copilot-accept-completion-by-word)
-             ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+      :bind (("M-C-'" . 'copilot-accept-completion-by-word)
              :map copilot-completion-map
-             ("M-<tab>" . 'copilot-accept-completion)
-             ("M-TAB" . 'copilot-accept-completion)
-             ("C-M-<tab>" . 'copilot-next-completion)
+             ("M-C-<return>" . 'copilot-accept-completion)
+             ("C-M-ä" . 'copilot-next-completion)
+             ("C-M-ö" . 'copilot-previous-completion)
              ("<escape>" . 'copilot-clear-overlay)))
+
     (after! yasnippet
       ;; (which-key-add-key-based-replacements "C-c &" nil)
       ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
