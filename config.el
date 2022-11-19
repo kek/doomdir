@@ -560,4 +560,8 @@
 
 ;; Local settings
 
+(if (equal system-type 'windows-nt)
+    (progn
+      (server-start)))
+
 (load "~/.secrets.el")
