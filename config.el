@@ -348,7 +348,6 @@
          ;; (map! :i "M-<tab>" #'dabbrev-expand)
          (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
-         (map! :map doom-leader-map "o g" #'elpher)
          (global-set-key (kbd "§") #'+vterm/toggle)
          (global-set-key (kbd "½") #'+vterm/here))
 
@@ -401,7 +400,6 @@
     (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
     (define-key doom-leader-map (kbd "0") #'delete-window)
     (define-key doom-leader-map (kbd "TAB") #'other-window)
-    (define-key doom-leader-map (kbd "g") #'elpher)
     (define-key doom-leader-map (kbd "j") #'iedit-mode)
     (global-set-key (kbd "C-§") #'+popup/toggle)
     (global-set-key (kbd "C-½") #'+popup/raise)
@@ -465,6 +463,9 @@
 
 (setq confirm-kill-emacs nil)
 ;; (menu-bar-mode)
+
+(map! :map doom-leader-map "o g" #'elpher)
+(map! :map doom-leader-map "o j" #'mastodon)
 
 (global-set-key (kbd "<f1>") #'+lookup/documentation)
 (global-set-key (kbd "<f2>") #'save-buffer)
