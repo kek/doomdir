@@ -177,7 +177,7 @@
 
        :email
        ;;(mu4e +org +gmail)
-       (unless (equal system-type 'windows-nt) (notmuch +afew))
+       (notmuch +afew)
        ;;(wanderlust +gmail)
 
        :app
