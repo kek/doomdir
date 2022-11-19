@@ -332,12 +332,6 @@
          ;;          :map copilot-completion-map
          ;;          ("<tab>" . 'copilot-accept-completion)
          ;;          ("TAB" . 'copilot-accept-completion)))
-         (defun my-open-notes-inbox () "Open notes" (interactive)
-                (find-file "~/Documents/org/pages/notes.org"))
-         (map! :map doom-leader-map "z" #'my-open-notes-inbox)
-         (map! :map doom-leader-notes-map "z" #'my-open-notes-inbox)
-         (which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
-         (which-key-add-keymap-based-replacements doom-leader-notes-map "z" "Open notes")
 
          ;; (which-key-add-key-based-replacements doom-leader-map "SPC n d" "Open notes inbox")
          ;; (map! :map doom-leader-notes-map "D" #'deft)
@@ -467,8 +461,14 @@
 (setq confirm-kill-emacs nil)
 ;; (menu-bar-mode)
 
+(defun my-open-notes-inbox () "Open notes" (interactive)
+       (find-file "~/Documents/org/pages/notes.org"))
 (map! :map doom-leader-map "o g" #'elpher)
 (map! :map doom-leader-map "o j" #'mastodon)
+(map! :map doom-leader-map "z" #'my-open-notes-inbox)
+(map! :map doom-leader-notes-map "z" #'my-open-notes-inbox)
+(which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
+(which-key-add-keymap-based-replacements doom-leader-notes-map "z" "Open notes")
 
 (global-set-key (kbd "<f1>") #'+lookup/documentation)
 (global-set-key (kbd "<f2>") #'save-buffer)
