@@ -56,7 +56,7 @@
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme my-theme)
-        (setq doom-font (font-spec :family "Hack NF" :size (+ font-size 4))
+        (setq doom-font (font-spec :family "Hack NF" :size (+ font-size 6))
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
               doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8)))))
 
@@ -443,7 +443,7 @@
             (setq doom-font
                   (font-spec :family "Hack"
                              :size (cond
-                                    ((equal system-type 'windows-nt) 20)
+                                    ((equal system-type 'windows-nt) 22)
                                     ((equal (downcase (system-name)) "potatis") 16)
                                     (t 18)))
                   doom-big-font (font-spec :family "Hack" :size 24)
