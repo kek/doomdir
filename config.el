@@ -248,13 +248,15 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if t
+(if nil ;; Evil mode not set
     ;; EVIL
     (progn
+         (message "Evil mode init")
          ;; (defun rename-thing-at-point-in-defun () "" (interactive)
          ;;        (isearch-forward-symbol-at-point)
          ;;        (query-replace)
          ;;        )
+         (setq evil-respect-visual-line-mode t)
          (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
          (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
          (map! :n "C-s" #'save-buffer)
@@ -352,6 +354,7 @@
 
   ;;; NO EVIL
   (progn
+    (message "No evil mode init")
     ;; (define-key global-map (kbd "§") doom-leader-map)
     (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
     (define-key global-map (kbd "C-S-z") #'undo-fu-only-redo)
