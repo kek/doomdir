@@ -402,6 +402,7 @@
     (define-key doom-leader-map (kbd "0") #'delete-window)
     (define-key doom-leader-map (kbd "TAB") #'other-window)
     (define-key doom-leader-map (kbd "g") #'elpher)
+    (define-key doom-leader-map (kbd "j") #'iedit-mode)
     (global-set-key (kbd "C-§") #'+popup/toggle)
     (global-set-key (kbd "C-½") #'+popup/raise)
     (global-set-key (kbd "C-<tab>") #'other-window)

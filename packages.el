@@ -62,3 +62,4 @@
 (package! xr) ; Convert from string regexp to rx form
 (package! org-roam)
 (package! mastodon)
+(package! iedit)
