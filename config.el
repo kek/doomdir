@@ -248,7 +248,7 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if nil ;; Evil mode not set
+(if i-want-evil ;; Evil mode set
     ;; EVIL
     (progn
          (message "Evil mode init")
