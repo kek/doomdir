@@ -16,7 +16,7 @@
 (setq src-directory
       (if (equal system-type 'windows-nt)
           (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
-                ((equal (downcase (system-name)) "potatis") "E:/src")
+                ((equal (downcase (system-name)) "tomat") "E:/src")
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
@@ -51,7 +51,7 @@
 (setq evil-respect-visual-line-mode t)
 
 (when window-system
-  (let ((font-size (cond ((equal (downcase (system-name)) "potatis") 16)
+  (let ((font-size (cond ((equal (downcase (system-name)) "tomat") 16)
                          (t 20))))
     (when (equal system-type 'windows-nt)
       (progn
@@ -438,7 +438,7 @@
                   (font-spec :family "Hack"
                              :size (cond
                                     ((equal system-type 'windows-nt) 22)
-                                    ((equal (downcase (system-name)) "potatis") 16)
+                                    ((equal (downcase (system-name)) "tomat") 16)
                                     (t 18)))
                   doom-big-font (font-spec :family "Hack" :size 24)
                   doom-theme (if (equal (downcase (system-name)) "fedora")
