@@ -32,7 +32,7 @@
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
-(setq my-light-theme 'doom-acario-light)
+(setq my-windows-theme 'doom-wilmersdorf)
 (setq my-dark-theme 'doom-moonlight)
 (setq my-theme my-dark-theme)
 
@@ -40,23 +40,33 @@
 
 ;; Does not seem to work in KDE
 
-(if (not (equal system-type 'windows-nt))
+(if (and (not (equal system-type 'windows-nt)))
     (progn
       (defun my-fix-title-bar ()
-        (frame-hide-title-bar-when-maximized (selected-frame)))
+        (if (not my-is-wsl)
+            (frame-hide-title-bar-when-maximized (selected-frame))))
       (remove-hook 'after-save-hook #'my-fix-title-bar)
       (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
         (my-fix-title-bar))))
 
 (setq evil-respect-visual-line-mode t)
 
+(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
+                     (equal system-type 'gnu/linux))
+      my-is-windows (and (equal (downcase (system-name)) "tomat")
+                         (equal system-type 'windows-nt))
+      my-font-size-windows 22
+      my-font-size-wsl 24
+      my-font-size-linux 16)
+
 (when window-system
-  (let ((font-size (cond ((equal (downcase (system-name)) "tomat") 16)
-                         (t 20))))
+  (let ((font-size (cond (my-is-wsl my-font-size-wsl)
+                         (my-is-windows my-font-size-windows)
+                         (t my-font-size-linux))))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme my-theme)
-        (setq doom-font (font-spec :family "Hack NF" :size (+ font-size 6))
+        (setq doom-font (font-spec :family "Hack NF" :size font-size)
               doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
               doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8)))))
 
@@ -64,7 +74,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-             doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-theme)) ; doom-acario-light, dichromacy
+             doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-windows-theme)) ; doom-acario-light, dichromacy
        (if (equal emacs-version "29.0.50")
            (progn
              (setq line-spacing nil)
@@ -88,8 +98,12 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-(setq org-directory (concat user-home-directory "/Documents/org/pages"))
+(setq org-directory (if nil ; my-is-wsl
+                        ;; Jag tror detta gör Emacs mycket långsam
+                        "/mnt/c/Users/karle/Documents/org/pages"
+                        (concat user-home-directory "/Documents/org/pages")))
 (setq org-roam-directory org-directory)
+
 (require 'org-roam)
 (setq org-roam-mode-sections
       (list #'org-roam-backlinks-section
@@ -434,16 +448,17 @@
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
-            (setq doom-font
-                  (font-spec :family "Hack"
-                             :size (cond
-                                    ((equal system-type 'windows-nt) 22)
-                                    ((equal (downcase (system-name)) "tomat") 16)
-                                    (t 18)))
-                  doom-big-font (font-spec :family "Hack" :size 24)
-                  doom-theme (if (equal (downcase (system-name)) "fedora")
-                                 my-dark-theme
-                               my-theme)) ; doom-acario-light
+            (let ((font-size (cond
+                              ((equal system-type 'windows-nt) my-font-size-windows)
+                              ((equal (downcase (system-name)) "tomat") my-font-size-wsl)
+                              (t my-font-size-linux))))
+              (setq doom-font
+                    (font-spec :family "Hack"
+                               :size font-size)
+                    doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+                    doom-theme (if (equal (downcase (system-name)) "fedora")
+                                   my-dark-theme
+                                 my-theme))) ; doom-acario-light
             (doom/reload-font)
             (doom/reload-theme)
             (unless (equal system-type 'windows-nt)
@@ -462,7 +477,7 @@
 ;; (menu-bar-mode)
 
 (defun my-open-notes-inbox () "Open notes" (interactive)
-       (find-file "~/Documents/org/pages/notes.org"))
+       (find-file (concat org-directory "/notes.org")))
 (map! :map doom-leader-map "o g" #'elpher)
 (map! :map doom-leader-map "o j" #'mastodon)
 (map! :map doom-leader-map "z" #'my-open-notes-inbox)
