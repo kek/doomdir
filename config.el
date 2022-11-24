@@ -57,12 +57,13 @@
                          (equal system-type 'windows-nt))
       my-font-size-windows 22
       my-font-size-wsl 24
-      my-font-size-linux 16)
+      my-font-size-linux 16
+      my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
+                                   (my-is-windows my-font-size-windows)
+                                   (t my-font-size-linux)))
 
 (when window-system
-  (let ((font-size (cond (my-is-wsl my-font-size-wsl)
-                         (my-is-windows my-font-size-windows)
-                         (t my-font-size-linux))))
+  (let ((font-size my-preferred-font-size))
     (when (equal system-type 'windows-nt)
       (progn
         (setq doom-theme my-theme)
@@ -448,13 +449,8 @@
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
-            (let ((font-size (cond
-                              ((equal system-type 'windows-nt) my-font-size-windows)
-                              ((equal (downcase (system-name)) "tomat") my-font-size-wsl)
-                              (t my-font-size-linux))))
-              (setq doom-font
-                    (font-spec :family "Hack"
-                               :size font-size)
+            (let ((font-size my-preferred-font-size))
+              (setq doom-font (font-spec :family "Hack" :size font-size)
                     doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
                     doom-theme (if (equal (downcase (system-name)) "fedora")
                                    my-dark-theme
