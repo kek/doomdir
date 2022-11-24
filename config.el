@@ -554,7 +554,11 @@
     (if (eq window-system nil)
         (progn
           (global-hl-line-mode nil)
-          (set-face-attribute magit-diff-added-highlight nil :background nil))))
+          (set-face-attribute 'magit-diff-added-highlight nil :background nil)
+          (set-face-attribute 'magit-diff-removed-highlight nil :background nil)
+          (set-face-attribute 'diff-refine-added nil :background nil)
+          (set-face-attribute 'diff-refine-removed nil :background nil)
+          )))
   ;; (if (equal (downcase (system-name)) "fedora")
   ;;     (doom-themes-set-faces nil
   ;;       '(vhl/default-face :background "#555")))
