@@ -89,11 +89,11 @@
 ;;           (lambda ()
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
-;; (unless window-system
-;;   ;; (setq doom-theme 'doom-dark+)
-;;   (add-hook 'hl-line-mode-hook
-;;             (lambda ()
-;;               (global-hl-line-mode -1))))
+(unless window-system
+  ;; (setq doom-theme 'doom-dark+)
+  (add-hook 'hl-line-mode-hook
+            (lambda ()
+              (global-hl-line-mode -1))))
 
 ;; opera-light nord-light homage-white tomorrow-day doom-acario-light
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
@@ -545,6 +545,11 @@
 ;; Face adjustments
 
 (defun my-face-adjustments ()
+  (if (eq window-system nil)
+      (progn
+         (after! company
+          (set-face-attribute 'company-tooltip nil :background "blue"))
+        (global-hl-line-mode -1)))
   (after! notmuch
     (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
     (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
@@ -553,11 +558,11 @@
   (after! magit
     (if (eq window-system nil)
         (progn
-          (global-hl-line-mode nil)
-          (set-face-attribute 'magit-diff-added-highlight nil :background nil)
-          (set-face-attribute 'magit-diff-removed-highlight nil :background nil)
-          (set-face-attribute 'diff-refine-added nil :background nil)
-          (set-face-attribute 'diff-refine-removed nil :background nil)
+          (global-hl-line-mode -1)
+          ;; (set-face-attribute 'magit-diff-added-highlight nil :background nil)
+          ;; (set-face-attribute 'magit-diff-removed-highlight nil :background nil)
+          ;; (set-face-attribute 'diff-refine-added nil :background nil)
+          ;; (set-face-attribute 'diff-refine-removed nil :background nil)
           )))
   ;; (if (equal (downcase (system-name)) "fedora")
   ;;     (doom-themes-set-faces nil
