@@ -58,7 +58,9 @@
 (package! graphviz-dot-mode) ; dot language mode
 (package! copilot ; github copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
-(package! nov) ; Epub reader
+(package! nov
+  :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git")
+) ; Epub reader
 (package! xr) ; Convert from string regexp to rx form
 (package! org-roam)
 (package! mastodon)
