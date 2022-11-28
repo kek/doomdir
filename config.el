@@ -76,7 +76,8 @@
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
              doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-windows-theme)) ; doom-acario-light, dichromacy
-       (if (equal emacs-version "29.0.50")
+       (if (and (not my-is-wsl)
+                (equal emacs-version "29.0.50"))
            (progn
              (setq line-spacing nil)
              (pixel-scroll-precision-mode)
