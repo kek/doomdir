@@ -57,7 +57,7 @@
                          (equal system-type 'windows-nt))
       my-font-size-windows 22
       my-font-size-wsl 24
-      my-font-size-linux 16
+      my-font-size-linux 18
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (t my-font-size-linux)))
@@ -539,9 +539,14 @@
 
 ;; Evil
 (after! notmuch
-  (map! :map notmuch-search-mode-map
-        :n "c A" #'notmuch-search-authors
-        :n "c a" #'notmuch-filter-authors))
+  (progn
+    (if i-want-evil
+        (map! :map notmuch-search-mode-map
+              :n "c A" #'notmuch-search-authors
+              :n "c a" #'notmuch-filter-authors))
+    (progn
+      (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
+      (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
 
 ;; Face adjustments
 
