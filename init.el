@@ -178,7 +178,7 @@
 
        :email
        ;;(mu4e +org +gmail)
-       (:if IS-LINUX notmuch +afew)
+       (:if IS-LINUX (notmuch +afew))
        ;;(wanderlust +gmail)
 
        :app
