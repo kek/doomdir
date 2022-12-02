@@ -56,7 +56,7 @@
       my-is-windows (and (equal (downcase (system-name)) "tomat")
                          (equal system-type 'windows-nt))
       my-font-size-windows 22
-      my-font-size-wsl 24
+      my-font-size-wsl 22
       my-font-size-linux 18
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
