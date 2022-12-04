@@ -26,6 +26,8 @@
             projectile-indexing-method 'native)
       (set-selection-coding-system 'utf-16-le)
       (set-clipboard-coding-system 'utf-16-le)
+      (after! copilot
+        (setq copilot-node-executable "C:/Scoop/apps/nodejs/17.9.1/node.exe"))
       ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
       ;; (modify-coding-system-alist 'file "" 'utf-8-unix)
       ))
