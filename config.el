@@ -16,7 +16,7 @@
 (setq src-directory
       (if (equal system-type 'windows-nt)
           (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
-                ((equal (downcase (system-name)) "tomat") "E:/src")
+                ((equal (downcase (system-name)) "tomat") "C:/src")
                 (t (message "unknown computer") "C:/src"))
         "~/src"))
 
