@@ -269,6 +269,11 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\\.livemd\\'" . markdown-mode))
 
+(after! flycheck
+  (map! :leader
+        (:prefix-map ("c" . "code")
+         "x" flycheck-command-map)))
+
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
 ;(add-hook 'help-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
@@ -323,13 +328,13 @@
            (dabbrev-expand 0))
 
          (after! copilot
-           (defun my-toggle-vterm-or-copilot-complete () (interactive)
-                  (if (eq major-mode 'vterm-mode)
-                      (+vterm/toggle nil)
+           (defun my-toggle-eshell-or-copilot-complete () (interactive)
+                  (if (eq major-mode 'eshell-mode)
+                      (+eshell/toggle nil)
                     (message "Copilot complete")
                     (copilot-complete)))
            (setq copilot-idle-delay nil)
-           (map! :i "§" 'my-toggle-vterm-or-copilot-complete))
+           (map! :i "§" 'my-toggle-eshell-or-copilot-complete))
 
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
@@ -368,8 +373,8 @@
          ;; (map! :i "M-<tab>" #'dabbrev-expand)
          (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
-         (global-set-key (kbd "§") #'+vterm/toggle)
-         (global-set-key (kbd "½") #'+vterm/here))
+         (global-set-key (kbd "§") #'+eshell/toggle)
+         (global-set-key (kbd "½") #'+eshell/here))
 
   ;;; NO EVIL
   (progn
