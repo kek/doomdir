@@ -32,6 +32,10 @@
       ;; (modify-coding-system-alist 'file "" 'utf-8-unix)
       ))
 
+(if (equal system-type 'gnu/linux)
+    (after! copilot
+      (setq copilot-node-executable "~/.asdf/installs/nodejs/17.9.1/bin/node")))
+
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
 (setq my-windows-theme 'doom-wilmersdorf)
