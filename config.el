@@ -489,9 +489,7 @@
 (map! :map doom-leader-map "o g" #'elpher)
 (map! :map doom-leader-map "o j" #'mastodon)
 (map! :map doom-leader-map "z" #'my-open-notes-inbox)
-(map! :map doom-leader-notes-map "z" #'my-open-notes-inbox)
 (which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
-(which-key-add-keymap-based-replacements doom-leader-notes-map "z" "Open notes")
 
 (global-set-key (kbd "<f1>") #'+lookup/documentation)
 (global-set-key (kbd "<f2>") #'save-buffer)
