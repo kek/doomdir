@@ -326,6 +326,10 @@
              (unless (copilot-accept-completion)
                (dabbrev-expand 0)))
            (dabbrev-expand 0))
+         (map! :n "ö" #'eros-eval-defun)
+         (map! :i "ö" #'self-insert-command)
+         (map! :n "ä" #'eros-eval-last-sexp)
+         (map! :i "ä" #'self-insert-command)
 
          (after! copilot
            (defun my-toggle-eshell-or-copilot-complete () (interactive)
@@ -340,6 +344,9 @@
            :hook (prog-mode . copilot-mode)
            :bind (("C-M-<return>" . 'copilot-complete)
                   ("C-<tab>" . 'copilot-complete)
+                  ("M-C-<return>" . 'copilot-accept-completion)
+                  ("C-M-ä" . 'copilot-next-completion)
+                  ("C-M-ö" . 'copilot-previous-completion)
                   :map copilot-completion-map
                   ("<tab>" . 'copilot-accept-completion)
                   ("<backtab>" . 'copilot-accept-completion-by-word)
