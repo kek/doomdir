@@ -49,7 +49,8 @@
 (if (and (not (equal system-type 'windows-nt)))
     (progn
       (defun my-fix-title-bar ()
-        (if (not my-is-wsl)
+        (if (and (not my-is-wsl)
+                 window-system)
             (frame-hide-title-bar-when-maximized (selected-frame))))
       (remove-hook 'after-save-hook #'my-fix-title-bar)
       (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
