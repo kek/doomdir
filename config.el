@@ -41,7 +41,7 @@
 (setq my-windows-theme 'doom-wilmersdorf)
 (if window-system
     (setq my-dark-theme 'doom-moonlight)
-  (setq my-dark-theme 'doom-1337))
+  (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
 (setq warning-suppress-types '(defvaralias))
@@ -342,7 +342,7 @@
                     (copilot-complete)))
            (setq copilot-idle-delay nil)
            (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
-           (map! :i "§" 'evil-normal-state))
+           (map! :vi "§" 'evil-normal-state))
 
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
