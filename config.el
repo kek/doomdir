@@ -39,7 +39,9 @@
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
 (setq my-windows-theme 'doom-wilmersdorf)
-(setq my-dark-theme 'doom-moonlight)
+(if window-system
+    (setq my-dark-theme 'doom-moonlight)
+  (setq my-dark-theme 'doom-1337))
 (setq my-theme my-dark-theme)
 
 (setq warning-suppress-types '(defvaralias))
