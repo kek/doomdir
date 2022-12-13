@@ -387,8 +387,10 @@
          (map! :i "M-RET" #'hippie-expand)
          ;; (global-set-key (kbd "§") #'+eshell/toggle)
          ;; (global-set-key (kbd "½") #'+eshell/here)
-         (map! :n "g)" #'sp-forward-slurp-sexp)
-         (map! :n "g(" #'sp-forward-barf-sexp)
+         (map! :n "g[" #'sp-forward-slurp-sexp)
+         (map! :n "g]" #'sp-forward-barf-sexp)
+         (map! :n "g(" #'sp-up-sexp)
+         (map! :n "g)" #'sp-down-sexp)
          )
 
   ;;; NO EVIL
