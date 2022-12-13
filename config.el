@@ -514,6 +514,12 @@
 (global-set-key (kbd "M-§") (lambda () "save and recompile" (interactive)
                               (save-buffer)
                               (recompile)))
+(if my-is-windows
+    (global-set-key (kbd "<f4>") #'+eshell/toggle)
+  (progn
+    (global-set-key (kbd "<f4>") #'+vterm/toggle)
+    (after! vterm (define-key vterm-mode-map (kbd "<f4>") #'+vterm/toggle))))
+
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 ;; Notifications for org
