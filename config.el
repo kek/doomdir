@@ -342,6 +342,7 @@
                     (copilot-complete)))
            (setq copilot-idle-delay nil)
            (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
+           (map! :i "½" 'my-toggle-eshell-or-copilot-complete)
            (map! :vi "§" 'evil-normal-state))
 
          (use-package! copilot
@@ -385,7 +386,8 @@
          (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
          ;; (global-set-key (kbd "§") #'+eshell/toggle)
-         (global-set-key (kbd "½") #'+eshell/here))
+         ;; (global-set-key (kbd "½") #'+eshell/here)
+         )
 
   ;;; NO EVIL
   (progn
