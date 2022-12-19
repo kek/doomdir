@@ -86,13 +86,13 @@
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
              doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-windows-theme)) ; doom-acario-light, dichromacy
        (if (and (not my-is-wsl)
-                (equal emacs-version "29.0.50"))
+                (equal emacs-version "29.0.60"))
            (progn
              (setq line-spacing nil)
              (pixel-scroll-precision-mode)
              (setq pixel-scroll-precision-interpolate-page nil)
-             (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
-             (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
+             ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
+             ;; (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
              (message "Pixel scroll precision mode is almost great!")))))))
 
 ;; (add-hook 'hl-line-mode-hook
