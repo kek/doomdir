@@ -585,6 +585,9 @@
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
 
+(after! dirvish
+  (dirvish-override-dired-mode))
+
 ;; Face adjustments
 
 (defun my-face-adjustments ()

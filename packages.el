@@ -65,3 +65,4 @@
 (package! org-roam)
 (package! mastodon)
 (package! iedit)
+(package! dirvish)
