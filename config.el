@@ -343,7 +343,8 @@
            (setq copilot-idle-delay nil)
            (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
            (map! :i "½" 'my-toggle-eshell-or-copilot-complete)
-           (map! :vi "§" 'evil-normal-state))
+           (map! :vi "§" 'evil-normal-state)
+           (map! :i "C-|" 'copilot-complete))
 
          (use-package! copilot
            :hook (prog-mode . copilot-mode)
@@ -357,6 +358,8 @@
                   ("<backtab>" . 'copilot-accept-completion-by-word)
                   ("M-<left>" . 'copilot-previous-completion)
                   ("M-<right>" . 'copilot-next-completion)
+                  ("C-S-<left>" . 'copilot-previous-completion)
+                  ("C-S-<right>" . 'copilot-next-completion)
                   ("<escape>" . 'copilot-clear-overlay)
                   ))
 
