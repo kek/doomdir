@@ -588,6 +588,10 @@
 (after! dirvish
   (dirvish-override-dired-mode))
 
+;; (setq garbage-collection-messages t)
+(after! gcmh
+  (gcmh-mode 1))
+
 ;; Face adjustments
 
 (defun my-face-adjustments ()

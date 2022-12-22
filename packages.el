@@ -66,3 +66,4 @@
 (package! mastodon)
 (package! iedit)
 (package! dirvish)
+(package! gcmh) ; https://gitlab.com/koral/gcmh ; https://akrl.sdf.org/
