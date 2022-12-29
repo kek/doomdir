@@ -38,9 +38,10 @@
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
+; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-wilmersdorf)
 (if window-system
-    (setq my-dark-theme 'doom-moonlight)
+    (setq my-dark-theme 'doom-vibrant)
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
