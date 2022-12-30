@@ -660,10 +660,9 @@ The optional argument IGNORED is not used."
       ((equal system-type 'windows-nt)
           (progn
             (server-start)))
-      ((my-is-wsl
-        (progn
+      (my-is-wsl (progn
           (setq server-use-tcp t)
-          (server-start)))))))
+          (server-start))))))
 
 ;; https://emacs.stackexchange.com/questions/73047/emacs-29-docstring-single-quote-escaping-rules-compiler-level-event
 ;; (setq text-quoting-style 'grave)
