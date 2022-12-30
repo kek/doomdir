@@ -487,9 +487,9 @@
             (let ((font-size my-preferred-font-size))
               (setq doom-font (font-spec :family "Hack" :size font-size)
                     doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-                    doom-theme (if (equal (downcase (system-name)) "fedora")
-                                   my-dark-theme
-                                 my-theme))) ; doom-acario-light
+                    doom-theme (cond (my-is-wsl my-dark-theme)
+                                     (my-is-liux my-dark-theme)
+                                 (t my-theme )))) ; doom-acario-light
             (doom/reload-font)
             (doom/reload-theme)
             (unless (equal system-type 'windows-nt)
