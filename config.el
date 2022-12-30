@@ -45,6 +45,17 @@
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
+(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
+                     (equal system-type 'gnu/linux))
+      my-is-windows (and (equal (downcase (system-name)) "tomat")
+                         (equal system-type 'windows-nt))
+      my-font-size-windows 22
+      my-font-size-wsl 22
+      my-font-size-linux 16
+      my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
+                                   (my-is-windows my-font-size-windows)
+                                   (t my-font-size-linux)))
+
 (defun my-choose-theme ()
   (cond (my-is-wsl my-dark-theme)
         (my-is-liux my-dark-theme)
@@ -66,17 +77,6 @@
         (my-fix-title-bar))))
 
 (setq evil-respect-visual-line-mode t)
-
-(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
-                     (equal system-type 'gnu/linux))
-      my-is-windows (and (equal (downcase (system-name)) "tomat")
-                         (equal system-type 'windows-nt))
-      my-font-size-windows 22
-      my-font-size-wsl 22
-      my-font-size-linux 16
-      my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
-                                   (my-is-windows my-font-size-windows)
-                                   (t my-font-size-linux)))
 
 (when window-system
   (let ((font-size my-preferred-font-size))
