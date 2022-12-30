@@ -58,6 +58,8 @@
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        ;; (format)  ; automated prettiness
+       (:if IS-LINUX (format +onsave))
+       (:if IS-WINDOWS format)
        (format +onsave)  ; automated prettiness ;; times out LSP when format-on-save
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
