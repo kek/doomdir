@@ -45,6 +45,12 @@
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
+(defun my-choose-theme ()
+  (cond (my-is-wsl my-dark-theme)
+        (my-is-liux my-dark-theme)
+        (my-is-windows my-windows-theme)
+        (t my-theme)))
+
 (setq warning-suppress-types '(defvaralias))
 
 ;; Does not seem to work in KDE
@@ -85,7 +91,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-             doom-theme (if (equal (downcase (system-name)) "fedora") my-theme my-windows-theme)) ; doom-acario-light, dichromacy
+             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
        (if (and (not my-is-wsl)
                 (equal emacs-version "29.0.60"))
            (progn
@@ -487,9 +493,7 @@
             (let ((font-size my-preferred-font-size))
               (setq doom-font (font-spec :family "Hack" :size font-size)
                     doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-                    doom-theme (cond (my-is-wsl my-dark-theme)
-                                     (my-is-liux my-dark-theme)
-                                 (t my-theme )))) ; doom-acario-light
+                    doom-theme (my-choose-theme))) ; doom-acario-light
             (doom/reload-font)
             (doom/reload-theme)
             (unless (equal system-type 'windows-nt)
