@@ -534,6 +534,25 @@
     (global-set-key (kbd "<f4>") #'+vterm/toggle)
     (after! vterm (define-key vterm-mode-map (kbd "<f4>") #'+vterm/toggle))))
 
+(defun wslview-browse-url (url &optional _ignored)
+                     "Pass the specified URL to the \"wslview\" command.
+The optional argument IGNORED is not used."
+                     (interactive (browse-url-interactive-arg "URL: "))
+                     (call-process "/usr/bin/wslview" nil t nil url))
+
+;; Unbind mouse wheel because bug with Wayland and WSLg
+(defun my-noop () nil (interactive))
+(if my-is-wsl
+    (progn
+      (global-set-key (kbd "<wheel-down>") #'my-noop)
+      (global-set-key (kbd "<double-wheel-down>") #'my-noop)
+      (global-set-key (kbd "<triple-wheel-down>") #'my-noop)
+      (global-set-key (kbd "<wheel-up>") #'my-noop)
+      (global-set-key (kbd "<double-wheel-up>") #'my-noop)
+      (global-set-key (kbd "<triple-wheel-up>") #'my-noop)
+      (setq browse-url-browser-function 'wslview-browse-url)
+      ))
+
 ;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 ;; Notifications for org
