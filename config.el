@@ -60,8 +60,7 @@
   (cond (my-is-wsl my-dark-theme)
         (my-is-liux my-dark-theme)
         (my-is-windows my-windows-theme)
-        (t my-theme)))
-
+        (t 'doom-one)))
 (setq warning-suppress-types '(defvaralias))
 
 ;; Does not seem to work in KDE
@@ -622,7 +621,8 @@ The optional argument IGNORED is not used."
   (if (eq window-system nil)
       (progn
          (after! company
-          (set-face-attribute 'company-tooltip nil :background "blue"))
+          ;; (set-face-attribute 'company-tooltip nil :background "blue")
+          )
         (global-hl-line-mode -1)))
   (after! notmuch
     (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
