@@ -149,7 +149,7 @@
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 
 (after! deft
-  (setq deft-directory (concat user-home-directory "/Documents/org")))
+  (setq deft-directory org-directory))
 
 (after! org
   (add-hook 'org-mode-hook #'my-face-adjustments)
