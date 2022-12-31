@@ -49,6 +49,7 @@
                      (equal system-type 'gnu/linux))
       my-is-windows (and (equal (downcase (system-name)) "tomat")
                          (equal system-type 'windows-nt))
+      my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
       my-font-size-windows 22
       my-font-size-wsl 22
       my-font-size-linux 16
@@ -58,7 +59,7 @@
 
 (defun my-choose-theme ()
   (cond (my-is-wsl my-dark-theme)
-        (my-is-liux my-dark-theme)
+        (my-is-linux my-dark-theme)
         (my-is-windows my-windows-theme)
         (t 'doom-one)))
 (setq warning-suppress-types '(defvaralias))
