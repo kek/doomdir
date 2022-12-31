@@ -52,7 +52,7 @@
       my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
       my-font-size-windows 22
       my-font-size-wsl 22
-      my-font-size-linux 16
+      my-font-size-linux 22
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (t my-font-size-linux)))
