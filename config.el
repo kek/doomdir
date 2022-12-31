@@ -50,11 +50,14 @@
       my-is-windows (and (equal (downcase (system-name)) "tomat")
                          (equal system-type 'windows-nt))
       my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
+      my-is-linux-4k (and my-is-linux (equal (downcase (system-name)) "potatis"))
       my-font-size-windows 22
       my-font-size-wsl 22
-      my-font-size-linux 22
+      my-font-size-linux 16
+      my-font-size-linux-4k 22
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
+                                   (my-is-linux-4k my-font-size-linux-4k)
                                    (t my-font-size-linux)))
 
 (defun my-choose-theme ()
