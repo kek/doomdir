@@ -99,7 +99,6 @@
                 (equal emacs-version "29.0.60"))
            (progn
              (setq-default line-spacing 4)
-             (setq line-spacing nil)
              (pixel-scroll-precision-mode)
              (setq pixel-scroll-precision-interpolate-page nil)
              ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
