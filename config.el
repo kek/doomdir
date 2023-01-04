@@ -41,8 +41,16 @@
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-wilmersdorf)
 (if window-system
-    (setq my-dark-theme 'doom-sourcerer) ; Fits with menu bar color "Materia"
-                                         ; vibrant, dark+, badger? ...
+    (progn
+      ;; (setq doom-dark+-blue-modeline t)
+      ;; (setq doom-dark+-padded-modeline t)
+      ;; (setq my-dark-theme 'doom-dark+)
+      ; (setq doom-sourcerer-brighter-modeline t)
+      (setq doom-sourcerer-padded-modeline t)
+      (setq my-dark-theme 'doom-sourcerer)
+      ;; (setq doom-Iosvkem-padded-modeline t)
+      ;; (setq my-dark-theme 'doom-Iosvkem)
+      ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
@@ -537,7 +545,8 @@
     (global-set-key (kbd "<f4>") #'+eshell/toggle)
   (progn
     (global-set-key (kbd "<f4>") #'+vterm/toggle)
-    (after! vterm (define-key vterm-mode-map (kbd "<f4>") #'+vterm/toggle))))
+    (after! vterm
+      (define-key vterm-mode-map (kbd "<f4>") #'+vterm/toggle))))
 
 (defun wslview-browse-url (url &optional _ignored)
                      "Pass the specified URL to the \"wslview\" command.
