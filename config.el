@@ -41,7 +41,8 @@
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-wilmersdorf)
 (if window-system
-    (setq my-dark-theme 'doom-sourcerer)
+    (setq my-dark-theme 'doom-sourcerer) ; Fits with menu bar color "Materia"
+                                         ; vibrant, dark+, badger? ...
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
