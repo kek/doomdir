@@ -41,7 +41,7 @@
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-wilmersdorf)
 (if window-system
-    (setq my-dark-theme 'doom-vibrant)
+    (setq my-dark-theme 'doom-dark+)
   (setq my-dark-theme 'doom-tokyo-night))
 (setq my-theme my-dark-theme)
 
@@ -98,6 +98,7 @@
        (if (and (not my-is-wsl)
                 (equal emacs-version "29.0.60"))
            (progn
+             (menu-bar-mode)
              (setq-default line-spacing 4)
              (pixel-scroll-precision-mode)
              (setq pixel-scroll-precision-interpolate-page nil)
