@@ -62,8 +62,9 @@
   :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git")
 ) ; Epub reader
 (package! xr) ; Convert from string regexp to rx form
-(package! org-roam)
 (package! mastodon)
 (package! iedit)
 (package! dirvish)
 (package! gcmh) ; https://gitlab.com/koral/gcmh ; https://akrl.sdf.org/
+(package! org-modern)
+(package! mixed-pitch)

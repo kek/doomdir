@@ -62,7 +62,7 @@
       my-is-linux-4k (and my-is-linux (equal (downcase (system-name)) "potatis"))
       my-font-size-windows 22
       my-font-size-wsl 22
-      my-font-size-linux 16
+      my-font-size-linux 18
       my-font-size-linux-4k 22
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
@@ -103,6 +103,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+             doom-variable-pitch-font (font-spec :family "DejaVu Serif" :size (+ font-size 0))
              doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
        (if (and (not my-is-wsl)
                 (equal emacs-version "29.0.60"))
@@ -175,12 +176,30 @@
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 
+(use-package mixed-pitch
+  :hook
+  ;; If you want it in all text modes:
+  (text-mode . mixed-pitch-mode)
+  ;; :config
+  ;; (set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 130)
+  ;; (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono")
+  ;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans")
+  )
+
+(use-package org-modern
+  :config
+  (global-org-modern-mode))
+(add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 (after! deft
   (setq deft-directory org-directory))
 
 (after! org
   (add-hook 'org-mode-hook #'my-face-adjustments)
-  (setq org-cycle-emulate-tab nil)
+  (setq org-cycle-emulate-tab nil
+        org-pretty-entities t
+        ;; org-hide-emphasis-markers t
+        org-startup-with-inline-images t
+        org-image-actual-width '(300))
 
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
