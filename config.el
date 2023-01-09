@@ -555,6 +555,8 @@
 (add-hook 'elixir-mode-hook (lambda ()
                               (show-paren-local-mode -1)))
 
+(fringe-mode '(20 . 20))
+
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (let ((font-size my-preferred-font-size))
@@ -565,6 +567,8 @@
             (doom/reload-theme)
             (unless (equal system-type 'windows-nt)
               (pixel-scroll-precision-mode))
+            ;; (with-selected-frame frame
+            ;;   (set-fringe-style '(20 . 20)))
             (my-face-adjustments)))
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
