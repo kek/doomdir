@@ -103,7 +103,7 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-             doom-variable-pitch-font (font-spec :family "Literata" :size (+ font-size 4))
+             doom-variable-pitch-font (font-spec :family "Literata" :weight 'semi-bold)
              ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
              doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
        (if (and (not my-is-wsl)
@@ -191,18 +191,41 @@
 
 (use-package org-modern
   :config
+  (setq org-modern-hide-stars t)
   (global-org-modern-mode))
 (add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 (after! deft
   (setq deft-directory org-directory))
 
+(use-package org-bullets)
+
+(defun my-org-margins ()
+  (setq left-margin-width 6)
+  (setq right-margin-width 6)
+  ;; (set-window-buffer nil (current-buffer))
+  )
+
+;; (push '(left-fringe 20) default-frame-alist)
+;; (after! git-gutter
+;;   (push 'org-mode git-gutter:disabled-modes))
+
 (after! org
   (add-hook 'org-mode-hook #'my-face-adjustments)
+  ;; (add-hook 'org-mode-hook #'my-org-margins)
   (setq org-cycle-emulate-tab nil
-        org-pretty-entities t
         ;; org-hide-emphasis-markers t
         org-startup-with-inline-images t
         org-image-actual-width '(300))
+  (setq org-startup-indented nil
+        org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+        org-ellipsis "  " ;; folding symbol
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+        ;; show actually italicized text instead of /italicized text/
+        org-agenda-block-separator ""
+        org-fontify-whole-heading-line t
+        org-fontify-done-headline t
+        org-fontify-quote-and-verse-blocks t)
 
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
@@ -673,7 +696,7 @@ The optional argument IGNORED is not used."
 (defun my-face-adjustments ()
   (if (eq window-system nil)
       (progn
-         (after! company
+        (after! company
           ;; (set-face-attribute 'company-tooltip nil :background "blue")
           )
         (global-hl-line-mode -1)))
@@ -681,7 +704,17 @@ The optional argument IGNORED is not used."
     (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
     (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
   (after! org
-    (set-face-attribute 'org-headline-done nil :foreground "#94a7a3"))
+    ;; (set-face-attribute 'org-headline-done nil :foreground "#94a7a3")
+    (set-face-attribute 'org-level-1 nil :height 1.7 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-2 nil :height 1.2 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-3 nil :height 1.1 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-4 nil :height 1.0 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-5 nil :height 0.9 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-6 nil :height 0.8 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-7 nil :height 0.7 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-level-8 nil :height 0.6 :foreground "#eee" :family "ETBembo")
+    (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil)
+    )
   (after! magit
     (if (eq window-system nil)
         (progn

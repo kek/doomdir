@@ -70,3 +70,4 @@
 (package! mixed-pitch)
 (package! tree-sitter)
 (package! tree-sitter-indent)
+(package! org-bullets)
