@@ -191,7 +191,7 @@
 
 (use-package org-modern
   :config
-  (setq org-modern-hide-stars t)
+  ;; (setq org-modern-hide-stars t)
   (global-org-modern-mode))
 (add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 (after! deft
@@ -217,7 +217,7 @@
         org-startup-with-inline-images t
         org-image-actual-width '(300))
   (setq org-startup-indented nil
-        org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
+        ;; org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
         org-ellipsis "  " ;; folding symbol
         org-pretty-entities t
         org-hide-emphasis-markers t
