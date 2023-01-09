@@ -642,13 +642,20 @@ The optional argument IGNORED is not used."
 ;;   (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
 ;;   (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))
 
+(defun my-notmuch-mark-spam () (interactive)
+  (notmuch-search-add-tag '("+spam"))
+  (notmuch-search-archive-thread)
+  ;; (notmuch-refresh-this-buffer)
+  )
+
 ;; Evil
 (after! notmuch
   (progn
     (if i-want-evil
         (map! :map notmuch-search-mode-map
               :n "c A" #'notmuch-search-authors
-              :n "c a" #'notmuch-filter-authors))
+              :n "c a" #'notmuch-filter-authors
+              :n "x" #'my-notmuch-mark-spam))
     (progn
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
