@@ -62,7 +62,7 @@
       my-is-linux-4k (and my-is-linux (equal (downcase (system-name)) "potatis"))
       my-font-size-windows 22
       my-font-size-wsl 22
-      my-font-size-linux 18
+      my-font-size-linux 20
       my-font-size-linux-4k 22
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
@@ -103,7 +103,8 @@
      (progn
        (setq doom-font (font-spec :family "Hack" :size font-size)
              doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-             doom-variable-pitch-font (font-spec :family "DejaVu Serif" :size (+ font-size 0))
+             doom-variable-pitch-font (font-spec :family "Literata" :size (+ font-size 4))
+             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
              doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
        (if (and (not my-is-wsl)
                 (equal emacs-version "29.0.60"))
@@ -181,8 +182,8 @@
   ;; If you want it in all text modes:
   (text-mode . mixed-pitch-mode)
   ;; :config
-  ;; (set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 130)
-  ;; (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono")
+  ;; (set-face-attribute 'default nil :font "Hack" :height 160)
+  ;; (set-face-attribute 'fixed-pitch nil :font "Hack")
   ;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans")
   )
 
