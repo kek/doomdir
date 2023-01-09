@@ -118,7 +118,7 @@
              (map! :i "S-<Launch8>" (lambda () (interactive) (insert "Ö")))
              (map! :i "S-<Launch9>" (lambda () (interactive) (insert "É")))
              (menu-bar-mode)
-             (setq-default line-spacing 4)
+             (setq-default line-spacing 6)
              (pixel-scroll-precision-mode)
              (setq pixel-scroll-precision-interpolate-page nil)
              ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
