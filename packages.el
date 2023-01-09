@@ -68,3 +68,5 @@
 (package! gcmh) ; https://gitlab.com/koral/gcmh ; https://akrl.sdf.org/
 (package! org-modern)
 (package! mixed-pitch)
+(package! tree-sitter)
+(package! tree-sitter-indent)

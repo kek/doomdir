@@ -177,6 +177,8 @@
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 
+(use-package gleam-mode :load-path "~/src/gleam-mode")
+
 (use-package mixed-pitch
   :hook
   ;; If you want it in all text modes:
