@@ -464,11 +464,15 @@
 
          ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
          ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
-         (add-hook 'org-after-refile-insert-hook (lambda () "Set evil-org-mode if not set" nil
-                                                   (if (eq major-mode 'org-mode)
-                                                    (progn
-                                                     (message "Setting evil in org mode in %s!" buffer-file-name)
-                                                     (evil-org-mode)))))
+         (defun set-evil-org-if-org () "Set evil-org-mode if not set" nil
+                (if (eq major-mode 'org-mode)
+                    (progn
+                      ;; (message "Setting evil in org mode in %s!" buffer-file-name)
+                      (hl-line-mode -1)
+                      (evil-org-mode))))
+         (add-hook 'org-after-refile-insert-hook #'set-evil-org-if-org)
+         (add-hook 'find-file-hook #'set-evil-org-if-org)
+         (add-hook 'doom-switch-buffer-hook #'set-evil-org-if-org)
          ;; (map! :i "M-<tab>" #'dabbrev-expand)
          (map! :i "<backtab>" #'hippie-expand)
          (map! :i "M-RET" #'hippie-expand)
