@@ -177,11 +177,11 @@
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 
-;; (defmacro my-use-package-if-exists (package-name package-path)
-;;   `(if (f-exists? ,package-path)
-;;       (use-package ,package-name :load-path ,package-path)))
+(defmacro my-use-package-if-exists (package-name package-path)
+  `(if (file-exists-p ,package-path)
+      (use-package ,package-name :load-path ,package-path)))
 
-;; (my-use-package-if-exists gleam-mode "~/src/gleam-mode")
+(my-use-package-if-exists gleam-mode "~/src/gleam-mode")
 
 (use-package mixed-pitch
   :hook
