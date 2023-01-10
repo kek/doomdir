@@ -735,16 +735,16 @@ The optional argument IGNORED is not used."
           (set-face-attribute 'org-level-7 nil :height 0.7 :foreground "#eee" :family "ETBembo")
           (set-face-attribute 'org-level-8 nil :height 0.6 :foreground "#eee" :family "ETBembo")
           (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil))
-        (progn
-          (set-face-attribute 'org-level-1 nil :height 1.7)
-          (set-face-attribute 'org-level-2 nil :height 1.2)
-          (set-face-attribute 'org-level-3 nil :height 1.1)
-          (set-face-attribute 'org-level-4 nil :height 1.0)
-          (set-face-attribute 'org-level-5 nil :height 0.9)
-          (set-face-attribute 'org-level-6 nil :height 0.8)
-          (set-face-attribute 'org-level-7 nil :height 0.7)
-          (set-face-attribute 'org-level-8 nil :height 0.6)
-          (set-face-attribute 'org-link nil :underline nil))))
+      (progn
+        (set-face-attribute 'org-level-1 nil :height 1.7)
+        (set-face-attribute 'org-level-2 nil :height 1.2)
+        (set-face-attribute 'org-level-3 nil :height 1.1)
+        (set-face-attribute 'org-level-4 nil :height 1.0)
+        (set-face-attribute 'org-level-5 nil :height 0.9)
+        (set-face-attribute 'org-level-6 nil :height 0.8)
+        (set-face-attribute 'org-level-7 nil :height 0.7)
+        (set-face-attribute 'org-level-8 nil :height 0.6)
+        (set-face-attribute 'org-link nil :underline nil))))
 
   (after! magit
     (if (eq window-system nil)
