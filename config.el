@@ -177,7 +177,9 @@
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
 
-(use-package gleam-mode :load-path "~/src/gleam-mode")
+(let ((gleam-mode-src "~/src/gleam-mode"))
+  (if (f-exists? gleam-mode-src)
+      (use-package gleam-mode :load-path "~/src/gleam-mode")))
 
 (use-package mixed-pitch
   :hook
