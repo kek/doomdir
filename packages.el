@@ -71,3 +71,4 @@
 (package! tree-sitter)
 (package! tree-sitter-indent)
 (package! org-bullets)
+(package! company-posframe)

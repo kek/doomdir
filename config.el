@@ -216,6 +216,9 @@
 (defun my-disable-hl-line-mode ()
   (hl-line-mode -1))
 
+  (use-package company-posframe
+    :config
+    (company-posframe-mode 1))
 (after! org
   (add-hook 'org-mode-hook #'my-face-adjustments)
   (add-hook 'org-mode-hook #'my-disable-hl-line-mode)
