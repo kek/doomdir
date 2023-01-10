@@ -183,21 +183,21 @@
 
 (my-use-package-if-exists gleam-mode "~/src/gleam-mode")
 
-(use-package mixed-pitch
-  :hook
-  ;; If you want it in all text modes:
-  (text-mode . mixed-pitch-mode)
-  ;; :config
-  ;; (set-face-attribute 'default nil :font "Hack" :height 160)
-  ;; (set-face-attribute 'fixed-pitch nil :font "Hack")
-  ;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans")
-  )
+;; (use-package mixed-pitch
+;;   :hook
+;;   ;; If you want it in all text modes:
+;;   (text-mode . mixed-pitch-mode)
+;;   ;; :config
+;;   ;; (set-face-attribute 'default nil :font "Hack" :height 160)
+;;   ;; (set-face-attribute 'fixed-pitch nil :font "Hack")
+;;   ;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans")
+;;   )
+;; (add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 
 (use-package org-modern
   :config
   ;; (setq org-modern-hide-stars t)
   (global-org-modern-mode))
-(add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 (after! deft
   (setq deft-directory org-directory))
 
