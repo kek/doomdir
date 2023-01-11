@@ -48,7 +48,8 @@
       ; (setq doom-sourcerer-brighter-modeline t)
       (setq doom-sourcerer-padded-modeline t)
       ;; (setq my-theme 'doom-sourcerer)
-      (setq my-theme 'doom-earl-grey)
+      ;; (setq my-theme 'doom-earl-grey)
+      (setq my-theme 'doom-sourcerer)
       ;; (setq doom-Iosvkem-padded-modeline t)
       ;; (setq my-theme 'doom-Iosvkem)
       ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
