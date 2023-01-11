@@ -382,16 +382,16 @@
          (map! :n "C-s" #'save-buffer)
          ;; (map! "C-§" #'+popup/toggle)
          ;; (map! "C-½" #'+popup/raise)
-         (map! :i "C-s" (lambda () nil (interactive) (save-buffer) (evil-normal-state)))
-         (map! :r "C-s" (lambda () nil (interactive) (save-buffer) (evil-normal-state)))
+         (map! :i "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
+         (map! :r "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
          (map! :map 'evil-window-map "C-a" #'ace-window)
          (map! :after company :map company-active-map "C-s"
-               (lambda () nil (interactive)
+               (lambda () "save" (interactive)
                  (company-abort)
                  (save-buffer)
                  (evil-normal-state)))
          (map! :after company :map company-active-map "<escape>"
-               (lambda () nil (interactive)
+               (lambda () "exit company menu and insert mode" (interactive)
                  (company-abort)
                  (evil-normal-state)))
 
@@ -541,14 +541,14 @@
     ;; (global-set-key (kbd "C-§") #'+popup/toggle)
     ;; (global-set-key (kbd "C-½") #'+popup/raise)
     (global-set-key (kbd "C-<tab>") #'other-window)
-    (global-set-key (kbd "C-<iso-lefttab>") (lambda () nil (interactive) (other-window -1)))
+    (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
     (global-set-key (kbd "M-RET") #'hippie-expand)
 
     ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
     ;; (global-set-key (kbd "C-ä") #'consult-buffer)
     (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
     (global-set-key (kbd "C-S-d") #'duplicate-line)
-    (global-set-key (kbd "C-S-j") (lambda () nil (interactive) (join-line t)))
+    (global-set-key (kbd "C-S-j") (lambda () "join line with next line" (interactive) (join-line t)))
     (global-set-key (kbd "C-.") nil)
     (global-set-key (kbd "C-:") nil)
 
@@ -565,7 +565,7 @@
   (if (equal system-type 'windows-nt-disabled)
       (add-hook 'emacs-startup-hook #'toggle-frame-maximized)))
 
-(setq-default custom-file (expand-file-name "custom.el" doom-private-dir))
+(setq-default custom-file (expand-file-name "custom.el" doom-user-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
 
@@ -575,7 +575,7 @@
 (fringe-mode '(20 . 20))
 
 (add-hook 'after-make-frame-functions
-          (lambda (frame)
+          (lambda ()
             (let ((font-size my-preferred-font-size))
               (setq doom-font (font-spec :family "Hack" :size font-size)
                     doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
@@ -584,8 +584,6 @@
             (doom/reload-theme)
             (unless (equal system-type 'windows-nt)
               (pixel-scroll-precision-mode))
-            ;; (with-selected-frame frame
-            ;;   (set-fringe-style '(20 . 20)))
             (my-face-adjustments)))
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
@@ -610,18 +608,18 @@
 (global-set-key (kbd "<f2>") #'save-buffer)
 (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f4>") nil)
-(global-set-key (kbd "<f5>") #'recompile)
-(global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
-                                (find-file (concat doom-private-dir "config.el"))))
-;; (global-set-key (kbd "M-§") (lambda () "save and recompile" (interactive)
-;;                               (save-buffer)
-;;                               (recompile)))
 (if my-is-windows
     (global-set-key (kbd "<f4>") #'+eshell/toggle)
   (progn
     (global-set-key (kbd "<f4>") #'+vterm/toggle)
     (after! vterm
       (define-key vterm-mode-map (kbd "<f4>") #'+vterm/toggle))))
+(global-set-key (kbd "<f5>") #'recompile)
+(global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
+                                (find-file (concat doom-user-dir "config.el"))))
+;; (global-set-key (kbd "M-§") (lambda () "save and recompile" (interactive)
+;;                               (save-buffer)
+;;                               (recompile)))
 
 (defun wslview-browse-url (url &optional _ignored)
                      "Pass the specified URL to the \"wslview\" command.
@@ -630,7 +628,7 @@ The optional argument IGNORED is not used."
                      (call-process "/usr/bin/wslview" nil t nil url))
 
 ;; Unbind mouse wheel because bug with Wayland and WSLg
-(defun my-noop () nil (interactive))
+(defun my-noop () "do nothing" (interactive))
 (if my-is-wsl
     (progn
       (global-set-key (kbd "<wheel-down>") #'my-noop)
