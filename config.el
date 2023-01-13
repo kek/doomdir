@@ -483,8 +483,8 @@
          ;; (global-set-key (kbd "½") #'+eshell/here)
          (map! :n "g[" #'sp-forward-slurp-sexp)
          (map! :n "g]" #'sp-forward-barf-sexp)
-         (map! :i "M-[" #'sp-forward-slurp-sexp)
-         (map! :i "M-]" #'sp-forward-barf-sexp)
+         (map! :ni "M-[" #'sp-forward-slurp-sexp)
+         (map! :ni "M-]" #'sp-forward-barf-sexp)
          (map! :n "g(" #'sp-up-sexp)
          (map! :n "g)" #'sp-down-sexp)
          )
@@ -711,6 +711,39 @@ The optional argument IGNORED is not used."
 (after! gcmh
   (gcmh-mode 1))
 
+(if (eq my-theme 'doom-sourcerer)
+    (progn
+      (after! org
+        ;; (set-face-attribute 'org-headline-done nil :foreground "#94a7a3")
+        (set-face-attribute 'org-level-1 nil :height 1.7 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-2 nil :height 1.2 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-3 nil :height 1.1 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-4 nil :height 1.0 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-5 nil :height 0.9 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-6 nil :height 0.8 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-7 nil :height 0.7 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-level-8 nil :height 0.6 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil))
+      (after! markdown-mode
+        (set-face-attribute 'markdown-header-face-1 nil :height 1.7 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'markdown-header-face-2 nil :height 1.4 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'markdown-header-face-3 nil :height 1.3 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'markdown-header-face-4 nil :height 1.0 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'markdown-header-face-5 nil :height 0.9 :foreground "#ffa" :family "ETBembo")
+        (set-face-attribute 'markdown-header-face-6 nil :height 0.8 :foreground "#ffa" :family "ETBembo")))
+  (progn
+    (after! 'org
+      (progn
+        (set-face-attribute 'org-level-1 nil :height 1.7)
+        (set-face-attribute 'org-level-2 nil :height 1.2)
+        (set-face-attribute 'org-level-3 nil :height 1.1)
+        (set-face-attribute 'org-level-4 nil :height 1.0)
+        (set-face-attribute 'org-level-5 nil :height 0.9)
+        (set-face-attribute 'org-level-6 nil :height 0.8)
+        (set-face-attribute 'org-level-7 nil :height 0.7)
+        (set-face-attribute 'org-level-8 nil :height 0.6)
+        (set-face-attribute 'org-link nil :underline nil)))))
+
 ;; Face adjustments
 
 (defun my-face-adjustments ()
@@ -723,36 +756,6 @@ The optional argument IGNORED is not used."
   (after! notmuch
     (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
     (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
-  (after! org
-    ;; (set-face-attribute 'org-headline-done nil :foreground "#94a7a3")
-    (if (eq my-theme 'doom-sourcerer)
-        (progn
-          (set-face-attribute 'org-level-1 nil :height 1.7 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-2 nil :height 1.2 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-3 nil :height 1.1 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-4 nil :height 1.0 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-5 nil :height 0.9 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-6 nil :height 0.8 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-7 nil :height 0.7 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-level-8 nil :height 0.6 :foreground "#ffa" :family "ETBembo")
-          (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil)
-          ;; (set-face-attribute 'markdown-header-face-1 nil :height 1.9 :foreground "#ffa" :family "ETBembo")
-          ;; (set-face-attribute 'markdown-header-face-2 nil :height 1.4 :foreground "#ffa" :family "ETBembo")
-          ;; (set-face-attribute 'markdown-header-face-3 nil :height 1.3 :foreground "#ffa" :family "ETBembo")
-          ;; (set-face-attribute 'markdown-header-face-4 nil :height 1.0 :foreground "#ffa" :family "ETBembo")
-          ;; (set-face-attribute 'markdown-header-face-5 nil :height 0.9 :foreground "#ffa" :family "ETBembo")
-          ;; (set-face-attribute 'markdown-header-face-6 nil :height 0.8 :foreground "#ffa" :family "ETBembo")
-          )
-      (progn
-        (set-face-attribute 'org-level-1 nil :height 1.7)
-        (set-face-attribute 'org-level-2 nil :height 1.2)
-        (set-face-attribute 'org-level-3 nil :height 1.1)
-        (set-face-attribute 'org-level-4 nil :height 1.0)
-        (set-face-attribute 'org-level-5 nil :height 0.9)
-        (set-face-attribute 'org-level-6 nil :height 0.8)
-        (set-face-attribute 'org-level-7 nil :height 0.7)
-        (set-face-attribute 'org-level-8 nil :height 0.6)
-        (set-face-attribute 'org-link nil :underline nil))))
 
   (after! magit
     (if (eq window-system nil)
