@@ -53,7 +53,7 @@
       ;; (setq doom-Iosvkem-padded-modeline t)
       ;; (setq my-theme 'doom-Iosvkem)
       ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
-  (setq my-theme 'doom-tokyo-night))
+  (setq my-theme 'doom-opera))
 
 (setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
                      (equal system-type 'gnu/linux))
@@ -74,7 +74,7 @@
   (cond (my-is-wsl my-theme)
         (my-is-linux my-theme)
         (my-is-windows my-windows-theme)
-        (t 'doom-one)))
+        (t 'doom-opera)))
 (setq warning-suppress-types '(defvaralias))
 
 ;; Does not seem to work in KDE
@@ -110,14 +110,14 @@
        (if (and (not my-is-wsl)
                 (equal emacs-version "29.0.60"))
            (progn
-             (map! :i "<Launch6>" (lambda () (interactive) (insert "ä")))
-             (map! :i "<Launch7>" (lambda () (interactive) (insert "å")))
-             (map! :i "<Launch8>" (lambda () (interactive) (insert "ö")))
-             (map! :i "<Launch9>" (lambda () (interactive) (insert "é")))
-             (map! :i "S-<Launch6>" (lambda () (interactive) (insert "Ä")))
-             (map! :i "S-<Launch7>" (lambda () (interactive) (insert "Å")))
-             (map! :i "S-<Launch8>" (lambda () (interactive) (insert "Ö")))
-             (map! :i "S-<Launch9>" (lambda () (interactive) (insert "É")))
+             (global-set-key (kbd  "<Launch6>") (lambda () (interactive) (insert "ä")))
+             (global-set-key (kbd  "<Launch7>") (lambda () (interactive) (insert "å")))
+             (global-set-key (kbd  "<Launch8>") (lambda () (interactive) (insert "ö")))
+             (global-set-key (kbd  "<Launch9>") (lambda () (interactive) (insert "é")))
+             (global-set-key (kbd  "S-<Launch6>") (lambda () (interactive) (insert "Ä")))
+             (global-set-key (kbd  "S-<Launch7>") (lambda () (interactive) (insert "Å")))
+             (global-set-key (kbd  "S-<Launch8>") (lambda () (interactive) (insert "Ö")))
+             (global-set-key (kbd  "S-<Launch9>") (lambda () (interactive) (insert "É")))
              (menu-bar-mode)
              (setq-default line-spacing 0)
              (pixel-scroll-precision-mode)
@@ -131,7 +131,8 @@
 ;;             (set-face-attribute 'hl-line nil :background "#f5f5fc")))
 
 (unless window-system
-  ;; (setq doom-theme 'doom-dark+)
+  (setq doom-theme 'doom-opera)
+  ;; (load-theme 'doom-opera)
   (add-hook 'hl-line-mode-hook
             (lambda ()
               (global-hl-line-mode -1))))
@@ -430,7 +431,7 @@
            (setq copilot-idle-delay nil)
            ;; (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
            ;; (map! :i "½" 'my-toggle-eshell-or-copilot-complete)
-           ;; (map! :vi "§" 'evil-normal-state)
+           (map! :vi "§" 'evil-normal-state)
            (map! :i "C-|" 'copilot-complete))
 
          (use-package! copilot
