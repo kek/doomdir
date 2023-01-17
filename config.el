@@ -231,7 +231,7 @@
         ;; org-hide-emphasis-markers t
         org-startup-with-inline-images t
         org-image-actual-width '(300))
-  (setq org-startup-indented nil
+  (setq org-startup-indented t
         ;; org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
         org-ellipsis "  " ;; folding symbol
         org-pretty-entities t
@@ -576,17 +576,17 @@
 
 (fringe-mode '(20 . 20))
 
-(add-hook 'after-make-frame-functions
-          (lambda ()
-            (let ((font-size my-preferred-font-size))
-              (setq doom-font (font-spec :family "Hack" :size font-size)
-                    doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-                    doom-theme (my-choose-theme))) ; doom-acario-light
-            (doom/reload-font)
-            (doom/reload-theme)
-            (unless (equal system-type 'windows-nt)
-              (pixel-scroll-precision-mode))
-            (my-face-adjustments)))
+(add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
+(defun my-post-frame-making-hook (-frame)
+  (let ((font-size my-preferred-font-size))
+    (setq doom-font (font-spec :family "Hack" :size font-size)
+          doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+          doom-theme (my-choose-theme))) ; doom-acario-light
+  (doom/reload-font)
+  (doom/reload-theme)
+  (unless (equal system-type 'windows-nt)
+    (pixel-scroll-precision-mode))
+  (my-face-adjustments))
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;; (require 'smooth-scroll)
