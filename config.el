@@ -815,5 +815,6 @@ The optional argument IGNORED is not used."
 
 (require 'eaf)
 (require 'eaf-browser)
+(require 'eaf-pdf-viewer)
 
 (load "~/.secrets.el")
