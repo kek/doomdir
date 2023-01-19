@@ -798,23 +798,29 @@ The optional argument IGNORED is not used."
 ;; https://emacs.stackexchange.com/questions/73047/emacs-29-docstring-single-quote-escaping-rules-compiler-level-event
 ;; (setq text-quoting-style 'grave)
 
-(use-package eaf
-      :load-path "~/src/emacs-application-framework"
-      :custom
-      ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-      (eaf-browser-continue-where-left-off t)
-      (eaf-browser-enable-adblocker t)
-      (browse-url-browser-function 'eaf-open-browser)
-      :config
-      (defalias 'browse-web #'eaf-open-browser)
-      ;; (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-      ;; (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-      ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-      ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
-      )
+;; (use-package eaf
+;;       :load-path "~/src/emacs-application-framework"
+;;       :custom
+;;       ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+;;       (eaf-browser-continue-where-left-off t)
+;;       (eaf-browser-enable-adblocker t)
+;;       (browse-url-browser-function 'eaf-open-browser)
+;;       :config
+;;       (defalias 'browse-web #'eaf-open-browser)
+;;       ;; (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+;;       ;; (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+;;       ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+;;       ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
+;;       )
 
+<<<<<<< HEAD
 (require 'eaf)
 (require 'eaf-browser)
 (require 'eaf-pdf-viewer)
+=======
+;; (require 'eaf)
+;; (require 'eaf-browser)
+;; (require 'eaf-pdf-viewer)
+>>>>>>> feac42d (disable eaf)
 
 (load "~/.secrets.el")
