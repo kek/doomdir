@@ -813,14 +813,8 @@ The optional argument IGNORED is not used."
 ;;       ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)
 ;;       )
 
-<<<<<<< HEAD
-(require 'eaf)
-(require 'eaf-browser)
-(require 'eaf-pdf-viewer)
-=======
 ;; (require 'eaf)
 ;; (require 'eaf-browser)
 ;; (require 'eaf-pdf-viewer)
->>>>>>> feac42d (disable eaf)
 
 (load "~/.secrets.el")
