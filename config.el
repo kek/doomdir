@@ -579,7 +579,7 @@
 (fringe-mode '(20 . 20))
 
 (add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
-(defun my-post-frame-making-hook (-frame)
+(defun my-post-frame-making-hook (_)
   (let ((font-size my-preferred-font-size))
     (setq doom-font (font-spec :family "Hack" :size font-size)
           doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
