@@ -155,9 +155,9 @@
             ;; #'org-roam-unlinked-references-section
             ))
 
-(setq display-line-numbers-type nil)
-(remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
-              #'display-line-numbers-mode)
+(setq display-line-numbers-type t)
+;; (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
+;;               #'display-line-numbers-mode)
 
 (setq company-global-modes '(not org-mode erc-mode circe-mode message-mode help-mode gud-mode vterm-mode))
 
