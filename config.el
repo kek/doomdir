@@ -187,9 +187,9 @@
 (my-use-package-if-exists gleam-mode "~/src/gleam-mode")
 
 (use-package mixed-pitch
-  :hook
-  ;; If you want it in all text modes:
-  (text-mode . mixed-pitch-mode)
+  ;; :hook
+  ;; ;; If you want it in all text modes:
+  ;; (text-mode . mixed-pitch-mode)
   ;; :config
   ;; (set-face-attribute 'default nil :font "Hack" :height 160)
   ;; (set-face-attribute 'fixed-pitch nil :font "Hack")
@@ -611,13 +611,13 @@
 ;; (global-set-key (kbd "<f1>") #'+lookup/documentation)
 ;; (global-set-key (kbd "<f2>") #'save-buffer)
 ;; (global-set-key (kbd "<f3>") #'find-file)
-(global-set-key (kbd "<f9>") nil)
-(if my-is-windows
-    (global-set-key (kbd "<f9>") #'+eshell/toggle)
-  (progn
-    (global-set-key (kbd "<f9>") #'+vterm/toggle)
-    (after! vterm
-      (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))))
+;; (global-set-key (kbd "<f9>") nil)
+;; (if my-is-windows
+;;     (global-set-key (kbd "<f9>") #'+eshell/toggle)
+;;   (progn
+;;     (global-set-key (kbd "<f9>") #'+vterm/toggle)
+;;     (after! vterm
+;;       (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))))
 ;; (global-set-key (kbd "<f5>") #'recompile)
 ;; (global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
 ;;                                 (find-file (concat doom-user-dir "config.el"))))
@@ -722,7 +722,7 @@ The optional argument IGNORED is not used."
   (set-face-attribute 'markdown-header-face-5 nil :height 0.9 :foreground "#ffa" :family "ETBembo")
   (set-face-attribute 'markdown-header-face-6 nil :height 0.8 :foreground "#ffa" :family "ETBembo"))
 
-(if (eq my-theme 'doom-sourcerer)
+(if (and nil (eq my-theme 'doom-sourcerer))
     (progn
       (after! org
         ;; (set-face-attribute 'org-headline-done nil :foreground "#94a7a3")
@@ -737,7 +737,7 @@ The optional argument IGNORED is not used."
         (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil))
       (add-hook 'markdown-mode-hook #'my-set-markdown-faces))
   (progn
-    (after! 'org
+    (after! org
       (progn
         (set-face-attribute 'org-level-1 nil :height 1.7)
         (set-face-attribute 'org-level-2 nil :height 1.2)
