@@ -361,197 +361,195 @@
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
-(if i-want-evil ;; Evil mode set
-    ;; EVIL
-    (progn
-      (message "Evil mode init")
-      ;; (defun rename-thing-at-point-in-defun () "" (interactive)
-      ;;        (isearch-forward-symbol-at-point)
-      ;;        (query-replace)
-      ;;        )
-      (setq evil-respect-visual-line-mode t)
-      (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
-      (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
-      (map! :n "C-s" #'save-buffer)
-      ;; (map! "C-§" #'+popup/toggle)
-      ;; (map! "C-½" #'+popup/raise)
-      (map! :i "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
-      (map! :r "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
-      (map! :map 'evil-window-map "C-a" #'ace-window)
-      (map! :after company :map company-active-map "C-s"
-            (lambda () "save" (interactive)
-              (company-abort)
-              (save-buffer)
-              (evil-normal-state)))
-      (map! :after company :map company-active-map "<escape>"
-            (lambda () "exit company menu and insert mode" (interactive)
-              (company-abort)
-              (evil-normal-state)))
+(when i-want-evil ;; Evil mode set
+  ;; EVIL
+  (message "Evil mode init")
+  ;; (defun rename-thing-at-point-in-defun () "" (interactive)
+  ;;        (isearch-forward-symbol-at-point)
+  ;;        (query-replace)
+  ;;        )
+  (setq evil-respect-visual-line-mode t)
+  (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
+  (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
+  (map! :n "C-s" #'save-buffer)
+  ;; (map! "C-§" #'+popup/toggle)
+  ;; (map! "C-½" #'+popup/raise)
+  (map! :i "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
+  (map! :r "C-s" (lambda () "save" (interactive) (save-buffer) (evil-normal-state)))
+  (map! :map 'evil-window-map "C-a" #'ace-window)
+  (map! :after company :map company-active-map "C-s"
+        (lambda () "save" (interactive)
+          (company-abort)
+          (save-buffer)
+          (evil-normal-state)))
+  (map! :after company :map company-active-map "<escape>"
+        (lambda () "exit company menu and insert mode" (interactive)
+          (company-abort)
+          (evil-normal-state)))
 
-      ;; (map! :map doom-leader-map "TAB §" #'+workspace/other)
-      ;; (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
-      (map! :map doom-leader-map "d" #'duplicate-line)
-      (map! :map elpher-mode-map "DEL" #'transient-noop)
-      ;; (map! :n "<f9>" #'evil-execute-in-emacs-state)
-      (map! :n "å" #'evil-execute-in-emacs-state)
-      (map! :n "ä" nil)
-      (map! :n "C-<left>" #'previous-buffer)
-      (map! :n "C-<right>" #'next-buffer)
+  ;; (map! :map doom-leader-map "TAB §" #'+workspace/other)
+  ;; (map! :map doom-leader-map "§" #'evil-switch-to-windows-last-buffer)
+  (map! :map doom-leader-map "d" #'duplicate-line)
+  (map! :map elpher-mode-map "DEL" #'transient-noop)
+  ;; (map! :n "<f9>" #'evil-execute-in-emacs-state)
+  (map! :n "å" #'evil-execute-in-emacs-state)
+  (map! :n "ä" nil)
+  (map! :n "C-<left>" #'previous-buffer)
+  (map! :n "C-<right>" #'next-buffer)
 
-      (map! :after company :map company-active-map "<return>" #'newline-and-indent)
-      (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
-      (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
+  (map! :after company :map company-active-map "<return>" #'newline-and-indent)
+  (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
+  (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
 
-      (defun my-copilot-accept-completion ()
-        (interactive)
-        (if (symbolp 'copilot-accept-completion)
-            (unless (copilot-accept-completion)
-              (dabbrev-expand 0)))
-        (dabbrev-expand 0))
-      (map! :n "ö" #'eros-eval-defun)
-      (map! :n "ä" #'eros-eval-last-sexp)
-      ;; (map! :i "ö" #'self-insert-command)
-      ;; (map! :i "ä" #'self-insert-command)
+  (defun my-copilot-accept-completion ()
+    (interactive)
+    (if (symbolp 'copilot-accept-completion)
+        (unless (copilot-accept-completion)
+          (dabbrev-expand 0)))
+    (dabbrev-expand 0))
+  (map! :n "ö" #'eros-eval-defun)
+  (map! :n "ä" #'eros-eval-last-sexp)
+  ;; (map! :i "ö" #'self-insert-command)
+  ;; (map! :i "ä" #'self-insert-command)
 
-      (map! :ni "<f5>" #'eros-eval-defun)
-      (map! :ni "C-<f5>" #'eros-eval-last-sexp)
-      ;; (after! copilot
-      ;;   (defun my-toggle-eshell-or-copilot-complete () (interactive)
-      ;;          (if (eq major-mode 'eshell-mode)
-      ;;              (+eshell/toggle nil)
-      ;;            (message "Copilot complete")
-      ;;            (copilot-complete)))
-      ;;   ;; (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
-      ;;   ;; (map! :i "½" 'my-toggle-eshell-or-copilot-complete)
-      ;;   (map! :vi "§" 'evil-normal-state)
-      ;;   ;; (map! :i "C-|" 'copilot-complete)
-      ;;   (map! :i "<f8>" 'copilot-complete)
-      ;;   (map! :i "C-<f8>" 'copilot-next-completion))
+  (map! :ni "<f5>" #'eros-eval-defun)
+  (map! :ni "C-<f5>" #'eros-eval-last-sexp)
+  ;; (after! copilot
+  ;;   (defun my-toggle-eshell-or-copilot-complete () (interactive)
+  ;;          (if (eq major-mode 'eshell-mode)
+  ;;              (+eshell/toggle nil)
+  ;;            (message "Copilot complete")
+  ;;            (copilot-complete)))
+  ;;   ;; (map! :i "°" 'my-toggle-eshell-or-copilot-complete)
+  ;;   ;; (map! :i "½" 'my-toggle-eshell-or-copilot-complete)
+  ;;   (map! :vi "§" 'evil-normal-state)
+  ;;   ;; (map! :i "C-|" 'copilot-complete)
+  ;;   (map! :i "<f8>" 'copilot-complete)
+  ;;   (map! :i "C-<f8>" 'copilot-next-completion))
 
-      (use-package! copilot
-        :hook (prog-mode . copilot-mode)
-        :config (progn (setq copilot-idle-delay nil))
-        :bind (("<f8>" . 'my-copilot-complete)
-               :map copilot-completion-map
-               ("C-<f8>" . 'copilot-next-completion)
-               ("C-S-<f8>" . 'copilot-previous-completion)))
+  (use-package! copilot
+    :hook (prog-mode . copilot-mode)
+    :config (progn (setq copilot-idle-delay nil))
+    :bind (("<f8>" . 'my-copilot-complete)
+           :map copilot-completion-map
+           ("C-<f8>" . 'copilot-next-completion)
+           ("C-S-<f8>" . 'copilot-previous-completion)))
 
-      (defun my-copilot-complete ()
-        (interactive)
-        (if (copilot--overlay-visible)
-            (copilot-accept-completion)
-          (copilot-complete)))
+  (defun my-copilot-complete ()
+    (interactive)
+    (if (copilot--overlay-visible)
+        (copilot-accept-completion)
+      (copilot-complete)))
 
-      ;; ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
-      ;; ("M-<tab>" . 'my-copilot-accept-completion)
-      ;; ("M-C-<tab>" . 'copilot-next-completion)))
+  ;; ("M-<iso-lefttab>" . 'copilot-accept-completion-by-word)
+  ;; ("M-<tab>" . 'my-copilot-accept-completion)
+  ;; ("M-C-<tab>" . 'copilot-next-completion)))
 
-      ;; (use-package! copilot
-      ;;   :hook (prog-mode . copilot-mode)
-      ;;   :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-      ;;          ("C-<tab>" . 'copilot-accept-completion-by-word)
-      ;;          :map copilot-completion-map
-      ;;          ("<tab>" . 'copilot-accept-completion)
-      ;;          ("TAB" . 'copilot-accept-completion)))
+  ;; (use-package! copilot
+  ;;   :hook (prog-mode . copilot-mode)
+  ;;   :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+  ;;          ("C-<tab>" . 'copilot-accept-completion-by-word)
+  ;;          :map copilot-completion-map
+  ;;          ("<tab>" . 'copilot-accept-completion)
+  ;;          ("TAB" . 'copilot-accept-completion)))
 
-      ;; (which-key-add-key-based-replacements doom-leader-map "SPC n d" "Open notes inbox")
-      ;; (map! :map doom-leader-notes-map "D" #'deft)
+  ;; (which-key-add-key-based-replacements doom-leader-map "SPC n d" "Open notes inbox")
+  ;; (map! :map doom-leader-notes-map "D" #'deft)
 
-      ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
-      ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
-      (defun set-evil-org-if-org () "Set evil-org-mode if not set" nil
-             (if (eq major-mode 'org-mode)
-                 (progn
-                   ;; (message "Setting evil in org mode in %s!" buffer-file-name)
-                   (hl-line-mode -1)
-                   (evil-org-mode))))
-      (add-hook 'org-after-refile-insert-hook #'set-evil-org-if-org)
-      (add-hook 'find-file-hook #'set-evil-org-if-org)
-      (add-hook 'doom-switch-buffer-hook #'set-evil-org-if-org)
-      ;; (map! :i "M-<tab>" #'dabbrev-expand)
-      (map! :i "<backtab>" #'hippie-expand)
-      (map! :i "M-RET" #'hippie-expand)
-      ;; (global-set-key (kbd "§") #'+eshell/toggle)
-      ;; (global-set-key (kbd "½") #'+eshell/here)
-      (map! :n "g[" #'sp-forward-slurp-sexp)
-      (map! :n "g]" #'sp-forward-barf-sexp)
-      (map! :ni "M-[" #'sp-forward-slurp-sexp)
-      (map! :ni "M-]" #'sp-forward-barf-sexp)
-      (map! :n "g(" #'sp-up-sexp)
-      (map! :n "g)" #'sp-down-sexp)
-      )
+  ;; Dessa modes får man inte om man först gjort refile till en org-fil och sen öppnar den:
+  ;; Eldoc Git-Gutter Org-Indent Undo-Fu-Session Vi-Tilde-Fringe Visual-Line Whitespace
+  (defun set-evil-org-if-org () "Set evil-org-mode if not set" nil
+         (if (eq major-mode 'org-mode)
+             (progn
+               ;; (message "Setting evil in org mode in %s!" buffer-file-name)
+               (hl-line-mode -1)
+               (evil-org-mode))))
+  (add-hook 'org-after-refile-insert-hook #'set-evil-org-if-org)
+  (add-hook 'find-file-hook #'set-evil-org-if-org)
+  (add-hook 'doom-switch-buffer-hook #'set-evil-org-if-org)
+  ;; (map! :i "M-<tab>" #'dabbrev-expand)
+  (map! :i "<backtab>" #'hippie-expand)
+  (map! :i "M-RET" #'hippie-expand)
+  ;; (global-set-key (kbd "§") #'+eshell/toggle)
+  ;; (global-set-key (kbd "½") #'+eshell/here)
+  (map! :n "g[" #'sp-forward-slurp-sexp)
+  (map! :n "g]" #'sp-forward-barf-sexp)
+  (map! :ni "M-[" #'sp-forward-slurp-sexp)
+  (map! :ni "M-]" #'sp-forward-barf-sexp)
+  (map! :n "g(" #'sp-up-sexp)
+  (map! :n "g)" #'sp-down-sexp))
 
-  ;;; NO EVIL
-  (progn
-    (message "No evil mode init")
-    ;; (define-key global-map (kbd "§") doom-leader-map)
-    (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
-    (define-key global-map (kbd "C-S-z") #'undo-fu-only-redo)
-    ;; (setq doom-leader-alt-key "§")
-    ;; (setq doom-localleader-alt-key "§ l")
-    ;; (setq! persp-keymap-prefix (kbd "§ z"))
-    (global-set-key (kbd "<backtab>") #'company-complete)
-    (global-set-key (kbd "M-<tab>") #'hippie-expand)
-    (map! :after company :map company-active-map "<return>" #'newline-and-indent)
-    (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
-    (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
-    (use-package! copilot
-      :hook (prog-mode . copilot-mode)
-      :bind (("M-C-'" . 'copilot-accept-completion-by-word)
-             :map copilot-completion-map
-             ("M-C-<return>" . 'copilot-accept-completion)
-             ("C-M-ä" . 'copilot-next-completion)
-             ("C-M-ö" . 'copilot-previous-completion)
-             ("<escape>" . 'copilot-clear-overlay)))
+;;; NO EVIL
+(when (not i-want-evil)
+  (message "No evil mode init")
+  ;; (define-key global-map (kbd "§") doom-leader-map)
+  (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
+  (define-key global-map (kbd "C-S-z") #'undo-fu-only-redo)
+  ;; (setq doom-leader-alt-key "§")
+  ;; (setq doom-localleader-alt-key "§ l")
+  ;; (setq! persp-keymap-prefix (kbd "§ z"))
+  (global-set-key (kbd "<backtab>") #'company-complete)
+  (global-set-key (kbd "M-<tab>") #'hippie-expand)
+  (map! :after company :map company-active-map "<return>" #'newline-and-indent)
+  (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
+  (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
+  (use-package! copilot
+    :hook (prog-mode . copilot-mode)
+    :bind (("M-C-'" . 'copilot-accept-completion-by-word)
+           :map copilot-completion-map
+           ("M-C-<return>" . 'copilot-accept-completion)
+           ("C-M-ä" . 'copilot-next-completion)
+           ("C-M-ö" . 'copilot-previous-completion)
+           ("<escape>" . 'copilot-clear-overlay)))
 
-    (after! yasnippet
-      ;; (which-key-add-key-based-replacements "C-c &" nil)
-      ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
-      ;; (define-key yas-minor-mode-map (kbd "C-c & C-s") nil)
-      ;; (define-key yas-minor-mode-map (kbd "C-c & C-v") nil)
-      ;; (define-key yas-minor-mode-map (kbd "§ & C-n") #'+snippets/new)
-      ;; (define-key yas-minor-mode-map (kbd "§ & C-v") #'+snippets/edit)
-      )
-    (after! projectile
-      ;; (define-key projectile-mode-map (kbd "§ p") 'projectile-command-map)
-      (define-key projectile-mode-map (kbd "C-c p") nil))
-    ;; (setq! projectile-keymap-prefix (kbd "§ p"))
-    (which-key-add-key-based-replacements "C-c !" "flycheck")
-    (which-key-add-key-based-replacements "C-c &" "snippets")
-    (which-key-add-key-based-replacements "C-c @" "outline")
-    (which-key-add-key-based-replacements "C-c C-p" "parinfer")
-    ;; (define-key doom-leader-map (kbd "§") #'save-buffer)
-    ;; (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
-    ;; (define-key doom-leader-map (kbd "B") #'consult-buffer)
-    (define-key doom-leader-map (kbd "b") #'consult-buffer)
-    (define-key doom-leader-map (kbd "B") #'consult-buffer-other-frame)
-    (define-key doom-leader-map (kbd "1") #'delete-other-windows)
-    (define-key doom-leader-map (kbd "2") #'split-window-vertically)
-    (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
-    (define-key doom-leader-map (kbd "0") #'delete-window)
-    (define-key doom-leader-map (kbd "TAB") #'other-window)
-    (define-key doom-leader-map (kbd "j") #'iedit-mode)
-    ;; (global-set-key (kbd "C-§") #'+popup/toggle)
-    ;; (global-set-key (kbd "C-½") #'+popup/raise)
-    (global-set-key (kbd "C-<tab>") #'other-window)
-    (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
-    (global-set-key (kbd "M-RET") #'hippie-expand)
+  (after! yasnippet
+    ;; (which-key-add-key-based-replacements "C-c &" nil)
+    ;; (define-key yas-minor-mode-map (kbd "C-c & C-n") nil)
+    ;; (define-key yas-minor-mode-map (kbd "C-c & C-s") nil)
+    ;; (define-key yas-minor-mode-map (kbd "C-c & C-v") nil)
+    ;; (define-key yas-minor-mode-map (kbd "§ & C-n") #'+snippets/new)
+    ;; (define-key yas-minor-mode-map (kbd "§ & C-v") #'+snippets/edit)
+    )
+  (after! projectile
+    ;; (define-key projectile-mode-map (kbd "§ p") 'projectile-command-map)
+    (define-key projectile-mode-map (kbd "C-c p") nil))
+  ;; (setq! projectile-keymap-prefix (kbd "§ p"))
+  (which-key-add-key-based-replacements "C-c !" "flycheck")
+  (which-key-add-key-based-replacements "C-c &" "snippets")
+  (which-key-add-key-based-replacements "C-c @" "outline")
+  (which-key-add-key-based-replacements "C-c C-p" "parinfer")
+  ;; (define-key doom-leader-map (kbd "§") #'save-buffer)
+  ;; (define-key doom-leader-map (kbd "b") #'+vertico/switch-workspace-buffer)
+  ;; (define-key doom-leader-map (kbd "B") #'consult-buffer)
+  (define-key doom-leader-map (kbd "b") #'consult-buffer)
+  (define-key doom-leader-map (kbd "B") #'consult-buffer-other-frame)
+  (define-key doom-leader-map (kbd "1") #'delete-other-windows)
+  (define-key doom-leader-map (kbd "2") #'split-window-vertically)
+  (define-key doom-leader-map (kbd "3") #'split-window-horizontally)
+  (define-key doom-leader-map (kbd "0") #'delete-window)
+  (define-key doom-leader-map (kbd "TAB") #'other-window)
+  (define-key doom-leader-map (kbd "j") #'iedit-mode)
+  ;; (global-set-key (kbd "C-§") #'+popup/toggle)
+  ;; (global-set-key (kbd "C-½") #'+popup/raise)
+  (global-set-key (kbd "C-<tab>") #'other-window)
+  (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
+  (global-set-key (kbd "M-RET") #'hippie-expand)
 
-    ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
-    ;; (global-set-key (kbd "C-ä") #'consult-buffer)
-    (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
-    (global-set-key (kbd "C-S-d") #'duplicate-line)
-    (global-set-key (kbd "C-S-j") (lambda () "join line with next line" (interactive) (join-line t)))
-    (global-set-key (kbd "C-.") nil)
-    (global-set-key (kbd "C-:") nil)
+  ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
+  ;; (global-set-key (kbd "C-ä") #'consult-buffer)
+  (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
+  (global-set-key (kbd "C-S-d") #'duplicate-line)
+  (global-set-key (kbd "C-S-j") (lambda () "join line with next line" (interactive) (join-line t)))
+  (global-set-key (kbd "C-.") nil)
+  (global-set-key (kbd "C-:") nil)
 
-    (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
-    (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
-    (setq kill-whole-line t)
+  (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
+  (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
+  (setq kill-whole-line t)
 
-    (map! :after company :map company-active-map "<escape>" #'company-abort)
-    (after! alchemist
-     (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)))) ; Workaround because of deprecated variable find-tag-marker-ring
+  (map! :after company :map company-active-map "<escape>" #'company-abort)
+  (after! alchemist
+    (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition))) ; Workaround because of deprecated variable find-tag-marker-ring
 
 (when window-system
   (set-frame-size (window-frame) 120 55)
@@ -686,12 +684,11 @@ The optional argument IGNORED is not used."
 
 ;; Evil
 (after! notmuch
-  (progn
-    (if i-want-evil
-        (map! :map notmuch-search-mode-map
-              :n "c A" #'notmuch-search-authors
-              :n "c a" #'notmuch-filter-authors
-              :n "x" #'my-notmuch-mark-spam))
+  (if i-want-evil
+      (map! :map notmuch-search-mode-map
+            :n "c A" #'notmuch-search-authors
+            :n "c a" #'notmuch-filter-authors
+            :n "x" #'my-notmuch-mark-spam)
     (progn
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
@@ -725,41 +722,36 @@ The optional argument IGNORED is not used."
         (set-face-attribute 'org-level-8 nil :height 0.6 :foreground "#ffa" :family "ETBembo")
         (set-face-attribute 'org-link nil :foreground "#ccf" :underline nil))
       (add-hook 'markdown-mode-hook #'my-set-markdown-faces))
-  (progn
-    (after! org
-      (progn
-        (set-face-attribute 'org-level-1 nil :height 1.7)
-        (set-face-attribute 'org-level-2 nil :height 1.2)
-        (set-face-attribute 'org-level-3 nil :height 1.1)
-        (set-face-attribute 'org-level-4 nil :height 1.0)
-        (set-face-attribute 'org-level-5 nil :height 0.9)
-        (set-face-attribute 'org-level-6 nil :height 0.8)
-        (set-face-attribute 'org-level-7 nil :height 0.7)
-        (set-face-attribute 'org-level-8 nil :height 0.6)
-        (set-face-attribute 'org-link nil :underline nil)))))
+  (after! org
+    (set-face-attribute 'org-level-1 nil :height 1.7)
+    (set-face-attribute 'org-level-2 nil :height 1.2)
+    (set-face-attribute 'org-level-3 nil :height 1.1)
+    (set-face-attribute 'org-level-4 nil :height 1.0)
+    (set-face-attribute 'org-level-5 nil :height 0.9)
+    (set-face-attribute 'org-level-6 nil :height 0.8)
+    (set-face-attribute 'org-level-7 nil :height 0.7)
+    (set-face-attribute 'org-level-8 nil :height 0.6)
+    (set-face-attribute 'org-link nil :underline nil)))
 
 ;; Face adjustments
 
 (defun my-face-adjustments ()
-  (if (eq window-system nil)
-      (progn
-        (after! company
-          ;; (set-face-attribute 'company-tooltip nil :background "blue")
-          )
-        (global-hl-line-mode -1)))
+  (when (eq window-system nil)
+    (after! company
+      ;; (set-face-attribute 'company-tooltip nil :background "blue")
+      )
+    (global-hl-line-mode -1))
   (after! notmuch
     (set-face-attribute 'notmuch-wash-cited-text nil :foreground "#6f738d")
     (set-face-attribute 'notmuch-message-summary-face nil :foreground "#6f73cd"))
 
   (after! magit
     (if (eq window-system nil)
-        (progn
-          (global-hl-line-mode -1)
-          ;; (set-face-attribute 'magit-diff-added-highlight nil :background nil)
-          ;; (set-face-attribute 'magit-diff-removed-highlight nil :background nil)
-          ;; (set-face-attribute 'diff-refine-added nil :background nil)
-          ;; (set-face-attribute 'diff-refine-removed nil :background nil)
-          )))
+        (global-hl-line-mode -1)))
+  ;; (set-face-attribute 'magit-diff-added-highlight nil :background nil)
+  ;; (set-face-attribute 'magit-diff-removed-highlight nil :background nil)
+  ;; (set-face-attribute 'diff-refine-added nil :background nil)
+  ;; (set-face-attribute 'diff-refine-removed nil :background nil)
   ;; (if (equal (downcase (system-name)) "fedora")
   ;;     (doom-themes-set-faces nil
   ;;       '(vhl/default-face :background "#555")))
@@ -779,12 +771,11 @@ The optional argument IGNORED is not used."
 (after! server
   (unless (server-running-p)
     (cond
-      ((equal system-type 'windows-nt)
-          (progn
-            (server-start)))
-      (my-is-wsl (progn
-          (setq server-use-tcp t)
-          (server-start))))))
+     (my-is-windows (progn
+                      (server-start)))
+     (my-is-wsl (progn
+                  (setq server-use-tcp t)
+                  (server-start))))))
 
 ;; https://emacs.stackexchange.com/questions/73047/emacs-29-docstring-single-quote-escaping-rules-compiler-level-event
 ;; (setq text-quoting-style 'grave)
