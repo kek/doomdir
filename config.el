@@ -8,21 +8,21 @@
 ;; Doom Emacs Workflows
 ;; https://noelwelsh.com/posts/doom-emacs/
 
-(if (equal system-type 'windows-nt)
-    (setq user-home-directory
-          (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))))
+(when (equal system-type 'windows-nt)
+  (setq user-home-directory
+        (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))))
 
-(if (not (equal system-type 'windows-nt))
-    (setq user-home-directory "~"))
+(when (not (equal system-type 'windows-nt))
+  (setq user-home-directory "~"))
 
-(if (equal system-type 'windows-nt)
-    (setq src-directory
-          (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
-                ((equal (downcase (system-name)) "tomat") "C:/src")
-                (t (message "unknown computer") "C:/src"))))
+(when (equal system-type 'windows-nt)
+  (setq src-directory
+        (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
+              ((equal (downcase (system-name)) "tomat") "C:/src")
+              (t (message "unknown computer") "C:/src"))))
 
-(if (not (equal system-type 'windows-nt))
-    (setq src-directory "~/src"))
+(when (not (equal system-type 'windows-nt))
+  (setq src-directory "~/src"))
 
 (when (equal system-type 'windows-nt)
   (setq find-program "C:/Scoop/shims/gfind.exe"
