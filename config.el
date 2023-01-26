@@ -8,29 +8,31 @@
 ;; Doom Emacs Workflows
 ;; https://noelwelsh.com/posts/doom-emacs/
 
-(setq user-home-directory
-      (if (equal system-type 'windows-nt)
-          (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
-        "~"))
+(if (equal system-type 'windows-nt)
+    (setq user-home-directory
+          (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))))
 
-(setq src-directory
-      (if (equal system-type 'windows-nt)
-          (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
-                ((equal (downcase (system-name)) "tomat") "C:/src")
-                (t (message "unknown computer") "C:/src"))
-        "~/src"))
+(if (not (equal system-type 'windows-nt))
+    (setq user-home-directory "~"))
 
 (if (equal system-type 'windows-nt)
-    (progn
-      (setq find-program "C:/Scoop/shims/gfind.exe"
-            projectile-indexing-method 'native)
-      (set-selection-coding-system 'utf-16-le)
-      (set-clipboard-coding-system 'utf-16-le)
-      (after! copilot
-        (setq copilot-node-executable "C:/Scoop/apps/nodejs/17.9.1/node.exe"))
-      ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
-      ;; (modify-coding-system-alist 'file "" 'utf-8-unix)
-      ))
+    (setq src-directory
+          (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
+                ((equal (downcase (system-name)) "tomat") "C:/src")
+                (t (message "unknown computer") "C:/src"))))
+
+(if (not (equal system-type 'windows-nt))
+    (setq src-directory "~/src"))
+
+(when (equal system-type 'windows-nt)
+  (setq find-program "C:/Scoop/shims/gfind.exe"
+        projectile-indexing-method 'native)
+  (set-selection-coding-system 'utf-16-le)
+  (set-clipboard-coding-system 'utf-16-le)
+  (after! copilot
+    (setq copilot-node-executable "C:/Scoop/apps/nodejs/17.9.1/node.exe")))
+;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
+;; (modify-coding-system-alist 'file "" 'utf-8-unix))
 
 (if (equal system-type 'gnu/linux)
     (after! copilot
@@ -79,52 +81,48 @@
 
 ;; Does not seem to work in KDE
 
-(if (and (not (equal system-type 'windows-nt)))
-    (progn
-      (defun my-fix-title-bar ()
-        (if (and (not my-is-wsl)
-                 window-system)
-            (frame-hide-title-bar-when-maximized (selected-frame))))
-      (remove-hook 'after-save-hook #'my-fix-title-bar)
-      (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
-        (my-fix-title-bar))))
+(when (and (not (equal system-type 'windows-nt)))
+  (defun my-fix-title-bar ()
+    (if (and (not my-is-wsl)
+             window-system)
+        (frame-hide-title-bar-when-maximized (selected-frame))))
+  (remove-hook 'after-save-hook #'my-fix-title-bar)
+  (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
+    (my-fix-title-bar)))
 
 (setq evil-respect-visual-line-mode t)
 
 (when window-system
   (let ((font-size my-preferred-font-size))
     (when (equal system-type 'windows-nt)
-      (progn
-        (setq doom-theme my-theme)
-        (setq doom-font (font-spec :family "Hack NF" :size font-size)
-              doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
-              doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8)))))
+      (setq doom-theme my-theme)
+      (setq doom-font (font-spec :family "Hack NF" :size font-size)
+            doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
+            doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8))))
 
-   (when (equal system-type 'gnu/linux)
-     (progn
-       (setq doom-font (font-spec :family "Hack" :size font-size)
-             doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-             doom-variable-pitch-font (font-spec :family "Literata" :weight 'semi-bold)
-             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
-             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
-       (if (and (not my-is-wsl)
-                (equal emacs-version "29.0.60"))
-           (progn
-             (global-set-key (kbd  "<Launch6>") (lambda () (interactive) (insert "ä")))
-             (global-set-key (kbd  "<Launch7>") (lambda () (interactive) (insert "å")))
-             (global-set-key (kbd  "<Launch8>") (lambda () (interactive) (insert "ö")))
-             (global-set-key (kbd  "<Launch9>") (lambda () (interactive) (insert "é")))
-             (global-set-key (kbd  "S-<Launch6>") (lambda () (interactive) (insert "Ä")))
-             (global-set-key (kbd  "S-<Launch7>") (lambda () (interactive) (insert "Å")))
-             (global-set-key (kbd  "S-<Launch8>") (lambda () (interactive) (insert "Ö")))
-             (global-set-key (kbd  "S-<Launch9>") (lambda () (interactive) (insert "É")))
-             (menu-bar-mode)
-             (setq-default line-spacing 0)
-             (pixel-scroll-precision-mode)
-             (setq pixel-scroll-precision-interpolate-page nil)
-             ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
-             ;; (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
-             (message "Pixel scroll precision mode is almost great!")))))))
+    (when (equal system-type 'gnu/linux)
+      (setq doom-font (font-spec :family "Hack" :size font-size)
+            doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+            doom-variable-pitch-font (font-spec :family "Literata" :weight 'semi-bold)
+            ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
+            doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
+      (when (and (not my-is-wsl)
+                 (equal emacs-version "29.0.60"))
+        (global-set-key (kbd  "<Launch6>") (lambda () (interactive) (insert "ä")))
+        (global-set-key (kbd  "<Launch7>") (lambda () (interactive) (insert "å")))
+        (global-set-key (kbd  "<Launch8>") (lambda () (interactive) (insert "ö")))
+        (global-set-key (kbd  "<Launch9>") (lambda () (interactive) (insert "é")))
+        (global-set-key (kbd  "S-<Launch6>") (lambda () (interactive) (insert "Ä")))
+        (global-set-key (kbd  "S-<Launch7>") (lambda () (interactive) (insert "Å")))
+        (global-set-key (kbd  "S-<Launch8>") (lambda () (interactive) (insert "Ö")))
+        (global-set-key (kbd  "S-<Launch9>") (lambda () (interactive) (insert "É")))
+        (menu-bar-mode)
+        (setq-default line-spacing 0)
+        (pixel-scroll-precision-mode)
+        (setq pixel-scroll-precision-interpolate-page nil)
+        ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
+        ;; (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
+        (message "Pixel scroll precision mode is almost great!")))))
 
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
@@ -345,7 +343,7 @@
 ;; wip
 ;; doesn't work because it considers surrounding quotes as part of the regexp
 (defun apply-xr-to-region ()
-    (interactive)
+  (interactive)
   (apply-function-to-region (lambda (s) (xr-pp-rx-to-str (xr s)))))
 
 ;; https://stackoverflow.com/a/43632653
