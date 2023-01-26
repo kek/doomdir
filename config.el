@@ -8,23 +8,27 @@
 ;; Doom Emacs Workflows
 ;; https://noelwelsh.com/posts/doom-emacs/
 
-(when (equal system-type 'windows-nt)
+(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
+                     (equal system-type 'gnu/linux))
+      my-is-windows (equal system-type 'windows-nt)
+      my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
+      my-is-linux-4k (and my-is-linux (equal (downcase (system-name)) "potatis"))
+      my-font-size-windows 22
+      my-font-size-wsl 22
+      my-font-size-linux 18
+      my-font-size-linux-4k 24
+      my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
+                                   (my-is-windows my-font-size-windows)
+                                   (my-is-linux-4k my-font-size-linux-4k)
+                                   (t my-font-size-linux)))
+
+(when my-is-windows
   (setq user-home-directory
-        (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))))
-
-(when (not (equal system-type 'windows-nt))
-  (setq user-home-directory "~"))
-
-(when (equal system-type 'windows-nt)
+        (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE")))
   (setq src-directory
         (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
               ((equal (downcase (system-name)) "tomat") "C:/src")
-              (t (message "unknown computer") "C:/src"))))
-
-(when (not (equal system-type 'windows-nt))
-  (setq src-directory "~/src"))
-
-(when (equal system-type 'windows-nt)
+              (t (message "unknown computer") "C:/src")))
   (setq find-program "C:/Scoop/shims/gfind.exe"
         projectile-indexing-method 'native)
   (set-selection-coding-system 'utf-16-le)
@@ -34,9 +38,11 @@
 ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
 ;; (modify-coding-system-alist 'file "" 'utf-8-unix))
 
-(if (equal system-type 'gnu/linux)
-    (after! copilot
-      (setq copilot-node-executable "~/.asdf/installs/nodejs/17.9.1/bin/node")))
+(when (not my-is-windows)
+  (setq user-home-directory "~")
+  (setq src-directory "~/src")
+  (after! copilot
+    (setq copilot-node-executable "~/.asdf/installs/nodejs/17.9.1/bin/node")))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
@@ -56,21 +62,6 @@
       ;; (setq my-theme 'doom-Iosvkem)
       ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
   (setq my-theme 'doom-opera))
-
-(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
-                     (equal system-type 'gnu/linux))
-      my-is-windows (and (equal (downcase (system-name)) "tomat")
-                         (equal system-type 'windows-nt))
-      my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
-      my-is-linux-4k (and my-is-linux (equal (downcase (system-name)) "potatis"))
-      my-font-size-windows 22
-      my-font-size-wsl 22
-      my-font-size-linux 18
-      my-font-size-linux-4k 24
-      my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
-                                   (my-is-windows my-font-size-windows)
-                                   (my-is-linux-4k my-font-size-linux-4k)
-                                   (t my-font-size-linux)))
 
 (defun my-choose-theme ()
   (cond (my-is-wsl my-theme)
