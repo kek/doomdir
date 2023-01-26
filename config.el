@@ -136,7 +136,6 @@
                         (concat user-home-directory "/Documents/org/pages")))
 (setq org-roam-directory org-directory)
 
-
 (require 'org-roam)
 (setq org-roam-mode-sections
       (list #'org-roam-backlinks-section
