@@ -680,6 +680,11 @@ The optional argument IGNORED is not used."
   (notmuch-search-archive-thread)
   ;; (notmuch-refresh-this-buffer)
   )
+(defun my-notmuch-mark-spam-2 () (interactive)
+  (notmuch-show-add-tag '("+spam"))
+  (notmuch-show-archive-thread)
+  (notmuch-bury-or-kill-this-buffer)
+  (notmuch-refresh-this-buffer))
 
 ;; Evil
 (after! notmuch
@@ -688,6 +693,8 @@ The optional argument IGNORED is not used."
             :n "c A" #'notmuch-search-authors
             :n "c a" #'notmuch-filter-authors
             :n "x" #'my-notmuch-mark-spam)
+      (map! :map notmuch-show-mode-map
+            :n "x" #'my-notmuch-mark-spam-2)
     (progn
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
