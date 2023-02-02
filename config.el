@@ -593,17 +593,21 @@
 (map! :map doom-leader-map "o j" #'mastodon)
 (map! :map doom-leader-map "z" #'my-open-notes-inbox)
 (which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
+(context-menu-mode)
 
 ;; (global-set-key (kbd "<f1>") #'+lookup/documentation)
 ;; (global-set-key (kbd "<f2>") #'save-buffer)
 ;; (global-set-key (kbd "<f3>") #'find-file)
-;; (global-set-key (kbd "<f9>") nil)
-;; (if my-is-windows
-;;     (global-set-key (kbd "<f9>") #'+eshell/toggle)
-;;   (progn
-;;     (global-set-key (kbd "<f9>") #'+vterm/toggle)
-;;     (after! vterm
-;;       (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))))
+(global-set-key (kbd "<f11>") nil)
+(global-set-key (kbd "<f10>") nil)
+
+(if my-is-windows
+    (global-set-key (kbd "<f12>") #'+eshell/toggle)
+  (progn
+    (global-set-key (kbd "<f12>") #'+vterm/toggle)
+    (after! vterm
+      (define-key vterm-mode-map (kbd "<f12>") #'+vterm/toggle))))
+
 ;; (global-set-key (kbd "<f5>") #'recompile)
 ;; (global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
 ;;                                 (find-file (concat doom-user-dir "config.el"))))
@@ -629,8 +633,6 @@ The optional argument IGNORED is not used."
       (global-set-key (kbd "<triple-wheel-up>") #'my-noop)
       (setq browse-url-browser-function 'wslview-browse-url)
       ))
-
-;(after! vterm (define-key vterm-mode-map (kbd "<f9>") #'+vterm/toggle))
 
 ;; Notifications for org
 (require 'notifications)
