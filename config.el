@@ -599,7 +599,6 @@
 ;; (global-set-key (kbd "<f2>") #'save-buffer)
 ;; (global-set-key (kbd "<f3>") #'find-file)
 (global-set-key (kbd "<f11>") nil)
-(global-set-key (kbd "<f10>") nil)
 
 (if my-is-windows
     (global-set-key (kbd "<f12>") #'+eshell/toggle)
