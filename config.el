@@ -368,8 +368,8 @@
   ;;        (query-replace)
   ;;        )
   (setq evil-respect-visual-line-mode t)
-  (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
-  (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
+  ;; (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
+  ;; (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
   (map! :n "C-s" #'save-buffer)
   ;; (map! "C-§" #'+popup/toggle)
   ;; (map! "C-½" #'+popup/raise)
@@ -391,8 +391,8 @@
   (map! :map doom-leader-map "d" #'duplicate-line)
   (map! :map elpher-mode-map "DEL" #'transient-noop)
   ;; (map! :n "<f9>" #'evil-execute-in-emacs-state)
-  (map! :n "å" #'evil-execute-in-emacs-state)
-  (map! :n "ä" nil)
+  ;; (map! :n "å" #'evil-execute-in-emacs-state)
+  ;; (map! :n "ä" nil)
   (map! :n "C-<left>" #'previous-buffer)
   (map! :n "C-<right>" #'next-buffer)
 
@@ -406,8 +406,8 @@
         (unless (copilot-accept-completion)
           (dabbrev-expand 0)))
     (dabbrev-expand 0))
-  (map! :n "ö" #'eros-eval-defun)
-  (map! :n "ä" #'eros-eval-last-sexp)
+  ;; (map! :n "ö" #'eros-eval-defun)
+  ;; (map! :n "ä" #'eros-eval-last-sexp)
   ;; (map! :i "ö" #'self-insert-command)
   ;; (map! :i "ä" #'self-insert-command)
 
@@ -497,8 +497,8 @@
     :bind (("M-C-'" . 'copilot-accept-completion-by-word)
            :map copilot-completion-map
            ("M-C-<return>" . 'copilot-accept-completion)
-           ("C-M-ä" . 'copilot-next-completion)
-           ("C-M-ö" . 'copilot-previous-completion)
+           ;; ("C-M-ä" . 'copilot-next-completion)
+           ;; ("C-M-ö" . 'copilot-previous-completion)
            ("<escape>" . 'copilot-clear-overlay)))
 
   (after! yasnippet
@@ -536,14 +536,14 @@
 
   ;; (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
   ;; (global-set-key (kbd "C-ä") #'consult-buffer)
-  (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
+  ;; (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
   (global-set-key (kbd "C-S-d") #'duplicate-line)
   (global-set-key (kbd "C-S-j") (lambda () "join line with next line" (interactive) (join-line t)))
   (global-set-key (kbd "C-.") nil)
   (global-set-key (kbd "C-:") nil)
 
-  (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
-  (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
+  ;; (global-set-key (kbd "M-ö") #'kmacro-start-macro-or-insert-counter)
+  ;; (global-set-key (kbd "M-ä") #'kmacro-end-or-call-macro)
   (setq kill-whole-line t)
 
   (map! :after company :map company-active-map "<escape>" #'company-abort)
