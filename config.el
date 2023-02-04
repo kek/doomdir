@@ -430,9 +430,10 @@
     :hook (prog-mode . copilot-mode)
     :config (progn (setq copilot-idle-delay nil))
     :bind (("<f8>" . 'my-copilot-complete)
-           :map copilot-completion-map
            ("C-<f8>" . 'copilot-next-completion)
-           ("C-S-<f8>" . 'copilot-previous-completion)))
+           ("C-S-<f8>" . 'copilot-previous-completion)
+           ;; :map copilot-completion-map
+           ("TAB" . 'copilot-accept-completion)))
 
   (defun my-copilot-complete ()
     (interactive)
