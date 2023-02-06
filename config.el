@@ -691,12 +691,13 @@ The optional argument IGNORED is not used."
 ;; Evil
 (after! notmuch
   (if i-want-evil
-      (map! :map notmuch-search-mode-map
-            :n "c A" #'notmuch-search-authors
-            :n "c a" #'notmuch-filter-authors
-            :n "x" #'my-notmuch-mark-spam)
-      (map! :map notmuch-show-mode-map
-            :n "x" #'my-notmuch-mark-spam-2)
+      (progn
+        (map! :map notmuch-search-mode-map
+              :n "c A" #'notmuch-search-authors
+              :n "c a" #'notmuch-filter-authors
+              :n "x" #'my-notmuch-mark-spam)
+        (map! :map notmuch-show-mode-map
+              :n "x" #'my-notmuch-mark-spam-2))
     (progn
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
