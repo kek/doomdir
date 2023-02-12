@@ -262,10 +262,10 @@
             mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))))
 
 (setq lsp-rust-analyzer-diagnostics-disabled ["unresolved-proc-macro"]
-      lsp-elixir-local-server-command
-      (if (equal system-type 'windows-nt)
-          (concat src-directory "/elixir-ls/release/language_server.bat")
-        (concat src-directory "/elixir-ls/release/language_server.sh"))
+      ;; lsp-elixir-local-server-command
+      ;; (if (equal system-type 'windows-nt)
+      ;;     (concat src-directory "/elixir-ls/release/language_server.bat")
+      ;;   (concat src-directory "/elixir-ls/release/language_server.sh"))
 
       ;; frame-title-format `("%f – Doom Emacs (" ,(symbol-name system-type) ")")
       frame-title-format `(:eval (my-file-description))
