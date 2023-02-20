@@ -15,7 +15,7 @@
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
       my-font-size-windows 22
       my-font-size-wsl 22
-      my-font-size-linux 20
+      my-font-size-linux 18
       my-font-size-linux-4k 24
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
