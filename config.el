@@ -26,7 +26,7 @@
   (setq user-home-directory
         (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE")))
   (setq src-directory
-        (cond ((equal (downcase (system-name)) "sill") "C:/Users/kalle/src")
+        (cond ((equal (downcase (system-name)) "xps13") "C:/Users/kalle/src")
               ((equal (downcase (system-name)) "tomat") "C:/src")
               (t (message "unknown computer") "C:/src")))
   (setq find-program "C:/Scoop/shims/gfind.exe"
@@ -47,7 +47,7 @@
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
-(setq my-windows-theme 'doom-wilmersdorf)
+(setq my-windows-theme 'leuven)
 (if window-system
     (progn
       ;; (setq doom-dark+-blue-modeline t)
@@ -86,7 +86,7 @@
 (when window-system
   (let ((font-size my-preferred-font-size))
     (when (equal system-type 'windows-nt)
-      (setq doom-theme my-theme)
+      (setq doom-theme (my-choose-theme))
       (setq doom-font (font-spec :family "Hack NF" :size font-size)
             doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
             doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8))))
@@ -130,10 +130,10 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-(setq org-directory (if nil ; my-is-wsl
+(setq org-directory (cond (my-is-windows (concat user-home-directory "/org/pages"))
+                          (t (concat user-home-directory "/Documents/org/pages"))))
                         ;; Jag tror detta gör Emacs mycket långsam
-                        "/mnt/c/Users/karle/Documents/org/pages"
-                        (concat user-home-directory "/Documents/org/pages")))
+                        ;; "/mnt/c/Users/karle/Documents/org/pages"
 (setq org-roam-directory org-directory)
 
 (require 'org-roam)
@@ -552,7 +552,7 @@
     (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition))) ; Workaround because of deprecated variable find-tag-marker-ring
 
 (when window-system
-  (set-frame-size (window-frame) 120 55)
+  ;; (set-frame-size (window-frame) 120 55)
   (if (equal system-type 'windows-nt-disabled)
       (add-hook 'emacs-startup-hook #'toggle-frame-maximized)))
 
