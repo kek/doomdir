@@ -23,18 +23,16 @@
                                    (t my-font-size-linux)))
 
 (when my-is-windows
-  (setq user-home-directory
-        (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE")))
-  (setq src-directory
-        (cond ((equal (downcase (system-name)) "xps13") "C:/Users/kalle/src")
-              ((equal (downcase (system-name)) "tomat") "C:/src")
-              (t (message "unknown computer") "C:/src")))
-  (setq find-program "C:/Scoop/shims/gfind.exe"
+  (setq user-home-directory (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
+        src-directory (cond ((equal (downcase (system-name)) "xps13") "C:/Users/kalle/src")
+                            ((equal (downcase (system-name)) "tomat") "C:/src")
+                            (t (message "unknown computer") "C:/src"))
+        find-program "C:/Scoop/shims/gfind.exe"
         projectile-indexing-method 'native)
   (set-selection-coding-system 'utf-16-le)
   (set-clipboard-coding-system 'utf-16-le)
   (after! copilot
-    (setq copilot-node-executable "C:/Scoop/apps/nodejs/17.9.1/node.exe")))
+    (setq copilot-node-executable "C:/Users/kalle/Scoop/apps/nodejs16/16.19.1/node.exe")))
 ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
 ;; (modify-coding-system-alist 'file "" 'utf-8-unix))
 
