@@ -13,7 +13,7 @@
       my-is-windows (equal system-type 'windows-nt)
       my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
-      my-font-size-windows 22
+      my-font-size-windows 24
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
