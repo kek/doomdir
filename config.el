@@ -45,7 +45,8 @@
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
-(setq my-windows-theme 'doom-earl-grey)
+(setq my-windows-theme 'doom-sourcerer)
+;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
       ;; (setq doom-dark+-blue-modeline t)
