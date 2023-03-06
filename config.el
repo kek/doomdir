@@ -589,10 +589,14 @@
 
 (defun my-open-notes-inbox () "Open notes" (interactive)
        (find-file (concat org-directory "/notes.org")))
+(defun my-open-org-todo () "Open notes" (interactive)
+       (find-file (concat org-directory "/Att-göra.org")))
 (map! :map doom-leader-map "o g" #'elpher)
 (map! :map doom-leader-map "o j" #'mastodon)
-(map! :map doom-leader-map "z" #'my-open-notes-inbox)
-(which-key-add-keymap-based-replacements doom-leader-map "z" "Open notes")
+(map! :map doom-leader-map "z" #'my-open-org-todo)
+(map! :map doom-leader-map "Z" #'my-open-notes-inbox)
+(which-key-add-keymap-based-replacements doom-leader-map "z" "Open todo")
+(which-key-add-keymap-based-replacements doom-leader-map "Z" "Open notes")
 (context-menu-mode)
 
 ;; (global-set-key (kbd "<f1>") #'+lookup/documentation)
