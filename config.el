@@ -52,7 +52,7 @@
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-sourcerer)
+(setq my-mac-theme 'doom-tomorrow-night)
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
