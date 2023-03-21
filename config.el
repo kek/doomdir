@@ -12,7 +12,10 @@
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
       my-is-windows (equal system-type 'windows-nt)
-      my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
+      my-is-linux (and window-system
+                       (not my-is-wsl)
+                       (not my-is-windows)
+                       (not my-is-mac))
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
       my-font-size-windows 24
       my-font-size-wsl 22
@@ -49,6 +52,7 @@
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
+(setq my-mac-theme 'doom-sourcerer)
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -69,6 +73,7 @@
   (cond (my-is-wsl my-theme)
         (my-is-linux my-theme)
         (my-is-windows my-windows-theme)
+        (my-is-mac my-mac-theme)
         (t 'doom-opera)))
 (setq warning-suppress-types '(defvaralias))
 
@@ -93,7 +98,7 @@
             doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
             doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8))))
     (when (equal system-type 'darwin)
-      (toggle-frame-maximized)
+      ;; (toggle-frame-maximized)
       (setq mac-option-key-is-meta nil
             mac-command-key-is-meta t
             mac-command-modifier 'meta
@@ -101,7 +106,9 @@
       (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
             doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :weight 'semi-bold)
-            doom-theme (my-choose-theme)))
+            doom-theme (my-choose-theme))
+      (set-frame-size (selected-frame) 100 40)
+      (set-frame-position (selected-frame) 100 50)
     (when (equal system-type 'gnu/linux)
       (setq doom-font (font-spec :family "Hack" :size font-size)
             doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
@@ -267,7 +274,7 @@
         (buffer-name)
       (s-replace home-or-project project-or-home (buffer-file-name)))))
 
-(if (equal system-type 'windows-nt)
+(if (or (equal system-type 'windows-nt) (equal system-type 'darwin))
     (progn
       (setq mouse-wheel-progressive-speed nil
             mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))))
