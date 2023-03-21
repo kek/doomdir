@@ -10,6 +10,7 @@
 
 (setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
                      (equal system-type 'gnu/linux))
+      my-is-mac (equal system-type 'darwin)
       my-is-windows (equal system-type 'windows-nt)
       my-is-linux (and window-system (not my-is-wsl) (not my-is-windows))
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
@@ -17,9 +18,11 @@
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
+      my-font-size-mac 15
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (my-is-linux-4k my-font-size-linux-4k)
+                                   (my-is-mac my-font-size-mac)
                                    (t my-font-size-linux)))
 
 (when my-is-windows
@@ -71,7 +74,7 @@
 
 ;; Does not seem to work in KDE
 
-(when (and (not (equal system-type 'windows-nt)))
+(when (equal system-type 'gnu/linux)
   (defun my-fix-title-bar ()
     (if (and (not my-is-wsl)
              window-system)
@@ -89,11 +92,20 @@
       (setq doom-font (font-spec :family "Hack NF" :size font-size)
             doom-variable-pitch-font (font-spec :family "Ebrima" :size (+ font-size 2))
             doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8))))
-
+    (when (equal system-type 'darwin)
+      (toggle-frame-maximized)
+      (setq mac-option-key-is-meta nil
+            mac-command-key-is-meta t
+            mac-command-modifier 'meta
+            mac-option-modifier 'none)
+      (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
+            doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
+            doom-variable-pitch-font (font-spec :weight 'semi-bold)
+            doom-theme (my-choose-theme)))
     (when (equal system-type 'gnu/linux)
       (setq doom-font (font-spec :family "Hack" :size font-size)
             doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
-            doom-variable-pitch-font (font-spec :family "Literata" :weight 'semi-bold)
+            doom-variable-pitch-font (font-spec :fddamily "Literata" :weight 'semi-bold)
             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
       (when (and (not my-is-wsl)
