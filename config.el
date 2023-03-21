@@ -102,7 +102,11 @@
       (setq mac-option-key-is-meta nil
             mac-command-key-is-meta t
             mac-command-modifier 'meta
-            mac-option-modifier 'none)
+            mac-option-modifier 'none
+            woman-manpath '("/opt/homebrew/share/man"
+                            "/usr/share/man"
+                            "/usr/local/share/man"
+                            "/Applications/kitty.app/Contents/Resources/man")))
       (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
             doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :weight 'semi-bold)
