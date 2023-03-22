@@ -778,8 +778,9 @@ The optional argument IGNORED is not used."
 
 ;; Face adjustments
 
+(after! iedit
+  (set-face-attribute 'iedit-occurrence nil :foreground "#446" :background "#aac"))
 (defun my-face-adjustments ()
-  (set-face-attribute 'iedit-occurrence nil :foreground "#446" :background "#aac")
   (when (eq window-system nil)
     (after! company
       ;; (set-face-attribute 'company-tooltip nil :background "blue")
