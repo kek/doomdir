@@ -52,7 +52,7 @@
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-sourcerer)
+(setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -779,6 +779,7 @@ The optional argument IGNORED is not used."
 ;; Face adjustments
 
 (defun my-face-adjustments ()
+  (set-face-attribute 'iedit-occurrence nil :foreground "#446" :background "#aac")
   (when (eq window-system nil)
     (after! company
       ;; (set-face-attribute 'company-tooltip nil :background "blue")
