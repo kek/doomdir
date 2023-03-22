@@ -52,7 +52,7 @@
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-tomorrow-night)
+(setq my-mac-theme 'doom-sourcerer)
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -111,6 +111,14 @@
             doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :weight 'semi-bold)
             doom-theme (my-choose-theme))
+      (defun +default/man-or-woman ()
+        "Invoke `man' because `woman' does not work on MacOS (my change).
+
+        `man -k \"^\"` is very slow on MacOS, which is what `Man-completion-table' uses to
+        generate `completing-read' candidates."
+        (interactive)
+        (call-interactively
+             #'man))
       (set-frame-size (selected-frame) 100 40)
       (set-frame-position (selected-frame) 100 50)
     (when (equal system-type 'gnu/linux)
