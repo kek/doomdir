@@ -103,10 +103,12 @@
             mac-command-key-is-meta t
             mac-command-modifier 'meta
             mac-option-modifier 'none
+            ;; mac-command-modifier 'super
             woman-manpath '("/opt/homebrew/share/man"
                             "/usr/share/man"
                             "/usr/local/share/man"
-                            "/Applications/kitty.app/Contents/Resources/man")))
+                            "/Applications/kitty.app/Contents/Resources/man"))
+
       (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
             doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :weight 'semi-bold)
@@ -117,10 +119,12 @@
         `man -k \"^\"` is very slow on MacOS, which is what `Man-completion-table' uses to
         generate `completing-read' candidates."
         (interactive)
-        (call-interactively
-             #'man))
-      (set-frame-size (selected-frame) 100 40)
-      (set-frame-position (selected-frame) 100 50)
+        (call-interactively #'man))
+      ;; (setq frame-inhibit-implied-resize t)
+      (setq default-frame-alist '((width . 100) (height . 45)))
+      ;; (set-frame-size (selected-frame) 100 45)
+      (set-frame-position (selected-frame) 100 75))
+
     (when (equal system-type 'gnu/linux)
       (setq doom-font (font-spec :family "Hack" :size font-size)
             doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
