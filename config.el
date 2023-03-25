@@ -607,14 +607,15 @@
           doom-theme (my-choose-theme))) ; doom-acario-light
   (doom/reload-font)
   (doom/reload-theme)
-  (unless (equal system-type 'windows-nt)
-    (pixel-scroll-precision-mode))
+  ;; (unless (equal system-type 'windows-nt)
+  ;;   (pixel-scroll-precision-mode))
   (my-face-adjustments))
 
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
-;; (require 'smooth-scroll)
-;; (smooth-scroll-mode)
-;; (setq smooth-scroll/vscroll-step-size 1)
+;;; Above comment seems outdated
+(require 'smooth-scroll)
+(smooth-scroll-mode)
+(setq smooth-scroll/vscroll-step-size 3)
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
@@ -703,7 +704,6 @@ The optional argument IGNORED is not used."
   "Copy thread ID of current thread to kill-ring."
   (interactive)
   (notmuch-search (concat "from:\"" (notmuch-search-find-authors) "\"")))
-
 
 (defun notmuch-filter-authors ()
   "Copy thread ID of current thread to kill-ring."
