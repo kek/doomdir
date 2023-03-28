@@ -183,6 +183,7 @@
        :email
        ;;(mu4e +org +gmail)
        (:if IS-LINUX (notmuch +afew))
+       (:if IS-MAC (notmuch))
        ;;(wanderlust +gmail)
 
        :app
