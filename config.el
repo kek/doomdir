@@ -88,8 +88,6 @@
   (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
     (my-fix-title-bar)))
 
-(setq evil-respect-visual-line-mode t)
-
 (when window-system
   (let ((font-size my-preferred-font-size))
     (when (equal system-type 'windows-nt)
