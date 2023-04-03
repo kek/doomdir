@@ -506,8 +506,8 @@
   ;; (global-set-key (kbd "½") #'+eshell/here)
   (map! :n "g[" #'sp-forward-slurp-sexp)
   (map! :n "g]" #'sp-forward-barf-sexp)
-  (map! :ni "M-[" #'sp-forward-slurp-sexp)
-  (map! :ni "M-]" #'sp-forward-barf-sexp)
+  ;; (map! :ni "M-[" #'sp-forward-slurp-sexp)
+  ;; (map! :ni "M-]" #'sp-forward-barf-sexp)
   (map! :n "g(" #'sp-up-sexp)
   (map! :n "g)" #'sp-down-sexp))
 
