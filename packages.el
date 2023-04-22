@@ -72,4 +72,4 @@
 (package! tree-sitter-indent)
 (package! org-bullets)
 (package! company-posframe)
-(package! gptel)
+(package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
