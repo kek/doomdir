@@ -97,6 +97,14 @@
   (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
     (my-fix-title-bar)))
 
+(setq
+mac-option-key-is-meta nil
+            mac-command-key-is-meta t
+            mac-command-modifier 'meta
+            mac-option-modifier 'none
+            ;; mac-command-modifier 'super
+            )
+
 (when window-system
   (let ((font-size my-preferred-font-size))
     (when (equal system-type 'windows-nt)
@@ -106,12 +114,7 @@
             doom-big-font (font-spec :family "Hack NF" :size (+ font-size 8))))
     (when (equal system-type 'darwin)
       ;; (toggle-frame-maximized)
-      (setq mac-option-key-is-meta nil
-            mac-command-key-is-meta t
-            mac-command-modifier 'meta
-            mac-option-modifier 'none
-            ;; mac-command-modifier 'super
-            woman-manpath '("/opt/homebrew/share/man"
+      (setq woman-manpath '("/opt/homebrew/share/man"
                             "/usr/share/man"
                             "/usr/local/share/man"
                             "/Applications/kitty.app/Contents/Resources/man"))
