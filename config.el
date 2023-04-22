@@ -628,8 +628,8 @@ mac-option-key-is-meta nil
 (add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
 (defun my-post-frame-making-hook (_)
   (let ((font-size my-preferred-font-size))
-    (setq doom-font (font-spec :family "Hack" :size font-size)
-          doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+    (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
+          doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
           doom-theme (my-choose-theme))) ; doom-acario-light
   (doom/reload-font)
   (doom/reload-theme)
