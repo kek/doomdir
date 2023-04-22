@@ -8,6 +8,15 @@
 ;; Doom Emacs Workflows
 ;; https://noelwelsh.com/posts/doom-emacs/
 
+;; Wishlist
+;; allt från space-map på §
+;; töm C-c-map
+;; § b som buffer-meny
+;; § h som hjälp
+;; § <spc> för att byta mellan buffrar
+
+;; lsp-workspace-folders-add
+
 (setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
