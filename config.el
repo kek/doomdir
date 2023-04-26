@@ -875,11 +875,8 @@ The optional argument IGNORED is not used."
 ;; (require 'eaf-pdf-viewer)
 
 ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2016-01/msg00236.html
-(defun handle-delete-frame-without-kill-emacs (event)
-  "Handle delete-frame events from the X server."
-  (interactive "e")
-  (let ((frame (posn-window (event-start event)))
-        (i 0)
+(defun my/close-or-hide-frame (frame)
+  (let ((i 0)
         (tail (frame-list)))
     (while tail
       (and (frame-visible-p (car tail))
@@ -891,15 +888,18 @@ The optional argument IGNORED is not used."
       ;; Not (save-buffers-kill-emacs) but instead:
       (ns-do-hide-emacs))))
 
+(defun my/handle-delete-frame-without-kill-emacs (event)
+  "Handle delete-frame events from the X server."
+  (interactive "e")
+    (my/close-or-hide-frame (posn-window (event-start event))))
+
 (defun my/mac-delete-or-hide-frame ()
   "Delete the current frame, or hide it if it is the last one."
   (interactive)
-  (if (length= (frame-list) 1)
-        (ns-do-hide-emacs)
-    (delete-frame)))
+  (my/close-or-hide-frame (selected-frame)))
 
 (when (eq system-type 'darwin)
-  (advice-add 'handle-delete-frame :override #'handle-delete-frame-without-kill-emacs)
+  (advice-add 'handle-delete-frame :override #'my/handle-delete-frame-without-kill-emacs)
   (map! :map doom-leader-map "q f" #'my/mac-delete-or-hide-frame)
   (map! :map ctl-x-5-map "0" #'my/mac-delete-or-hide-frame))
 
