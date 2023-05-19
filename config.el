@@ -523,7 +523,9 @@ mac-option-key-is-meta nil
   ;; (map! :ni "M-[" #'sp-forward-slurp-sexp)
   ;; (map! :ni "M-]" #'sp-forward-barf-sexp)
   (map! :n "g(" #'sp-up-sexp)
-  (map! :n "g)" #'sp-down-sexp))
+  (map! :n "g)" #'sp-down-sexp)
+  (map! :n "M-ö" #'previous-buffer)
+  (map! :n "M-ä" #'next-buffer))
 
 ;;; NO EVIL
 (when (not i-want-evil)
