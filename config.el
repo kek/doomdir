@@ -683,6 +683,8 @@ mac-option-key-is-meta nil
 (map! :map doom-leader-map "o v" #'magit)
 (map! :map doom-leader-map "z" #'my-open-org-todo)
 (map! :map doom-leader-map "Z" #'my-open-notes-inbox)
+(global-set-key (kbd "C-<next>") #'next-buffer)
+(global-set-key (kbd "C-<prior>") #'previous-buffer)
 (which-key-add-keymap-based-replacements doom-leader-map "z" "Open todo")
 (which-key-add-keymap-based-replacements doom-leader-map "Z" "Open notes")
 (context-menu-mode)
