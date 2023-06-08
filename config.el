@@ -621,6 +621,8 @@ mac-option-key-is-meta nil
   (global-set-key (kbd "M-p") #'backward-paragraph)
   (global-set-key (kbd "M-n") #'forward-paragraph)
 
+  (global-set-key (kbd "<f11>") #'toggle-frame-fullscreen)
+  (global-set-key (kbd "S-<f11>") #'toggle-frame-maximized)
 
   (use-package! copilot
     :hook (prog-mode . copilot-mode)
@@ -694,7 +696,7 @@ mac-option-key-is-meta nil
 ;; (global-set-key (kbd "<f1>") #'+lookup/documentation)
 ;; (global-set-key (kbd "<f2>") #'save-buffer)
 ;; (global-set-key (kbd "<f3>") #'find-file)
-(global-set-key (kbd "<f11>") nil)
+;; (global-set-key (kbd "<f11>") nil)
 
 (if my-is-windows
     (global-set-key (kbd "<f12>") #'+eshell/toggle)
