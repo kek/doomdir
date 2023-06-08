@@ -681,6 +681,7 @@ mac-option-key-is-meta nil
        (find-file (concat org-directory "/Att-göra.org")))
 (map! :map doom-leader-map "o g" #'elpher)
 (map! :map doom-leader-map "o j" #'mastodon)
+(map! :map doom-leader-map "o v" #'magit)
 (map! :map doom-leader-map "z" #'my-open-org-todo)
 (map! :map doom-leader-map "Z" #'my-open-notes-inbox)
 (which-key-add-keymap-based-replacements doom-leader-map "z" "Open todo")
