@@ -611,7 +611,28 @@ mac-option-key-is-meta nil
 
   (map! :after company :map company-active-map "<escape>" #'company-abort)
   (after! alchemist
-    (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition))) ; Workaround because of deprecated variable find-tag-marker-ring
+    (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)) ; Workaround because of deprecated variable find-tag-marker-ring
+  (global-set-key (kbd "M-[") #'sp-forward-slurp-sexp)
+  (global-set-key (kbd "M-]") #'sp-forward-barf-sexp)
+
+  (map! :ni "<f5>" #'eros-eval-defun)
+  (map! :ni "C-<f5>" #'eros-eval-last-sexp)
+
+  (use-package! copilot
+    :hook (prog-mode . copilot-mode)
+    :config (progn (setq copilot-idle-delay nil))
+    :bind (("<f8>" . 'my-copilot-complete)
+           ("S-<f8>" . 'copilot-next-completion)
+           ("S-C-<f8>" . 'copilot-previous-completion)
+           ))
+  after! copilot
+
+  (defun my-copilot-complete ()
+    (interactive)
+    (if (copilot--overlay-visible)
+        (copilot-accept-completion)
+      (copilot-complete)))
+  )
 
 (when window-system
   ;; (set-frame-size (window-frame) 120 55)
