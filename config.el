@@ -625,7 +625,6 @@ mac-option-key-is-meta nil
            ("S-<f8>" . 'copilot-next-completion)
            ("S-C-<f8>" . 'copilot-previous-completion)
            ))
-  after! copilot
 
   (defun my-copilot-complete ()
     (interactive)
