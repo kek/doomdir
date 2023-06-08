@@ -613,9 +613,8 @@ mac-option-key-is-meta nil
   (after! alchemist
     (define-key alchemist-mode-map (kbd "M-.") #'+lookup/definition)) ; Workaround because of deprecated variable find-tag-marker-ring
 
-  ;; will not work with Swedish layout
-  ;; (global-set-key (kbd "M-[") #'sp-forward-slurp-sexp)
-  ;; (global-set-key (kbd "M-]") #'sp-forward-barf-sexp)
+  (define-key emacs-lisp-mode-map (kbd "M-[") #'sp-forward-slurp-sexp)
+  (define-key emacs-lisp-mode-map (kbd "M-]") #'sp-forward-barf-sexp)
 
   (map! :ni "<f5>" #'eros-eval-defun)
   (map! :ni "C-<f5>" #'eros-eval-last-sexp)
