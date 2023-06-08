@@ -616,13 +616,19 @@ mac-option-key-is-meta nil
   (define-key emacs-lisp-mode-map (kbd "M-[") #'sp-forward-slurp-sexp)
   (define-key emacs-lisp-mode-map (kbd "M-]") #'sp-forward-barf-sexp)
 
-  (map! :ni "<f5>" #'eros-eval-defun)
-  (map! :ni "C-<f5>" #'eros-eval-last-sexp)
   (global-set-key (kbd "M-p") #'backward-paragraph)
   (global-set-key (kbd "M-n") #'forward-paragraph)
 
+  (global-set-key (kbd "<f2>") #'save-buffer)
   (global-set-key (kbd "<f11>") #'toggle-frame-fullscreen)
   (global-set-key (kbd "S-<f11>") #'toggle-frame-maximized)
+
+  (global-set-key (kbd "<f5>") #'eros-eval-defun)
+  (global-set-key (kbd "C-<f5>") #'eros-eval-last-sexp)
+
+  ;; Lediga:
+  ;; f6
+  ;; f7
 
   (use-package! copilot
     :hook (prog-mode . copilot-mode)
