@@ -618,6 +618,9 @@ mac-option-key-is-meta nil
 
   (map! :ni "<f5>" #'eros-eval-defun)
   (map! :ni "C-<f5>" #'eros-eval-last-sexp)
+  (global-set-key (kbd "M-p") #'backward-paragraph)
+  (global-set-key (kbd "M-n") #'forward-paragraph)
+
 
   (use-package! copilot
     :hook (prog-mode . copilot-mode)
