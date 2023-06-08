@@ -639,6 +639,8 @@ mac-option-key-is-meta nil
   ;;   (pixel-scroll-precision-mode))
   (my-face-adjustments))
 
+(global-set-key (kbd "M-`") #'other-frame)
+(global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;;; Above comment seems outdated
 (require 'smooth-scroll)
