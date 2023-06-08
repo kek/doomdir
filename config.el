@@ -632,8 +632,7 @@ mac-option-key-is-meta nil
     (interactive)
     (if (copilot--overlay-visible)
         (copilot-accept-completion)
-      (copilot-complete)))
-  )
+      (copilot-complete))))
 
 (when window-system
   ;; (set-frame-size (window-frame) 120 55)
