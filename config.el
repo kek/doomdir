@@ -126,8 +126,8 @@ mac-option-key-is-meta nil
       (defun +default/man-or-woman ()
         "Invoke `man' because `woman' does not work on MacOS (my change).
 
-        `man -k \"^\"` is very slow on MacOS, which is what `Man-completion-table' uses to
-        generate `completing-read' candidates."
+        `man -k \"^\"` is very slow on MacOS, which is what `Man-completion-table'
+        uses to generate `completing-read' candidates."
         (interactive)
         (call-interactively #'man))
       ;; (setq frame-inhibit-implied-resize t)
