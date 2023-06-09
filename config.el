@@ -622,6 +622,10 @@ mac-option-key-is-meta nil
   (global-set-key (kbd "<f2>") #'save-buffer)
   (global-set-key (kbd "<f11>") #'toggle-frame-fullscreen)
   (global-set-key (kbd "S-<f11>") #'toggle-frame-maximized)
+  (global-set-key (kbd "M-<f11>") #'ns-do-hide-emacs)
+
+  (global-set-key (kbd "M-ö") #'previous-buffer)
+  (global-set-key (kbd "M-ä") #'next-buffer)
 
   (global-set-key (kbd "<f5>") #'eros-eval-defun)
   (global-set-key (kbd "C-<f5>") #'eros-eval-last-sexp)
