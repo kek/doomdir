@@ -805,6 +805,8 @@ The optional argument IGNORED is not used."
         (map! :map notmuch-show-mode-map
               :n "x" #'my-notmuch-mark-spam-2))
     (progn
+      (define-key notmuch-search-mode-map (kbd "x") #'my-notmuch-mark-spam)
+      (define-key notmuch-show-mode-map (kbd "x") #'my-notmuch-mark-spam-2)
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
       (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))))
 
