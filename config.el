@@ -97,8 +97,7 @@
   (defadvice doom-modeline-window-size-change-function (after my-fix-title-bar activate)
     (my-fix-title-bar)))
 
-(setq
-mac-option-key-is-meta nil
+(setq mac-option-key-is-meta nil
             mac-command-key-is-meta t
             mac-command-modifier 'meta
             mac-option-modifier 'none
