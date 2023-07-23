@@ -30,7 +30,7 @@
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
-      my-font-size-mac 15
+      my-font-size-mac 16
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (my-is-linux-4k my-font-size-linux-4k)
