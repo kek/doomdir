@@ -73,3 +73,4 @@
 (package! org-bullets)
 (package! company-posframe)
 (package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
+(package! unicode-fonts)
