@@ -663,6 +663,7 @@
 
 (add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
 (defun my-post-frame-making-hook (_)
+  (scroll-bar-mode 0)
   (let ((font-size my-preferred-font-size))
     (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
           doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
