@@ -944,7 +944,9 @@ The optional argument IGNORED is not used."
 (when (eq system-type 'darwin)
   (advice-add 'handle-delete-frame :override #'my/handle-delete-frame-without-kill-emacs)
   (map! :map doom-leader-map "q f" #'my/mac-delete-or-hide-frame)
-  (map! :map ctl-x-5-map "0" #'my/mac-delete-or-hide-frame))
+  (map! :map ctl-x-5-map "0" #'my/mac-delete-or-hide-frame)
+  (setq line-spacing 0))
+
 (defun my/fix-mac-unicode-line-height ()
   ;;(add-to-list 'face-font-rescale-alist (cons (font-spec :family "Apple Color Emoji") 0.80) t)
   (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t)
