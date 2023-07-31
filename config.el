@@ -141,7 +141,7 @@
             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
       (when (and (not my-is-wsl)
-                 (equal emacs-version "29.0.60"))
+                 (equal emacs-version "29.1.50"))
         (global-set-key (kbd  "<Launch6>") (lambda () (interactive) (insert "ä")))
         (global-set-key (kbd  "<Launch7>") (lambda () (interactive) (insert "å")))
         (global-set-key (kbd  "<Launch8>") (lambda () (interactive) (insert "ö")))
