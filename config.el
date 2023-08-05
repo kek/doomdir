@@ -26,7 +26,7 @@
                        (not my-is-windows)
                        (not my-is-mac))
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
-      my-font-size-windows 24
+      my-font-size-windows 16
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
