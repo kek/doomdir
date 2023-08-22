@@ -30,7 +30,7 @@
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
-      my-font-size-mac 16
+      my-font-size-mac 14
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (my-is-linux-4k my-font-size-linux-4k)
@@ -152,11 +152,12 @@
         (global-set-key (kbd  "S-<Launch9>") (lambda () (interactive) (insert "É")))
         (menu-bar-mode)
         (setq-default line-spacing 0)
-        (pixel-scroll-precision-mode)
-        (setq pixel-scroll-precision-interpolate-page nil)
+        ;; (pixel-scroll-precision-mode)
+        ;; (setq pixel-scroll-precision-interpolate-page nil)
         ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
         ;; (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
-        (message "Pixel scroll precision mode is almost great!")))))
+        ;; (message "Pixel scroll precision mode is almost great!")
+        ))))
 
 ;; (add-hook 'hl-line-mode-hook
 ;;           (lambda ()
@@ -678,9 +679,10 @@
 (global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;;; Above comment seems outdated
-(require 'smooth-scroll)
-(smooth-scroll-mode)
-(setq smooth-scroll/vscroll-step-size 3)
+;; Smooth-scroll breaks scroll-other-window function
+;; (require 'smooth-scroll)
+;; (smooth-scroll-mode)
+;; (setq smooth-scroll/vscroll-step-size 3)
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
