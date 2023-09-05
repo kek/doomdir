@@ -30,7 +30,7 @@
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 24
-      my-font-size-mac 14
+      my-font-size-mac 15
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
                                    (my-is-linux-4k my-font-size-linux-4k)
@@ -61,7 +61,7 @@
 ;; (require 'org-roam-protocol)
 ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-wilmersdorf) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'doom-sourcerer) ; doom-moonlight, doom-sourcerer, doom-dark+
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -435,7 +435,7 @@
   (map! :map doom-leader-map "d" #'duplicate-line)
   (map! :map elpher-mode-map "DEL" #'transient-noop)
   ;; (map! :n "<f9>" #'evil-execute-in-emacs-state)
-  (map! :n "ö" #'evil-execute-in-emacs-state)
+  (map! :n "å" #'evil-execute-in-emacs-state)
   ;; (map! :n "ä" nil)
   (map! :n "C-<left>" #'previous-buffer)
   (map! :n "C-<right>" #'next-buffer)
@@ -450,13 +450,19 @@
         (unless (copilot-accept-completion)
           (dabbrev-expand 0)))
     (dabbrev-expand 0))
-  ;; (map! :n "ö" #'eros-eval-defun)
-  ;; (map! :n "ä" #'eros-eval-last-sexp)
-  ;; (map! :i "ö" #'self-insert-command)
-  ;; (map! :i "ä" #'self-insert-command)
 
-  (map! :ni "<f5>" #'eros-eval-defun)
-  (map! :ni "C-<f5>" #'eros-eval-last-sexp)
+  (map! :map emacs-lisp-mode-map :n "ö" #'eros-eval-defun)
+  (map! :map emacs-lisp-mode-map :ni "C-ö" #'eros-eval-defun)
+  (map! :map emacs-lisp-mode-map :n "ä" #'eros-eval-last-sexp)
+  (map! :map emacs-lisp-mode-map :ni "C-ä" #'eros-eval-last-sexp)
+
+  ;; (map! :i "å" #'self-insert-command)
+  ;; (map! :i "ä" #'self-insert-command)
+  (map! :map emacs-lisp-mode-map :ni "<f5>" #'eros-eval-defun)
+  (map! :map emacs-lisp-mode-map :ni "C-<f5>" #'eros-eval-last-sexp)
+
+  (map! :map go-mode-map :ni "C-å" (lambda () "" (interactive) (run-in-vterm "go run main.go; read -P 'Exited, press enter: '; exit")))
+
   ;; (after! copilot
   ;;   (defun my-toggle-eshell-or-copilot-complete () (interactive)
   ;;          (if (eq major-mode 'eshell-mode)
@@ -956,5 +962,40 @@ The optional argument IGNORED is not used."
   )
 
 (add-hook 'emacs-startup-hook #'my/fix-mac-unicode-line-height)
+
+(defun run-in-vterm-kill (process event)
+  "A process sentinel. Kills PROCESS's buffer if it is live."
+  (let ((b (process-buffer process)))
+    (and (buffer-live-p b)
+         (kill-buffer b))))
+
+(defun run-in-vterm (command)
+  "Execute string COMMAND in a new vterm.
+
+Interactively, prompt for COMMAND with the current buffer's file
+name supplied. When called from Dired, supply the name of the
+file at point.
+
+Like `async-shell-command`, but run in a vterm for full terminal features.
+
+The new vterm buffer is named in the form `*foo bar.baz*`, the
+command and its arguments in earmuffs.
+
+When the command terminates, the shell remains open, but when the
+shell exits, the buffer is killed."
+  (interactive
+   (list
+    (let* ((f (cond (buffer-file-name)
+                    ((eq major-mode 'dired-mode)
+                     (dired-get-filename nil t))))
+           (filename (concat " " (shell-quote-argument (and f (file-relative-name f))))))
+      (read-shell-command "Terminal command: "
+                          (cons filename 0)
+                          (cons 'shell-command-history 1)
+                          (list filename)))))
+  (with-current-buffer (vterm (concat "*" command "*"))
+    (set-process-sentinel vterm--process #'run-in-vterm-kill)
+    (vterm-send-string command)
+    (vterm-send-return)))
 
 (load "~/.secrets.el")

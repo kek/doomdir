@@ -14,7 +14,7 @@
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 (setq evil-respect-visual-line-mode t)
-(setq i-want-evil nil)
+(setq i-want-evil t)
 (doom! :input
        ;;chinese
        ;;japanese
