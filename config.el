@@ -174,7 +174,7 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-(setq org-directory (cond (my-is-windows (concat user-home-directory "/org/pages"))
+(setq org-directory (cond (my-is-windows (concat user-home-directory "/Documents/org/pages"))
                           (t (concat user-home-directory "/Documents/org/pages"))))
                         ;; Jag tror detta gör Emacs mycket långsam
                         ;; "/mnt/c/Users/karle/Documents/org/pages"
