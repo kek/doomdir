@@ -780,7 +780,13 @@ The optional argument IGNORED is not used."
 ;; (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
 ;; Mail
-(setq +notmuch-home-function (lambda () (notmuch-search my-notmuch-default-filter)))
+(setq +notmuch-home-function
+      (lambda ()
+        (notmuch-search
+         (plist-get
+          (-first (lambda (elem) (equal "gmail" (plist-get elem :name)))
+                  notmuch-saved-searches)
+          :query))))
 (setq +notmuch-mail-folder "~/.mail/account.gmail")
 ;; (setq sendmail-program "gmi")
 ;; (setq message-sendmail-extra-arguments '("send" "--quiet" "-t" "-C" "~/.mail/account.gmail"))
