@@ -98,11 +98,11 @@
     (my-fix-title-bar)))
 
 (setq mac-option-key-is-meta nil
-            mac-command-key-is-meta t
-            mac-command-modifier 'meta
-            mac-option-modifier 'none
-            ;; mac-command-modifier 'super
-            )
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none
+      ;; mac-command-modifier 'super
+      )
 
 (when window-system
   (let ((font-size my-preferred-font-size))
@@ -176,8 +176,8 @@
 
 (setq org-directory (cond (my-is-windows (concat user-home-directory "/Documents/org/pages"))
                           (t (concat user-home-directory "/Documents/org/pages"))))
-                        ;; Jag tror detta gör Emacs mycket långsam
-                        ;; "/mnt/c/Users/karle/Documents/org/pages"
+;; Jag tror detta gör Emacs mycket långsam
+;; "/mnt/c/Users/karle/Documents/org/pages"
 (setq org-roam-directory org-directory)
 
 (require 'org-roam)
@@ -214,7 +214,7 @@
 
 (defmacro my-use-package-if-exists (package-name package-path)
   `(if (file-exists-p ,package-path)
-      (use-package ,package-name :load-path ,package-path)))
+       (use-package ,package-name :load-path ,package-path)))
 
 (my-use-package-if-exists gleam-mode "~/src/gleam-mode")
 
@@ -252,9 +252,9 @@
 (defun my-disable-hl-line-mode ()
   (hl-line-mode -1))
 
-  (use-package company-posframe
-    :config
-    (company-posframe-mode 1))
+(use-package company-posframe
+  :config
+  (company-posframe-mode 1))
 (after! org
   (define-key org-mode-map (kbd "<f9>") #'org-refile)
   (define-key org-mode-map (kbd "C-<f9>") #'+org/refile-to-last-location)
@@ -283,7 +283,7 @@
   ;; (add-to-list 'org-capture-templates
   ;;              `("P" "Protocol" entry (file+headline ,(concat org-directory "/" "notes.org") "Inbox")
   ;;                "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?" :prepend t) t)
-)
+  )
 
 (defun my-file-description ()
   (let* ((home-with-slash (concat (getenv "HOME") "/"))
@@ -317,13 +317,13 @@
 
       ;; dired-omit-files "\\`[.]?#\\|\\`[.]\\'\\|^\\.DS_Store\\'\\|^\\.project\\(?:ile\\)?\\'\\|^\\.\\(?:svn\\|git\\)\\'\\|^\\.ccls-cache\\'\\|\\(?:\\.js\\)?\\.meta\\'\\|\\.\\(?:elc\\|o\\|pyo\\|swp\\|class\\)\\'"
       dired-omit-files (rx (or (seq bos (opt ".") "#")
-                           (seq bos "." eos)
-                           (seq bol ".DS_Store" eos)
-                           (seq bol ".project" (opt "ile") eos)
-                           (seq bol "." (or "svn" "git") eos)
-                           (seq bol ".ccls-cache" eos)
-                           (seq (opt ".js") ".meta" eos)
-                           (seq "." (or "elc" "o" "pyo" "swp" "class") eos)))
+                               (seq bos "." eos)
+                               (seq bol ".DS_Store" eos)
+                               (seq bol ".project" (opt "ile") eos)
+                               (seq bol "." (or "svn" "git") eos)
+                               (seq bol ".ccls-cache" eos)
+                               (seq (opt ".js") ".meta" eos)
+                               (seq "." (or "elc" "o" "pyo" "swp" "class") eos)))
 
       ;; deft-strip-title-regexp (concat "\\(?:"
       ;;                                 "^%+" ; line beg with %
@@ -397,10 +397,10 @@
 (after! flycheck
   (map! :leader
         (:prefix-map ("c" . "code")
-         "x" flycheck-command-map)))
+                     "x" flycheck-command-map)))
 
 ;; (add-hook 'org-mode-hook #'variable-pitch-mode)
-;(add-hook 'help-mode-hook #'variable-pitch-mode)
+                                        ;(add-hook 'help-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'helpful-mode-hook #'variable-pitch-mode)
 ;; (add-hook 'Info-mode-hook #'variable-pitch-mode)
 
@@ -536,7 +536,7 @@
 ;;; NO EVIL
 (when (not i-want-evil)
   (message "No evil mode init")
-  ;(define-key global-map (kbd "§") doom-leader-map)
+                                        ;(define-key global-map (kbd "§") doom-leader-map)
   ;; (define-key global-map (kbd "§") #'doom/leader)
   ;; (define-key global-map (kbd "<f9>") #'doom/leader)
   (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
@@ -731,10 +731,10 @@
 ;;                               (recompile)))
 
 (defun wslview-browse-url (url &optional _ignored)
-                     "Pass the specified URL to the \"wslview\" command.
+  "Pass the specified URL to the \"wslview\" command.
 The optional argument IGNORED is not used."
-                     (interactive (browse-url-interactive-arg "URL: "))
-                     (call-process "/usr/bin/wslview" nil t nil url))
+  (interactive (browse-url-interactive-arg "URL: "))
+  (call-process "/usr/bin/wslview" nil t nil url))
 
 ;; Unbind mouse wheel because bug with Wayland and WSLg
 (defun my-noop () "do nothing" (interactive))
@@ -750,12 +750,12 @@ The optional argument IGNORED is not used."
       ))
 
 ;; Notifications for org
-(require 'notifications)
-(defun my-notify-org-capture () "Notify org capture" nil nil
-       (let ((description (plist-get org-capture-current-plist :annotation)))
-         (message "org capture: %s" org-capture-current-plist)
-         (notifications-notify :title "Org Capture" :body description :timeout 1500)))
-(add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
+;; (require 'notifications)
+;; (defun my-notify-org-capture () "Notify org capture" nil nil
+;;        (let ((description (plist-get org-capture-current-plist :annotation)))
+;;          (message "org capture: %s" org-capture-current-plist)
+;;          (notifications-notify :title "Org Capture" :body description :timeout 1500)))
+;; (add-hook 'org-capture-before-finalize-hook #'my-notify-org-capture)
 
 ;; Mail
 (setq +notmuch-home-function (lambda () (notmuch-search "path:/account.gmail/ tag:inbox")))
@@ -792,15 +792,15 @@ The optional argument IGNORED is not used."
 ;;   (define-key notmuch-search-mode-map (kbd "c a") #'notmuch-filter-authors))
 
 (defun my-notmuch-mark-spam () (interactive)
-  (notmuch-search-add-tag '("+spam"))
-  (notmuch-search-archive-thread)
-  ;; (notmuch-refresh-this-buffer)
-  )
+       (notmuch-search-add-tag '("+spam"))
+       (notmuch-search-archive-thread)
+       ;; (notmuch-refresh-this-buffer)
+       )
 (defun my-notmuch-mark-spam-2 () (interactive)
-  (notmuch-show-add-tag '("+spam"))
-  (notmuch-show-archive-thread)
-  (notmuch-bury-or-kill-this-buffer)
-  (notmuch-refresh-this-buffer))
+       (notmuch-show-add-tag '("+spam"))
+       (notmuch-show-archive-thread)
+       (notmuch-bury-or-kill-this-buffer)
+       (notmuch-refresh-this-buffer))
 
 ;; Evil
 (after! notmuch
@@ -887,11 +887,11 @@ The optional argument IGNORED is not used."
 (my-face-adjustments)
 
 (defun my-clear-completion () (interactive)
-  (copilot-clear-overlay))
+       (copilot-clear-overlay))
 
 (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((dot . t)))
+ 'org-babel-load-languages
+ '((dot . t)))
 
 ;; Local settings
 
@@ -943,7 +943,7 @@ The optional argument IGNORED is not used."
 (defun my/handle-delete-frame-without-kill-emacs (event)
   "Handle delete-frame events from the X server."
   (interactive "e")
-    (my/close-or-hide-frame (posn-window (event-start event))))
+  (my/close-or-hide-frame (posn-window (event-start event))))
 
 (defun my/mac-delete-or-hide-frame ()
   "Delete the current frame, or hide it if it is the last one."
