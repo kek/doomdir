@@ -461,7 +461,9 @@
   (map! :map emacs-lisp-mode-map :ni "<f5>" #'eros-eval-defun)
   (map! :map emacs-lisp-mode-map :ni "C-<f5>" #'eros-eval-last-sexp)
 
-  (map! :map go-mode-map :ni "C-å" (lambda () "" (interactive) (run-in-vterm "go run main.go; read -P 'Exited, press enter: '; exit")))
+  (map! :map go-mode-map :ni "C-å" (lambda () "" (interactive) (run-in-vterm "go run .; read -P 'Exited, press enter: '; exit")))
+  (map! :map rustic-mode-map :ni "C-å" #'rustic-cargo-test)
+  (map! :map rustic-mode-map :ni "C-Å" #'rustic-cargo-run)
 
   ;; (after! copilot
   ;;   (defun my-toggle-eshell-or-copilot-complete () (interactive)
