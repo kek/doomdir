@@ -670,6 +670,25 @@
 
 (fringe-mode '(20 . 20))
 
+(setq my-daytime-theme 'doom-moonlight)
+(defun my/apply-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (progn
+              (setq my/theme-style appearance)
+              (load-theme my-daytime-theme t)
+              (set-face-attribute 'org-meta-line nil :slant 'normal :foreground "#007138" :background "#e8e8ff"))) ; doom-earl-grey
+                                        ; maybe change color of hl-line
+    ('dark (progn
+             (setq my/theme-style appearance)
+             (load-theme my-mac-theme t)
+             (set-face-attribute 'org-meta-line nil :slant 'normal :foreground "#ff7138" :background "#38384f")))))
+(setq my/theme-style 'dark)
+
+(add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+(setq ns-use-native-fullscreen t)
+
 (add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
 (defun my-post-frame-making-hook (_)
   (scroll-bar-mode 0)
@@ -681,7 +700,8 @@
   (doom/reload-theme)
   ;; (unless (equal system-type 'windows-nt)
   ;;   (pixel-scroll-precision-mode))
-  (my-face-adjustments))
+  (my-face-adjustments)
+  (my/apply-theme my/theme-style))
 
 (global-set-key (kbd "M-`") #'other-frame)
 (global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
