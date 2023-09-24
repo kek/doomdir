@@ -59,16 +59,16 @@
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
-; vibrant, laserwave, moonlight, wilmersdorf
+                                        ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-sourcerer) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
       ;; (setq doom-dark+-blue-modeline t)
       ;; (setq doom-dark+-padded-modeline t)
       ;; (setq my-theme 'doom-dark+)
-      ; (setq doom-sourcerer-brighter-modeline t)
+                                        ; (setq doom-sourcerer-brighter-modeline t)
       (setq doom-sourcerer-padded-modeline t)
       ;; (setq my-theme 'doom-sourcerer)
       ;; (setq my-theme 'doom-earl-grey)
