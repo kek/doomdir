@@ -960,6 +960,7 @@ The optional argument IGNORED is not used."
 
 (defun my/fix-mac-unicode-line-height ()
   ;;(add-to-list 'face-font-rescale-alist (cons (font-spec :family "Apple Color Emoji") 0.80) t)
+  (set-fontset-font t '(#x1f000 . #x1faff) (font-spec :family "Apple Color Emoji"))
   (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t)
   )
 
