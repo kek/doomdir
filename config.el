@@ -799,6 +799,22 @@ The optional argument IGNORED is not used."
 (setq mm-text-html-renderer 'shr)
 (setq shr-use-colors nil)
 
+;; https://emacs.stackexchange.com/questions/63436/is-there-some-way-to-view-the-html-part-of-an-email-in-an-external-browser-or-as
+(defun notmuch-show-view-html+ ()
+  "Open the text/html part of the current message using
+`notmuch-show-view-part'."
+  (interactive)
+  (save-excursion
+    (goto-char
+     (prop-match-beginning
+      (text-property-search-forward
+       :notmuch-part
+       "text/html"
+       (lambda (value notmuch-part)
+         (equal (plist-get notmuch-part :content-type)
+                value)))))
+    (notmuch-show-view-part)))
+
 (defun notmuch-search-stash-authors ()
   "Copy thread ID of current thread to kill-ring."
   (interactive)
@@ -839,7 +855,8 @@ The optional argument IGNORED is not used."
               :n "c a" #'notmuch-filter-authors
               :n "x" #'my-notmuch-mark-spam)
         (map! :map notmuch-show-mode-map
-              :n "x" #'my-notmuch-mark-spam-2))
+              :n "x" #'my-notmuch-mark-spam-2
+              :n "ö" #'notmuch-show-view-html+))
     (progn
       (define-key notmuch-search-mode-map (kbd "x") #'my-notmuch-mark-spam)
       (define-key notmuch-show-mode-map (kbd "x") #'my-notmuch-mark-spam-2)
