@@ -850,6 +850,11 @@ The optional argument IGNORED is not used."
        (notmuch-bury-or-kill-this-buffer)
        (notmuch-refresh-this-buffer))
 
+(defun my-notmuch-categorize (category) (interactive)
+       (shell-command (concat "~/src/me/mark.sh " (notmuch-search-find-thread-id) " " category))
+       (shell-command "~/src/me/autotag.sh")
+       (notmuch-refresh-this-buffer))
+
 ;; Evil
 (after! notmuch
   (if i-want-evil
