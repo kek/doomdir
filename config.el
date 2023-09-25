@@ -856,10 +856,18 @@ The optional argument IGNORED is not used."
               :n "c A" #'notmuch-search-authors
               :n "c a" #'notmuch-filter-authors
               :n "x" #'my-notmuch-mark-spam)
+        (map! :map notmuch-search-mode-map :desc "Marketing" :n "ä 1" (lambda () (interactive) (my-notmuch-categorize "marketing")))
+        (map! :map notmuch-search-mode-map :desc "Notification" :n "ä 2" (lambda () (interactive) (my-notmuch-categorize "notification")))
+        (map! :map notmuch-search-mode-map :desc "Newsletter" :n "ä 3" (lambda () (interactive) (my-notmuch-categorize "newsletter")))
         (map! :map notmuch-show-mode-map
               :n "x" #'my-notmuch-mark-spam-2
               :n "ö" #'notmuch-show-view-html+))
     (progn
+      (map! :map notmuch-search-mode-map :desc "Marketing" :n "ä 1" (lambda () (interactive) (my-notmuch-categorize "marketing")))
+      (map! :map notmuch-search-mode-map :desc "Notification" :n "ä 2" (lambda () (interactive) (my-notmuch-categorize "notification")))
+      (map! :map notmuch-search-mode-map :desc "Newsletter" :n "ä 3" (lambda () (interactive) (my-notmuch-categorize "newsletter")))
+
+      (define-key notmuch-show-mode-map "ö" #'notmuch-show-view-html+)
       (define-key notmuch-search-mode-map (kbd "x") #'my-notmuch-mark-spam)
       (define-key notmuch-show-mode-map (kbd "x") #'my-notmuch-mark-spam-2)
       (define-key notmuch-search-mode-map (kbd "c A") #'notmuch-search-authors)
