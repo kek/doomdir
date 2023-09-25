@@ -131,7 +131,8 @@
       ;;   (interactive)
       ;;   (call-interactively #'man))
       ;; (setq frame-inhibit-implied-resize t)
-      (setq default-frame-alist '((width . 100) (height . 45)))
+
+      (setq default-frame-alist '((width . 140) (height . 45)))
       ;; (set-frame-size (selected-frame) 100 45)
       (set-frame-position (selected-frame) 100 75))
 
