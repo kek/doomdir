@@ -625,6 +625,8 @@
 
   (define-key emacs-lisp-mode-map (kbd "M-[") #'sp-forward-slurp-sexp)
   (define-key emacs-lisp-mode-map (kbd "M-]") #'sp-forward-barf-sexp)
+  (define-key emacs-lisp-mode-map (kbd "C-M-ö") #'sp-forward-slurp-sexp)
+  (define-key emacs-lisp-mode-map (kbd "C-M-ä") #'sp-forward-barf-sexp)
 
   (global-set-key (kbd "M-p") #'backward-paragraph)
   (global-set-key (kbd "M-n") #'forward-paragraph)
