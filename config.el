@@ -876,9 +876,12 @@ The optional argument IGNORED is not used."
               :n "x" #'my-notmuch-mark-spam-2
               :n "ö" #'notmuch-show-view-html+))
     (progn
-      (map! :map notmuch-search-mode-map :desc "Marketing" :n "ä 1" (lambda () (interactive) (my-notmuch-categorize "marketing")))
-      (map! :map notmuch-search-mode-map :desc "Notification" :n "ä 2" (lambda () (interactive) (my-notmuch-categorize "notification")))
-      (map! :map notmuch-search-mode-map :desc "Newsletter" :n "ä 3" (lambda () (interactive) (my-notmuch-categorize "newsletter")))
+      (define-key notmuch-search-mode-map (kbd "ä 1") (lambda () (interactive) (my-notmuch-categorize "marketing")))
+      (which-key-add-keymap-based-replacements notmuch-search-mode-map "ä 1" "Marketing")
+      (define-key notmuch-search-mode-map (kbd "ä 2") (lambda () (interactive) (my-notmuch-categorize "notification")))
+      (which-key-add-keymap-based-replacements notmuch-search-mode-map "ä 2" "Notification")
+      (define-key notmuch-search-mode-map (kbd "ä 3") (lambda () (interactive) (my-notmuch-categorize "newsletter")))
+      (which-key-add-keymap-based-replacements notmuch-search-mode-map "ä 3" "Newsletter")
 
       (define-key notmuch-show-mode-map "ö" #'notmuch-show-view-html+)
       (define-key notmuch-search-mode-map (kbd "x") #'my-notmuch-mark-spam)
