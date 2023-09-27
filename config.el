@@ -607,9 +607,6 @@
   (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
   (global-set-key (kbd "M-RET") #'hippie-expand)
 
-  (global-set-key (kbd "C-ö") #'+vertico/switch-workspace-buffer)
-  (global-set-key (kbd "C-ä") #'consult-buffer)
-  (global-set-key (kbd "C-å") #'projectile-find-file-dwim)
   (global-set-key (kbd "C-S-d") #'duplicate-line)
   (global-set-key (kbd "C-S-j") (lambda () "join line with next line" (interactive) (join-line t)))
   (global-set-key (kbd "C-.") nil)
@@ -638,6 +635,15 @@
 
   (global-set-key (kbd "M-ö") #'previous-buffer)
   (global-set-key (kbd "M-ä") #'next-buffer)
+
+  (global-set-key (kbd "M-å") #'projectile-find-file-dwim)
+  (global-set-key (kbd "M-Å") #'projectile-find-file)
+
+  (global-set-key (kbd "C-å") (lambda () "next (all) window" (interactive)
+                                (other-popup)))
+  (global-set-key (kbd "C-ä") #'other-window)
+  (global-set-key (kbd "C-ö") (lambda () "previous window" (interactive)
+                                (other-window -1)))
 
   (global-set-key (kbd "<f5>") #'eros-eval-defun)
   (global-set-key (kbd "C-<f5>") #'eros-eval-last-sexp)
@@ -788,7 +794,7 @@ The optional argument IGNORED is not used."
       (lambda ()
         (notmuch-search
          (plist-get
-          (-first (lambda (elem) (equal "gmail" (plist-get elem :name)))
+          (-first (lambda (elem) (equal "me" (plist-get elem :name)))
                   notmuch-saved-searches)
           :query))))
 (setq +notmuch-mail-folder "~/.mail/account.gmail")
