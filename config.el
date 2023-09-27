@@ -17,6 +17,9 @@
 
 ;; lsp-workspace-folders-add
 
+(add-load-path! doom-user-dir)
+(require 'helpers)
+
 (setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
@@ -213,8 +216,6 @@
 ;; they are implemented.
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
-(add-load-path! doom-user-dir)
-(require 'helpers)
 
 (defmacro my-use-package-if-exists (package-name package-path)
   `(if (file-exists-p ,package-path)
