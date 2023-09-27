@@ -1034,6 +1034,7 @@ The optional argument IGNORED is not used."
   )
 
 (add-hook 'emacs-startup-hook #'my/fix-mac-unicode-line-height)
+(add-hook 'after-make-frame-functions #'my/fix-mac-unicode-line-height)
 
 (defun run-in-vterm-kill (process event)
   "A process sentinel. Kills PROCESS's buffer if it is live."
