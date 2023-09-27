@@ -628,28 +628,29 @@
   (define-key emacs-lisp-mode-map (kbd "C-M-ö") #'sp-forward-slurp-sexp)
   (define-key emacs-lisp-mode-map (kbd "C-M-ä") #'sp-forward-barf-sexp)
 
-  (global-set-key (kbd "M-p") #'backward-paragraph)
-  (global-set-key (kbd "M-n") #'forward-paragraph)
+  (magic-table
+   `(global-set-key (kbd (,v 0)) (, v 1))
+   '(("M-p"     backward-paragraph)
+     ("M-n"     forward-paragraph)
+     ("<f2>"    save-buffer)
+     ("<f11>"   toggle-frame-fullscreen)
+     ("S-<f11>" toggle-frame-maximized)
+     ("M-<f11>" ns-do-hide-emacs)
 
-  (global-set-key (kbd "<f2>") #'save-buffer)
-  (global-set-key (kbd "<f11>") #'toggle-frame-fullscreen)
-  (global-set-key (kbd "S-<f11>") #'toggle-frame-maximized)
-  (global-set-key (kbd "M-<f11>") #'ns-do-hide-emacs)
+     ("M-ö"     previous-buffer)
+     ("M-ä"     next-buffer)
 
-  (global-set-key (kbd "M-ö") #'previous-buffer)
-  (global-set-key (kbd "M-ä") #'next-buffer)
+     ("M-å"     projectile-find-file-dwim)
+     ("M-Å"     projectile-find-file)
 
-  (global-set-key (kbd "M-å") #'projectile-find-file-dwim)
-  (global-set-key (kbd "M-Å") #'projectile-find-file)
+     ("C-å"     (lambda () "next (all) window" (interactive)
+                  (other-popup)))
+     ("C-ä"     other-window)
+     ("C-ö"     (lambda () "previous window" (interactive)
+                  (other-window -1)))
 
-  (global-set-key (kbd "C-å") (lambda () "next (all) window" (interactive)
-                                (other-popup)))
-  (global-set-key (kbd "C-ä") #'other-window)
-  (global-set-key (kbd "C-ö") (lambda () "previous window" (interactive)
-                                (other-window -1)))
-
-  (global-set-key (kbd "<f5>") #'eros-eval-defun)
-  (global-set-key (kbd "C-<f5>") #'eros-eval-last-sexp)
+     ("<f5>"    eros-eval-defun)
+     ("C-<f5>"  eros-eval-last-sexp)))
 
   ;; Lediga:
   ;; f6
