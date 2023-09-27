@@ -213,6 +213,8 @@
 ;; they are implemented.
 
 ;; https://github.com/rust-analyzer/rust-analyzer/issues/6686
+(add-load-path! doom-user-dir)
+(require 'helpers)
 
 (defmacro my-use-package-if-exists (package-name package-path)
   `(if (file-exists-p ,package-path)
