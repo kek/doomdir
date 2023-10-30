@@ -260,6 +260,7 @@
 (use-package company-posframe
   :config
   (company-posframe-mode 1))
+
 (after! org
   (define-key org-mode-map (kbd "<f9>") #'org-refile)
   (define-key org-mode-map (kbd "C-<f9>") #'+org/refile-to-last-location)
@@ -703,9 +704,8 @@
 (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
 (setq ns-use-native-fullscreen t)
 
-(add-hook 'after-make-frame-functions #'my-post-frame-making-hook)
-(defun my-post-frame-making-hook (_)
-  (scroll-bar-mode 0)
+(add-hook 'after-make-frame-functions #'my/post-frame-making-hook)
+(defun my/post-frame-making-hook (_)
   (let ((font-size my-preferred-font-size))
     (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
           doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
@@ -714,6 +714,7 @@
   (doom/reload-theme)
   ;; (unless (equal system-type 'windows-nt)
   ;;   (pixel-scroll-precision-mode))
+  (scroll-bar-mode 0)
   (my-face-adjustments)
   (my/apply-theme my/theme-style))
 
@@ -1031,14 +1032,15 @@ The optional argument IGNORED is not used."
   (map! :map ctl-x-5-map "0" #'my/mac-delete-or-hide-frame)
   (setq line-spacing 0))
 
-(defun my/fix-mac-unicode-line-height ()
+(defun my/fix-mac-unicode ()
   ;;(add-to-list 'face-font-rescale-alist (cons (font-spec :family "Apple Color Emoji") 0.80) t)
   (set-fontset-font t '(#x1f000 . #x1faff) (font-spec :family "Apple Color Emoji"))
   (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t)
   )
 
-(add-hook 'emacs-startup-hook #'my/fix-mac-unicode-line-height)
-(add-hook 'after-make-frame-functions #'my/fix-mac-unicode-line-height)
+(my/fix-mac-unicode)
+(add-hook 'emacs-startup-hook #'my/fix-mac-unicode)
+(add-hook 'after-make-frame-functions #'my/fix-mac-unicode)
 
 (defun run-in-vterm-kill (process event)
   "A process sentinel. Kills PROCESS's buffer if it is live."

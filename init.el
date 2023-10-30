@@ -15,6 +15,7 @@
 ;;      directory (for easy access to its source code).
 (setq evil-respect-visual-line-mode t)
 (setq i-want-evil nil)
+
 (doom! :input
        ;;chinese
        ;;japanese
