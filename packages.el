@@ -74,3 +74,12 @@
 (package! company-posframe)
 (package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
 (package! unicode-fonts)
+
+;; (use-package lsp-mode
+;;   :commands lsp
+;;   :ensure t
+;;   :diminish lsp-mode
+;;   :hook
+;;   (elixir-mode . lsp)
+;;   :init
+;;   (add-to-list 'exec-path "~/src/elixir-ls/release"))
