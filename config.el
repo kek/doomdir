@@ -554,7 +554,6 @@
   ;; (setq doom-leader-alt-key "§")
   ;; (setq doom-localleader-alt-key "§ l")
   ;; (setq! persp-keymap-prefix (kbd "§ z"))
-  (global-set-key "§" #'projectile-find-file-dwim)
   (global-set-key (kbd "<backtab>") #'company-complete)
   (global-set-key (kbd "M-<tab>") #'hippie-expand)
   (map! :after company :map company-active-map "<return>" #'newline-and-indent)
@@ -661,10 +660,13 @@
   (use-package! copilot
     :hook (prog-mode . copilot-mode)
     :config (progn (setq copilot-idle-delay nil))
-    :bind (("<f8>" . 'my-copilot-complete)
-           ("S-<f8>" . 'copilot-next-completion)
-           ("S-C-<f8>" . 'copilot-previous-completion)
+    :bind (("<f7>" . 'my-copilot-complete)
+           ("S-<f7>" . 'copilot-next-completion)
+           ("S-C-<f7>" . 'copilot-previous-completion)
            ))
+
+  (global-set-key "§" #'projectile-find-file-dwim)
+  (global-set-key (kbd "<f8>") #'projectile-find-file-dwim)
 
   (defun my-copilot-complete ()
     (interactive)
