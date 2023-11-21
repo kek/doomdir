@@ -20,7 +20,7 @@
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
-(setq my-is-wsl (and (equal (downcase (system-name)) "tomat")
+(setq my-is-wsl (and (equal (system-name) "TOMAT")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
       my-is-windows (equal system-type 'windows-nt)
@@ -28,11 +28,11 @@
                        (not my-is-wsl)
                        (not my-is-windows)
                        (not my-is-mac))
-      my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
+      my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("tomat")))
       my-font-size-windows 16
       my-font-size-wsl 22
       my-font-size-linux 18
-      my-font-size-linux-4k 24
+      my-font-size-linux-4k 14
       my-font-size-mac 15
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
@@ -146,7 +146,7 @@
             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
       (when (and (not my-is-wsl)
-                 (equal emacs-version "29.1.50"))
+                 (equal emacs-version "29.1"))
         (global-set-key (kbd  "<Launch6>") (lambda () (interactive) (insert "ä")))
         (global-set-key (kbd  "<Launch7>") (lambda () (interactive) (insert "å")))
         (global-set-key (kbd  "<Launch8>") (lambda () (interactive) (insert "ö")))
@@ -155,13 +155,14 @@
         (global-set-key (kbd  "S-<Launch7>") (lambda () (interactive) (insert "Å")))
         (global-set-key (kbd  "S-<Launch8>") (lambda () (interactive) (insert "Ö")))
         (global-set-key (kbd  "S-<Launch9>") (lambda () (interactive) (insert "É")))
-        (menu-bar-mode)
+        ;; (menu-bar-mode)
         (setq-default line-spacing 0)
         ;; (pixel-scroll-precision-mode)
         ;; (setq pixel-scroll-precision-interpolate-page nil)
         ;; (define-key pixel-scroll-precision-mode-map (kbd "C-v") #'pixel-scroll-interpolate-down)
         ;; (define-key pixel-scroll-precision-mode-map (kbd "M-v") #'pixel-scroll-interpolate-up)
         ;; (message "Pixel scroll precision mode is almost great!")
+        (setq default-frame-alist '((width . 140) (height . 45)))
         ))))
 
 ;; (add-hook 'hl-line-mode-hook
@@ -306,7 +307,7 @@
         (buffer-name)
       (s-replace home-or-project project-or-home (buffer-file-name)))))
 
-(if (or (equal system-type 'windows-nt) (equal system-type 'darwin))
+(if (or (equal system-type 'gnu/linux) (equal system-type 'windows-nt) (equal system-type 'darwin))
     (progn
       (setq mouse-wheel-progressive-speed nil
             mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control))))))
@@ -1038,9 +1039,10 @@ The optional argument IGNORED is not used."
   (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t)
   )
 
-(my/fix-mac-unicode)
-(add-hook 'emacs-startup-hook #'my/fix-mac-unicode)
-(add-hook 'after-make-frame-functions #'my/fix-mac-unicode)
+(when (eq system-type 'darwin)
+  (my/fix-mac-unicode)
+  (add-hook 'emacs-startup-hook #'my/fix-mac-unicode)
+  (add-hook 'after-make-frame-functions #'my/fix-mac-unicode))
 
 (defun run-in-vterm-kill (process event)
   "A process sentinel. Kills PROCESS's buffer if it is live."
