@@ -28,8 +28,8 @@
                        (not my-is-wsl)
                        (not my-is-windows)
                        (not my-is-mac))
-      my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("tomat")))
-      my-font-size-windows 16
+      my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
+      my-font-size-windows 24
       my-font-size-wsl 22
       my-font-size-linux 18
       my-font-size-linux-4k 14
@@ -50,7 +50,7 @@
   (set-selection-coding-system 'utf-16-le)
   (set-clipboard-coding-system 'utf-16-le)
   (after! copilot
-    (setq copilot-node-executable "C:/Users/kalle/Scoop/apps/nodejs16/16.19.1/node.exe")))
+    (setq copilot-node-executable "C:/Scoop/apps/nvm/current/nodejs/nodejs/node.exe")))
 ;; https://stackoverflow.com/questions/24904208/emacs-windows-org-mode-encoding
 ;; (modify-coding-system-alist 'file "" 'utf-8-unix))
 
