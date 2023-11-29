@@ -972,6 +972,10 @@ The optional argument IGNORED is not used."
  'org-babel-load-languages
  '((dot . t)))
 
+;; File type specific settings
+
+(add-hook 'lua-mode-hook (lambda () (setq lua-indent-level 2)))
+
 ;; Local settings
 
 (after! server
