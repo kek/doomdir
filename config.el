@@ -20,7 +20,7 @@
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
-(setq my-is-wsl (and (equal (system-name) "TOMAT")
+(setq my-is-wsl (and (equal (system-name) "POTATO")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
       my-is-windows (equal system-type 'windows-nt)
@@ -43,7 +43,7 @@
 (when my-is-windows
   (setq user-home-directory (replace-regexp-in-string "\\\\" "/" (getenv "USERPROFILE"))
         src-directory (cond ((equal (downcase (system-name)) "xps13") "C:/Users/kalle/src")
-                            ((equal (downcase (system-name)) "tomat") "C:/src")
+                            ((equal (downcase (system-name)) "potato") "C:/src")
                             (t (message "unknown computer") "C:/src"))
         find-program "C:/Scoop/shims/gfind.exe"
         projectile-indexing-method 'native)
