@@ -1036,9 +1036,17 @@ The optional argument IGNORED is not used."
   (setq line-spacing 0))
 
 (defun my/fix-mac-unicode ()
-  ;;(add-to-list 'face-font-rescale-alist (cons (font-spec :family "Apple Color Emoji") 0.80) t)
   (set-fontset-font t '(#x1f000 . #x1faff) (font-spec :family "Apple Color Emoji"))
-  (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t)
+  (add-to-list 'face-font-rescale-alist (cons "Apple Color Emoji" 0.80) t))
+
+(defun my/fix-windows-unicode ()
+  ;; nerd-icons-install-fonts  )
+
+  (setq emojify-display-style 'unicode)
+  (setq emojify-emoji-styles '(unicode)))
+
+(when (eq system-type 'windows-nt)
+  ;;(my/fix-windows-unicode)
   )
 
 (when (eq system-type 'darwin)
