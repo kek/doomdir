@@ -856,7 +856,7 @@ The optional argument IGNORED is not used."
 (defun my-notmuch-mark-spam () (interactive)
        (notmuch-search-add-tag '("+spam"))
        (notmuch-search-archive-thread)
-       ;; (notmuch-refresh-this-buffer)
+       (notmuch-refresh-this-buffer)
        )
 (defun my-notmuch-mark-spam-2 () (interactive)
        (notmuch-show-add-tag '("+spam"))
