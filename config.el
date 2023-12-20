@@ -726,9 +726,14 @@
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
 ;;; Above comment seems outdated
 ;; Smooth-scroll breaks scroll-other-window function
-;; (require 'smooth-scroll)
-;; (smooth-scroll-mode)
-;; (setq smooth-scroll/vscroll-step-size 3)
+(if i-want-evil
+    (progn
+      (require 'smooth-scroll)
+      (smooth-scroll-mode)
+      (setq smooth-scroll/vscroll-step-size 3)))
+;; kanske stäng av smooth-scroll innan scroll. advice?
+;;
+;; i evil-mode, ta bort keybindings som kommer från vanliga emacs... t ex M-v, M-x...?
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
