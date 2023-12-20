@@ -58,7 +58,7 @@
   (setq user-home-directory "~")
   (setq src-directory "~/src")
   (after! copilot
-    (setq copilot-node-executable "~/.asdf/installs/nodejs/17.9.1/bin/node")))
+    (setq copilot-node-executable "~/.asdf/installs/nodejs/18.19.0/bin/node")))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
