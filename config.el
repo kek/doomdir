@@ -717,19 +717,21 @@
 (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
 (setq ns-use-native-fullscreen t)
 
+(defun my/post-frame-making-hook (frame)
+  (with-selected-frame frame
+    (message "¡¡¡ New frame !!!")
+    (scroll-bar-mode 0)
+    (let ((font-size my-preferred-font-size))
+      (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
+            doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
+            doom-theme (my-choose-theme))) ; doom-acario-light
+    (doom/reload-font)
+    (doom/reload-theme)
+    ;; (unless (equal system-type 'windows-nt)
+    ;;   (pixel-scroll-precision-mode))
+    (my-face-adjustments)
+    (my/apply-theme my/theme-style)))
 (add-hook 'after-make-frame-functions #'my/post-frame-making-hook)
-(defun my/post-frame-making-hook (_)
-  (let ((font-size my-preferred-font-size))
-    (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
-          doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
-          doom-theme (my-choose-theme))) ; doom-acario-light
-  (doom/reload-font)
-  (doom/reload-theme)
-  ;; (unless (equal system-type 'windows-nt)
-  ;;   (pixel-scroll-precision-mode))
-  (scroll-bar-mode 0)
-  (my-face-adjustments)
-  (my/apply-theme my/theme-style))
 
 (global-set-key (kbd "M-`") #'other-frame)
 (global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
@@ -1067,8 +1069,8 @@ The optional argument IGNORED is not used."
 
 (when (eq system-type 'darwin)
   (my/fix-mac-unicode)
-  (add-hook 'emacs-startup-hook #'my/fix-mac-unicode)
-  (add-hook 'after-make-frame-functions #'my/fix-mac-unicode))
+  (add-hook 'emacs-startup-hook #'my/fix-mac-unicode))
+;; (add-hook 'after-make-frame-functions #'my/fix-mac-unicode)
 
 (defun run-in-vterm-kill (process _event)
   "A process sentinel. Kills PROCESS's buffer if it is live."
