@@ -3,17 +3,27 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-;; Doom default keybindings
+;;; Doom default keybindings
 ;; https://github.com/doomemacs/doomemacs/blob/develop/modules/config/default/+evil-bindings.el
-;; Doom Emacs Workflows
+
+;;; Doom Emacs Workflows
 ;; https://noelwelsh.com/posts/doom-emacs/
 
-;; Wishlist
-;; allt från space-map på §
+;;; Detta är en headline enligt imenu.
+;; Detta också.
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
+
+;;; Wishlist
+;; allt från space-map på § eller nåt...
 ;; töm C-c-map
 ;; § b som buffer-meny
 ;; § h som hjälp
 ;; § <spc> för att byta mellan buffrar
+
+;; kanske stäng av smooth-scroll innan scroll. advice?
+;;
+;; i evil-mode, ta bort keybindings som kommer från vanliga emacs... t ex M-v, M-x...?
+;; M-< M-> C-l
 
 ;; lsp-workspace-folders-add
 
@@ -731,9 +741,6 @@
       (require 'smooth-scroll)
       (smooth-scroll-mode)
       (setq smooth-scroll/vscroll-step-size 3)))
-;; kanske stäng av smooth-scroll innan scroll. advice?
-;;
-;; i evil-mode, ta bort keybindings som kommer från vanliga emacs... t ex M-v, M-x...?
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
