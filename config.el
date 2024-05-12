@@ -68,7 +68,7 @@
   (setq user-home-directory "~")
   (setq src-directory "~/src")
   (after! copilot
-    (setq copilot-node-executable "~/.asdf/installs/nodejs/18.19.0/bin/node")))
+    (setq copilot-node-executable "~/.asdf/shims/node")))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
@@ -131,11 +131,10 @@
                             "/usr/local/share/man"
                             "/Applications/kitty.app/Contents/Resources/man"))
 
-      (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size font-size)
-            doom-big-font (font-spec :family "Hack Nerd Font Mono" :size (+ font-size 4))
-            doom-variable-pitch-font (font-spec :weight 'semi-bold)
-            doom-theme (my-choose-theme))
-
+      (setq doom-theme (my-choose-theme))
+      (setq doom-font (font-spec :family "Hack Nerd Font" :size font-size)
+            doom-variable-pitch-font (font-spec :family "Arial" :size (+ font-size 2))
+            doom-big-font (font-spec :family "Hack Nerd  Font" :size (+ font-size 8)))
       ;; (defun +default/man-or-woman ()
       ;;   "Invoke `man' because `woman' does not work on MacOS (my change).
 
@@ -245,11 +244,11 @@
   )
 (add-hook 'mixed-pitch-mode-hook #'solaire-mode-reset)
 
-(use-package org-modern
-  :config
-  ;; (setq org-modern-hide-stars t)
-  (setq org-modern-table nil)
-  (global-org-modern-mode))
+;; (use-package org-modern
+;;   :config
+;;   ;; (setq org-modern-hide-stars t)
+;;   (setq org-modern-table nil)
+;;   (global-org-modern-mode))
 (after! deft
   (setq deft-directory org-directory))
 
@@ -291,7 +290,8 @@
         org-agenda-block-separator ""
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
-        org-fontify-quote-and-verse-blocks t)
+        org-fontify-quote-and-verse-blocks t
+        )
 
   ;; TODO Clean input of unknown characters
   (add-to-list 'org-capture-templates
@@ -429,6 +429,11 @@
   ;;        (query-replace)
   ;;        )
   (setq evil-respect-visual-line-mode t)
+
+  (map! :n "<f11>" #'toggle-frame-fullscreen)
+  (map! :n "S-<f11>" #'toggle-frame-maximized)
+  (map! :n "M-<f11>" #'ns-do-hide-emacs)
+
   ;; (map! :map '+popup-buffer-mode-map :n "ä" #'+popup/raise)
   ;; (map! :map 'helpful-mode-map :n "ä" #'+popup/raise)
   (map! :n "C-s" #'save-buffer)
@@ -992,14 +997,14 @@ The optional argument IGNORED is not used."
 
 ;; Local settings
 
-(after! server
-  (unless (server-running-p)
-    (cond
-     (my-is-windows (progn
-                      (server-start)))
-     (my-is-wsl (progn
-                  (setq server-use-tcp t)
-                  (server-start))))))
+;; (after! server
+;;   (unless (server-running-p)
+;;     (cond
+;;      (my-is-windows (progn
+;;                       (server-start)))
+;;      (my-is-wsl (progn
+;;                   (setq server-use-tcp t)
+;;                   (server-start))))))
 
 ;; https://emacs.stackexchange.com/questions/73047/emacs-29-docstring-single-quote-escaping-rules-compiler-level-event
 ;; (setq text-quoting-style 'grave)
@@ -1107,4 +1112,4 @@ shell exits, the buffer is killed."
     (vterm-send-string command)
     (vterm-send-return)))
 
-(load "~/.secrets.el")
+(load "~/.doom.secrets.el")
