@@ -74,7 +74,7 @@
 ;; (require 'org-roam-protocol)
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-sourcerer) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'doom-wilmersdorf) ; doom-moonlight, doom-sourcerer, doom-dark+
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -703,7 +703,7 @@
 
 (fringe-mode '(20 . 20))
 
-(setq my-daytime-theme 'doom-moonlight)
+(setq my-daytime-theme 'doom-wilmersdorf)
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
