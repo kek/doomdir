@@ -41,7 +41,7 @@
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
       my-font-size-windows 24
       my-font-size-wsl 22
-      my-font-size-linux 18
+      my-font-size-linux 14
       my-font-size-linux-4k 14
       my-font-size-mac 15
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
@@ -85,7 +85,7 @@
       (setq doom-sourcerer-padded-modeline t)
       ;; (setq my-theme 'doom-sourcerer)
       ;; (setq my-theme 'doom-earl-grey)
-      (setq my-theme 'doom-sourcerer)
+      (setq my-theme 'doom-wilmersdorf)
       ;; (setq doom-Iosvkem-padded-modeline t)
       ;; (setq my-theme 'doom-Iosvkem)
       ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
@@ -271,6 +271,8 @@
   :config
   (company-posframe-mode 1))
 
+(add-hook 'css-mode-hook #'my-disable-hl-line-mode)
+
 (after! org
   (define-key org-mode-map (kbd "<f9>") #'org-refile)
   (define-key org-mode-map (kbd "C-<f9>") #'+org/refile-to-last-location)
@@ -410,6 +412,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\\.livemd\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.kdl\\'" . kdl-ts-mode))
 
 (after! flycheck
   (map! :leader
@@ -701,7 +704,8 @@
 (add-hook 'elixir-mode-hook (lambda ()
                               (show-paren-local-mode -1)))
 
-(fringe-mode '(20 . 20))
+;; (fringe-mode '(20 . 20))
+(fringe-mode nil)
 
 (setq my-daytime-theme 'doom-wilmersdorf)
 (defun my/apply-theme (appearance)

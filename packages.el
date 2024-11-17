@@ -73,6 +73,9 @@
 (package! org-bullets)
 (package! company-posframe)
 (package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
+(package! kdl-ts-mode
+  :recipe (:host github
+           :repo "dataphract/kdl-ts-mode"))
 (package! unicode-fonts)
 
 ;; (use-package lsp-mode
