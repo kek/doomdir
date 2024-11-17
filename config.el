@@ -910,6 +910,7 @@ The optional argument IGNORED is not used."
       (define-key notmuch-search-mode-map (kbd "ä 3") (lambda () (interactive) (my-notmuch-categorize "newsletter")))
       (which-key-add-keymap-based-replacements notmuch-search-mode-map "ä 3" "Newsletter")
 
+      (define-key notmuch-show-mode-map (kbd "C-c C-v") #'notmuch-show-view-html+)
       (define-key notmuch-show-mode-map "ö" #'notmuch-show-view-html+)
       (define-key notmuch-search-mode-map (kbd "x") #'my-notmuch-mark-spam)
       (define-key notmuch-show-mode-map (kbd "x") #'my-notmuch-mark-spam-2)
