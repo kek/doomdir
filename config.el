@@ -74,7 +74,7 @@
 ;; (require 'org-roam-protocol)
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-wilmersdorf) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -370,6 +370,15 @@
                                                (seq bol "#+" (one-or-more (any "_" upper)) ":" (zero-or-more nonl) eol)
                                                (seq bol "#+" (one-or-more (any "_" lower)) ":" (zero-or-more nonl) eol)))))
 
+(after! lsp-mode
+  (defun ak-lsp-ignore-semgrep-rulesRefreshed (workspace notification)
+    "Ignore semgrep/rulesRefreshed notification."
+    (when (equal (gethash "method" notification) "semgrep/rulesRefreshed")
+      (lsp--info "Ignored semgrep/rulesRefreshed notification")
+      t)) ;; Return t to indicate the notification is handled
+
+  (advice-add 'lsp--on-notification :before-until #'ak-lsp-ignore-semgrep-rulesRefreshed))
+
 ;; https://emacs.stackexchange.com/questions/35392/result-of-arithmetic-evaluation-in-buffer-not-echo-area
 (defun eval-and-substitute-last-sexp ()
   "Replace sexp before point by result of its evaluation."
@@ -563,7 +572,7 @@
 ;;; NO EVIL
 (when (not i-want-evil)
   (message "No evil mode init")
-                                        ;(define-key global-map (kbd "§") doom-leader-map)
+  ;; (define-key global-map (kbd "§") doom-leader-map)
   ;; (define-key global-map (kbd "§") #'doom/leader)
   ;; (define-key global-map (kbd "<f9>") #'doom/leader)
   (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
