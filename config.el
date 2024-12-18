@@ -30,7 +30,7 @@
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
-(setq my-is-wsl (and (equal (system-name) "POTATO")
+(setq my-is-wsl (and (equal (system-name) "potato")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
       my-is-windows (equal system-type 'windows-nt)
@@ -75,6 +75,8 @@
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
 (setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-linux-theme 'doom-earl-grey)
+(setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
 (if window-system
     (progn
@@ -92,8 +94,8 @@
   (setq my-theme 'doom-opera))
 
 (defun my-choose-theme ()
-  (cond (my-is-wsl my-theme)
-        (my-is-linux my-theme)
+  (cond (my-is-wsl my-wsl-theme)
+        (my-is-linux my-linux-theme)
         (my-is-windows my-windows-theme)
         (my-is-mac my-mac-theme)
         (t 'doom-opera)))
