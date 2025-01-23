@@ -74,10 +74,19 @@
 ;; (require 'org-roam-protocol)
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'catppuccin) ; doom-moonlight, doom-sourcerer, doom-dark+
 (setq my-linux-theme 'doom-earl-grey)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
+
+(defun my-choose-theme ()
+  (cond (my-is-wsl my-wsl-theme)
+        (my-is-linux my-linux-theme)
+        (my-is-windows my-windows-theme)
+        (my-is-mac my-mac-theme)
+        (t 'doom-opera)))
+
+(setq warning-suppress-types '(defvaralias))
 (if window-system
     (progn
       ;; (setq doom-dark+-blue-modeline t)
@@ -87,19 +96,12 @@
       (setq doom-sourcerer-padded-modeline t)
       ;; (setq my-theme 'doom-sourcerer)
       ;; (setq my-theme 'doom-earl-grey)
-      (setq my-theme 'doom-wilmersdorf)
+      (setq my-theme (my-choose-theme))
       ;; (setq doom-Iosvkem-padded-modeline t)
       ;; (setq my-theme 'doom-Iosvkem)
       ) ; Fit with menu bar color "Materia" vibrant, dark+, badger? ... sourcerer
   (setq my-theme 'doom-opera))
 
-(defun my-choose-theme ()
-  (cond (my-is-wsl my-wsl-theme)
-        (my-is-linux my-linux-theme)
-        (my-is-windows my-windows-theme)
-        (my-is-mac my-mac-theme)
-        (t 'doom-opera)))
-(setq warning-suppress-types '(defvaralias))
 
 ;; Does not seem to work in KDE
 
@@ -718,7 +720,7 @@
 ;; (fringe-mode '(20 . 20))
 (fringe-mode nil)
 
-(setq my-daytime-theme 'doom-wilmersdorf)
+(setq my-daytime-theme 'doom-earl-grey)
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
@@ -734,7 +736,8 @@
              (set-face-attribute 'org-meta-line nil :slant 'normal :foreground "#ff7138" :background "#38384f")))))
 (setq my/theme-style 'dark)
 
-(add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+;; (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+
 (setq ns-use-native-fullscreen t)
 
 (defun my/post-frame-making-hook (frame)

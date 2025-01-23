@@ -60,7 +60,7 @@
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! nov
   :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git")
-) ; Epub reader
+  ) ; Epub reader
 (package! xr) ; Convert from string regexp to rx form
 (package! mastodon)
 (package! iedit)
@@ -77,6 +77,8 @@
   :recipe (:host github
            :repo "dataphract/kdl-ts-mode"))
 (package! unicode-fonts)
+(package! emacs-theme-inkpot :recipe (:host codeberg :repo "ideasman42/emacs-theme-inkpot"))
+(package! catppuccin-theme)
 
 ;; (use-package lsp-mode
 ;;   :commands lsp
