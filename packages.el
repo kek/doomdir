@@ -59,8 +59,7 @@
 (package! copilot ; github copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! nov
-  :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git")
-  ) ; Epub reader
+  :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git")) ; Epub reader
 (package! xr) ; Convert from string regexp to rx form
 (package! mastodon)
 (package! iedit)
