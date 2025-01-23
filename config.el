@@ -68,7 +68,7 @@
   (setq user-home-directory "~")
   (setq src-directory "~/src")
   (after! copilot
-    (setq copilot-node-executable "~/.asdf/shims/node")))
+    (setq copilot-node-executable "~/.local/share/mise/installs/node/23/bin/node")))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
