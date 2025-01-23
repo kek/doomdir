@@ -756,6 +756,9 @@
     (my/apply-theme my/theme-style)))
 (add-hook 'after-make-frame-functions #'my/post-frame-making-hook)
 
+;; (setenv "GOROOT" "~/.local/share/mise/installs/go/latest")
+;; (setenv "GOPATH" "~/go/bin")
+
 (global-set-key (kbd "M-`") #'other-frame)
 (global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
 ;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
