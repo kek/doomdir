@@ -75,7 +75,7 @@
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
 (setq my-mac-theme 'catppuccin) ; doom-moonlight, doom-sourcerer, doom-dark+
-(setq my-linux-theme 'doom-earl-grey)
+(setq my-linux-theme 'doom-sourcerer)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
 
@@ -153,8 +153,8 @@
       (set-frame-position (selected-frame) 100 75))
 
     (when (equal system-type 'gnu/linux)
-      (setq doom-font (font-spec :family "Hack" :size font-size)
-            doom-big-font (font-spec :family "Hack" :size (+ font-size 4))
+      (setq doom-font (font-spec :family "Monaspace Neon Medium" :size font-size)
+            doom-big-font (font-spec :family "Monaspace Neon Medium" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :fddamily "Literata" :weight 'semi-bold)
             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
