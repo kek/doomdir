@@ -74,7 +74,7 @@
 ;; (require 'org-roam-protocol)
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
-(setq my-mac-theme 'catppuccin) ; doom-moonlight, doom-sourcerer, doom-dark+
+(setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
 (setq my-linux-theme 'doom-sourcerer)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
@@ -136,9 +136,9 @@
                             "/Applications/kitty.app/Contents/Resources/man"))
 
       (setq doom-theme (my-choose-theme))
-      (setq doom-font (font-spec :family "Monaspace Neon Medium" :size font-size)
+      (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size font-size)
             doom-variable-pitch-font (font-spec :family "Arial" :size (+ font-size 2))
-            doom-big-font (font-spec :family "Monaspace Neon Medium" :size (+ font-size 8)))
+            doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size (+ font-size 8)))
       ;; (defun +default/man-or-woman ()
       ;;   "Invoke `man' because `woman' does not work on MacOS (my change).
 
@@ -153,8 +153,8 @@
       (set-frame-position (selected-frame) 100 75))
 
     (when (equal system-type 'gnu/linux)
-      (setq doom-font (font-spec :family "Monaspace Neon Medium" :size font-size)
-            doom-big-font (font-spec :family "Monaspace Neon Medium" :size (+ font-size 4))
+      (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size font-size)
+            doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size (+ font-size 4))
             doom-variable-pitch-font (font-spec :fddamily "Literata" :weight 'semi-bold)
             ;; doom-variable-pitch-font (font-spec :family "Source Serif 4" :size (+ font-size 4))
             doom-theme (my-choose-theme)) ; doom-acario-light, dichromacy
@@ -1013,6 +1013,50 @@ The optional argument IGNORED is not used."
   ;; (if (equal (downcase (system-name)) "fedora")
   ;;     (doom-themes-set-faces nil
   ;;       '(vhl/default-face :background "#555")))
+  )
+
+(after! go-mode ; in this case the major mode and package named the same thing
+  (set-ligatures! 'go-mode
+    :def "func" ; function keyword
+    :true "true" :false "false"
+                                        ; this will replace not only definitions
+                                        ; but coresponding functions aswell
+    :int "int" :str "string"
+    :float "float" :bool "bool"
+    :for "for"
+    :return "return" :yield "yield")
+  ;; (set-ligatures! 'go-mode
+  ;;   ;; Functional
+  ;;   :lambda        "lambda keyword"
+  ;;   :def           "function keyword"
+  ;;   :composition   "composition"
+  ;;   :map           "map/dictionary keyword"
+  ;;   ;; Types
+  ;;   :null          "null type"
+  ;;   :true          "true keyword"
+  ;;   :false         "false keyword"
+  ;;   :int           "int keyword"
+  ;;   :float         "float keyword"
+  ;;   :str           "string keyword"
+  ;;   :bool          "boolean keyword"
+  ;;   :list          "list keyword"
+  ;;   ;; Flow
+  ;;   :not           "not operator"
+  ;;   :in            "in operator"
+  ;;   :not-in        "not in operator"
+  ;;   :and           "and keyword"
+  ;;   :or            "or keyword"
+  ;;   :for           "for keyword"
+  ;;   :some          "some keyword"
+  ;;   :return        "return"
+  ;;   :yield         "yeild"
+  ;;   ;; Other
+  ;;   :union         "Union keyword"
+  ;;   :intersect     "Intersect keyword"
+  ;;   :diff          "diff keyword"
+  ;;   :tuple         "Tuple Keyword "
+  ;;   :pipe          "Pipe Keyword"
+  ;;   :dot           "Dot operator")
   )
 
 (my-face-adjustments)
