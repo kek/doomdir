@@ -136,9 +136,9 @@
                             "/Applications/kitty.app/Contents/Resources/man"))
 
       (setq doom-theme (my-choose-theme))
-      (setq doom-font (font-spec :family "Hack Nerd Font" :size font-size)
+      (setq doom-font (font-spec :family "Monaspace Neon Medium" :size font-size)
             doom-variable-pitch-font (font-spec :family "Arial" :size (+ font-size 2))
-            doom-big-font (font-spec :family "Hack Nerd  Font" :size (+ font-size 8)))
+            doom-big-font (font-spec :family "Monaspace Neon Medium" :size (+ font-size 8)))
       ;; (defun +default/man-or-woman ()
       ;;   "Invoke `man' because `woman' does not work on MacOS (my change).
 
