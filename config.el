@@ -978,6 +978,17 @@ The optional argument IGNORED is not used."
 ;;     (set-face-attribute 'org-level-8 nil :height 0.6)
 ;;     (set-face-attribute 'org-link nil :underline nil)))
 
+(after! org
+  (set-face-attribute 'org-level-1 nil :height 1.0)
+  (set-face-attribute 'org-level-2 nil :height 1.0)
+  (set-face-attribute 'org-level-3 nil :height 1.0)
+  (set-face-attribute 'org-level-4 nil :height 1.0)
+  (set-face-attribute 'org-level-5 nil :height 1.0)
+  (set-face-attribute 'org-level-6 nil :height 1.0)
+  (set-face-attribute 'org-level-7 nil :height 1.0)
+  (set-face-attribute 'org-level-8 nil :height 1.0)
+  (set-face-attribute 'org-link nil :underline nil))
+
 ;; Face adjustments
 
 (after! iedit
