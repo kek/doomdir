@@ -571,7 +571,8 @@
   (map! :n "g(" #'sp-up-sexp)
   (map! :n "g)" #'sp-down-sexp)
   (map! :n "M-ö" #'previous-buffer)
-  (map! :n "M-ä" #'next-buffer))
+  (map! :n "M-ä" #'next-buffer)
+  (map! :n "<DEL>" #'transient-noop))
 
 ;;; NO EVIL
 (when (not i-want-evil)
