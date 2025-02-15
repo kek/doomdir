@@ -1032,7 +1032,7 @@ The optional argument IGNORED is not used."
     :float "float" :bool "bool"
     :for "for"
     :return "return" :yield "yield")
-  ;; (set-ligatures! 'go-mode
+  ;; (set-ligatures! 'prog-mode
   ;;   ;; Functional
   ;;   :lambda        "lambda keyword"
   ;;   :def           "function keyword"
