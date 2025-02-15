@@ -769,7 +769,13 @@
     (progn
       (require 'smooth-scroll)
       (smooth-scroll-mode)
-      (setq smooth-scroll/vscroll-step-size 3)))
+      (setq smooth-scroll/vscroll-step-size 3))
+  (progn
+    (require 'smooth-scroll)
+    (smooth-scroll-mode)
+    (setq smooth-scroll/vscroll-step-size 3)
+    (global-set-key (kbd "C-M-v") #'smooth-scroll/orig-scroll-other-window)
+    (global-set-key (kbd "C-S-M-v") #'smooth-scroll/orig-scroll-other-window-down)))
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
