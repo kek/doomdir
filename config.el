@@ -75,7 +75,7 @@
                                         ; vibrant, laserwave, moonlight, wilmersdorf
 (setq my-windows-theme 'doom-sourcerer)
 (setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
-(setq my-linux-theme 'doom-sourcerer)
+(setq my-linux-theme 'doom-moonlight)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
 
@@ -1160,6 +1160,12 @@ The optional argument IGNORED is not used."
   (my/fix-mac-unicode)
   (add-hook 'emacs-startup-hook #'my/fix-mac-unicode))
 ;; (add-hook 'after-make-frame-functions #'my/fix-mac-unicode)
+
+
+(setq shell-file-name (executable-find "bash"))
+(setq-default vterm-shell (executable-find "fish"))
+(setq-default explicit-shell-file-name (executable-find "fish"))
+
 
 (defun run-in-vterm-kill (process _event)
   "A process sentinel. Kills PROCESS's buffer if it is live."
