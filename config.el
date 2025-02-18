@@ -68,7 +68,8 @@
   (setq user-home-directory "~")
   (setq src-directory "~/src")
   (after! copilot
-    (setq copilot-node-executable "~/.local/share/mise/installs/node/23/bin/node")))
+    (setq copilot-node-executable "~/.local/share/mise/installs/node/23/bin/node"
+          copilot-max-char 1000000)))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
