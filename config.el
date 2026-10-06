@@ -68,13 +68,14 @@
   (setq user-home-directory "~")
   (setq src-directory "~/src")
   (after! copilot
-    (setq copilot-node-executable "~/.local/share/mise/installs/node/23/bin/node"
+    (setq copilot-node-executable "~/.asdf/shims/node"
           copilot-max-char 1000000)))
 
 ;; (require 'org-roam)
 ;; (require 'org-roam-protocol)
-                                        ; vibrant, laserwave, moonlight, wilmersdorf
-(setq my-windows-theme 'doom-sourcerer)
+;; vibrant, laserwave, moonlight, wilmersdorf
+;; (setq my-windows-theme 'doom-sourcerer)
+(setq my-windows-theme 'doom-wilmersdorf)
 (setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
 (setq my-linux-theme 'doom-moonlight)
 (setq my-wsl-theme 'doom-flatwhite)
@@ -472,6 +473,7 @@
   ;;        )
   (setq evil-respect-visual-line-mode t)
 
+  (map! :i "<f8>" #'my-copilot-complete)
   (map! :n "<f11>" #'toggle-frame-fullscreen)
   (map! :n "S-<f11>" #'toggle-frame-maximized)
   (map! :n "M-<f11>" #'ns-do-hide-emacs)
@@ -542,16 +544,16 @@
   ;;   (map! :i "<f8>" 'copilot-complete)
   ;;   (map! :i "C-<f8>" 'copilot-next-completion))
 
-  (use-package! copilot
-    :hook (prog-mode . copilot-mode)
-    :config (progn (setq copilot-idle-delay nil))
-    :bind (("<f8>" . 'my-copilot-complete)
-           ("C-<f8>" . 'copilot-next-completion)
-           ("<f9>" . 'copilot-next-completion)
-           ("C-S-<f8>" . 'copilot-previous-completion)
-           ("S-<f9>" . 'copilot-next-completion)
-           ;; :map copilot-completion-map
-           ("TAB" . 'copilot-accept-completion)))
+  ;; (use-package! copilot
+  ;;   :hook (prog-mode . copilot-mode)
+  ;;   :config (progn (setq copilot-idle-delay nil))
+  ;;   :bind (("<f8>" . 'my-copilot-complete)
+  ;;          ("C-<f8>" . 'copilot-next-completion)
+  ;;          ("<f9>" . 'copilot-next-completion)
+  ;;          ("C-S-<f8>" . 'copilot-previous-completion)
+  ;;          ("S-<f9>" . 'copilot-next-completion)
+  ;;          ;; :map copilot-completion-map
+  ;;          ("TAB" . 'copilot-accept-completion)))
 
   (defun my-copilot-complete ()
     (interactive)
