@@ -78,6 +78,12 @@
 (package! unicode-fonts)
 (package! emacs-theme-inkpot :recipe (:host codeberg :repo "ideasman42/emacs-theme-inkpot"))
 (package! catppuccin-theme)
+(package! gleam-ts-mode
+  :recipe (:host github
+           :repo "gleam-lang/gleam-mode"
+           :branch "main"
+
+           :files ("gleam-ts-*.el")))
 
 ;; (use-package lsp-mode
 ;;   :commands lsp
