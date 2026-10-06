@@ -27,6 +27,14 @@
 
 ;; lsp-workspace-folders-add
 
+;; GUI-launched Emacs doesn't inherit Fish's Homebrew PATH. Native modules
+;; (e.g. vterm) need CMake and other build tools from Homebrew.
+(when (and (eq system-type 'darwin)
+           (file-directory-p "/opt/homebrew/bin"))
+  (add-to-list 'exec-path "/opt/homebrew/bin")
+  (unless (member "/opt/homebrew/bin" (split-string (getenv "PATH") path-separator t))
+    (setenv "PATH" (concat "/opt/homebrew/bin" path-separator (getenv "PATH")))))
+
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
