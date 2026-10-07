@@ -1243,4 +1243,9 @@ shell exits, the buffer is killed."
     (vterm-send-string command)
     (vterm-send-return)))
 
+(defun set-selected-frame-dark ()
+  (call-process-shell-command "xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"dark\" -id \"$(xdotool getactivewindow)\""))
+
+(set-selected-frame-dark)
+
 (load "~/.doom.secrets.el")
