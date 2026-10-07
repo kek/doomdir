@@ -88,7 +88,7 @@
 ;; (setq my-windows-theme 'doom-sourcerer)
 (setq my-windows-theme 'doom-wilmersdorf)
 (setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
-(setq my-linux-theme 'doom-moonlight)
+(setq my-linux-theme 'doom-wilmersdorf)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
 
@@ -817,6 +817,9 @@
     (setq smooth-scroll/vscroll-step-size 3)
     (global-set-key (kbd "C-M-v") #'smooth-scroll/orig-scroll-other-window)
     (global-set-key (kbd "C-S-M-v") #'smooth-scroll/orig-scroll-other-window-down)))
+
+;; (if (eq system-type 'gnu/linux)
+;;     (smooth-scroll-mode -1))
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
