@@ -32,6 +32,9 @@
 (when (and (eq system-type 'darwin)
            (file-directory-p "/opt/homebrew/bin"))
   (add-to-list 'exec-path "/opt/homebrew/bin")
+  (let ((go-bin (expand-file-name "~/go/bin")))
+    (add-to-list 'exec-path go-bin)
+    (setenv "PATH" (concat go-bin path-separator (getenv "PATH"))))
   (unless (member "/opt/homebrew/bin" (split-string (getenv "PATH") path-separator t))
     (setenv "PATH" (concat "/opt/homebrew/bin" path-separator (getenv "PATH")))))
 
@@ -410,13 +413,15 @@
                                                (seq bol "#+" (one-or-more (any "_" lower)) ":" (zero-or-more nonl) eol)))))
 
 (after! lsp-mode
-  (defun ak-lsp-ignore-semgrep-rulesRefreshed (workspace notification)
+  (defun ak-lsp-ignore-semgrep-rulesRefreshed (_workspace notification)
     "Ignore semgrep/rulesRefreshed notification."
-    (when (equal (gethash "method" notification) "semgrep/rulesRefreshed")
+    (when (equal (lsp-get notification :method) "semgrep/rulesRefreshed")
       (lsp--info "Ignored semgrep/rulesRefreshed notification")
       t)) ;; Return t to indicate the notification is handled
 
-  (advice-add 'lsp--on-notification :before-until #'ak-lsp-ignore-semgrep-rulesRefreshed))
+  (advice-add 'lsp--on-notification :before-until #'ak-lsp-ignore-semgrep-rulesRefreshed)
+  (setq lsp-client-packages        
+        (delq 'lsp-ts-query lsp-client-packages)))
 
 ;; https://emacs.stackexchange.com/questions/35392/result-of-arithmetic-evaluation-in-buffer-not-echo-area
 (defun eval-and-substitute-last-sexp ()
