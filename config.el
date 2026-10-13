@@ -52,8 +52,8 @@
       my-is-linux-4k (and my-is-linux (member (downcase (system-name)) '("something")))
       my-font-size-windows 24
       my-font-size-wsl 22
-      my-font-size-linux 14
-      my-font-size-linux-4k 14
+      my-font-size-linux 16
+      my-font-size-linux-4k 15
       my-font-size-mac 15
       my-preferred-font-size (cond (my-is-wsl my-font-size-wsl)
                                    (my-is-windows my-font-size-windows)
@@ -466,6 +466,15 @@
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\\.livemd\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.kdl\\'" . kdl-ts-mode))
+
+(after! treesit
+  (add-to-list 'treesit-language-source-alist
+               '(kdl "https://github.com/tree-sitter-grammars/tree-sitter-kdl")))
+
+(after! kdl-ts-mode
+  (unless (treesit-language-available-p 'kdl)
+    ;; compile the treesit grammar file the first time
+    (treesit-install-language-grammar 'kdl)))
 
 (after! flycheck
   (map! :leader
