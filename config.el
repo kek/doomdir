@@ -812,23 +812,10 @@
 
 (global-set-key (kbd "M-`") #'other-frame)
 (global-set-key (kbd "M-~") (lambda () "previous frame" (interactive) (other-frame -1)))
-;;; Doesn't seem to work with pixel-scroll-precision-mode or in Emacs 29
-;;; Above comment seems outdated
-;; Smooth-scroll breaks scroll-other-window function
-(if i-want-evil
-    (progn
-      (require 'smooth-scroll)
-      (smooth-scroll-mode)
-      (setq smooth-scroll/vscroll-step-size 3))
-  (progn
-    (require 'smooth-scroll)
-    (smooth-scroll-mode)
-    (setq smooth-scroll/vscroll-step-size 3)
-    (global-set-key (kbd "C-M-v") #'smooth-scroll/orig-scroll-other-window)
-    (global-set-key (kbd "C-S-M-v") #'smooth-scroll/orig-scroll-other-window-down)))
-
-;; (if (eq system-type 'gnu/linux)
-;;     (smooth-scroll-mode -1))
+;; Replaced the `smooth-scroll' package (timer-stepped, slow redisplay) with
+;; the native pixel-scroll-precision-mode, which scrolls smoothly without
+;; the per-step redraw cost.
+(pixel-scroll-precision-mode 1)
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)

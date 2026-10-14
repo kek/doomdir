@@ -52,7 +52,6 @@
 
 (package! fish-mode) ; fish script file mode
 (package! elpher) ; Gopher and Gemini client
-(package! smooth-scroll) ; smooth scrolling
 (package! ace-window) ; window switching
 (package! w3m) ; Web browser
 (package! graphviz-dot-mode) ; dot language mode
