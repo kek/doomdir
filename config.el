@@ -817,6 +817,16 @@
 ;; the per-step redraw cost.
 (pixel-scroll-precision-mode 1)
 
+;; pixel-scroll-precision-mode only smooths wheel/touchpad scrolling, not
+;; page-scroll commands. Evil's C-f/C-b (evil-scroll-page-down/up, bound in
+;; evil-motion-state-map) jump a full page instantly; swap in Emacs's own
+;; animated page-scroll commands so C-f/C-b scroll smoothly too.
+;; pixel-scroll-interpolate-down/up only animate when this is non-nil --
+;; otherwise they silently fall back to an instant `scroll-up'/`scroll-down'.
+(setq pixel-scroll-precision-interpolate-page t)
+(map! :m "C-f" #'pixel-scroll-interpolate-down
+      :m "C-b" #'pixel-scroll-interpolate-up)
+
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
 
