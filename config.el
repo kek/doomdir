@@ -88,7 +88,7 @@
 ;; (setq my-windows-theme 'doom-sourcerer)
 (setq my-windows-theme 'doom-wilmersdorf)
 (setq my-mac-theme 'doom-moonlight) ; doom-moonlight, doom-sourcerer, doom-dark+
-(setq my-linux-theme 'doom-wilmersdorf)
+(setq my-linux-theme 'doom-moonlight)
 (setq my-wsl-theme 'doom-flatwhite)
 ;; (setq my-windows-theme 'doom-earl-grey)
 
