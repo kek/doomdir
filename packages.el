@@ -71,9 +71,15 @@
 (package! org-bullets)
 (package! company-posframe)
 (package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
+;; Forked to fix a sustained CPU spin on any .kdl file: indent-rules
+;; hardcoded the grammar's old root node name ("source_file", now
+;; "document"), and separately, its comment font-lock query nested
+;; node_field under node, which hangs treesit-query-capture indefinitely
+;; regardless of buffer content. dataphract/kdl-ts-mode is unmaintained
+;; (single commit, no activity since), so patched here instead.
 (package! kdl-ts-mode
   :recipe (:host github
-           :repo "dataphract/kdl-ts-mode"))
+           :repo "kek/kdl-ts-mode"))
 (package! unicode-fonts)
 (package! emacs-theme-inkpot :recipe (:host codeberg :repo "ideasman42/emacs-theme-inkpot"))
 (package! catppuccin-theme)

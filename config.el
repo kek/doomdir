@@ -465,16 +465,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (add-to-list 'auto-mode-alist '("\\.livemd\\'" . markdown-mode))
-;; kdl-ts-mode's indent-rules hardcode the grammar's root node as
-;; "source_file", but tree-sitter-grammars/tree-sitter-kdl (unpinned, tracking
-;; HEAD) renamed it to "document" at some point. That mismatch sends
-;; treesit's indent machinery into a sustained ~100% CPU loop on any .kdl
-;; file - reproduced and confirmed by forcing fundamental-mode on the same
-;; buffer content, which stays idle. kdl-ts-mode is a single-commit,
-;; unmaintained package, so this isn't a safe thing to patch around by
-;; guessing at a pinned grammar revision. Plain-text editing, no hang, beats
-;; broken syntax highlighting.
-(add-to-list 'auto-mode-alist '("\\.kdl\\'" . fundamental-mode))
+(add-to-list 'auto-mode-alist '("\\.kdl\\'" . kdl-ts-mode))
+
+(after! treesit
+  (add-to-list 'treesit-language-source-alist
+               '(kdl "https://github.com/tree-sitter-grammars/tree-sitter-kdl")))
+
+(after! kdl-ts-mode
+  (unless (treesit-language-available-p 'kdl)
+    ;; compile the treesit grammar file the first time
+    (treesit-install-language-grammar 'kdl)))
 
 (after! flycheck
   (map! :leader
