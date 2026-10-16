@@ -83,6 +83,8 @@
            :branch "main"
 
            :files ("gleam-ts-*.el")))
+(package! majutsu ; magit-style interface for jujutsu (jj)
+  :recipe (:host github :repo "0WD0/majutsu"))
 
 ;; (use-package lsp-mode
 ;;   :commands lsp
