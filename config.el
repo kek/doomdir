@@ -821,6 +821,14 @@
 ;; the per-step redraw cost.
 (pixel-scroll-precision-mode 1)
 
+;; Unset by default, so every scroll - including a fast flick - tries to
+;; interpolate the whole distance pixel-by-pixel. Redisplay can't keep up
+;; with a big flick's distance at that granularity, so it visibly judders
+;; instead of feeling fast. Past this height (px), Emacs jumps instantly
+;; instead of animating; small deliberate touchpad motion still scrolls
+;; smoothly since it stays under the threshold.
+(setq pixel-scroll-precision-large-scroll-height 40.0)
+
 ;; pixel-scroll-precision-mode only smooths wheel/touchpad scrolling, not
 ;; page-scroll commands. Evil's C-f/C-b (evil-scroll-page-down/up, bound in
 ;; evil-motion-state-map) jump a full page instantly; swap in Emacs's own
