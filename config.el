@@ -206,8 +206,8 @@
 ;; doom-homage-black doom-oceanic-next doom-outrun-electric flatwhite laserwave
 ;; manegarm leuven
 
-(setq org-directory (cond (my-is-windows (concat user-home-directory "/Documents/org/pages"))
-                          (t (concat user-home-directory "/Documents/org/pages"))))
+(setq org-directory (cond (my-is-windows (concat user-home-directory "//org/pages"))
+                          (t (concat user-home-directory "/org/pages"))))
 ;; Jag tror detta gör Emacs mycket långsam
 ;; "/mnt/c/Users/karle/Documents/org/pages"
 (setq org-roam-directory org-directory)
@@ -836,8 +836,12 @@
 ;; pixel-scroll-interpolate-down/up only animate when this is non-nil --
 ;; otherwise they silently fall back to an instant `scroll-up'/`scroll-down'.
 (setq pixel-scroll-precision-interpolate-page t)
-(map! :m "C-f" #'pixel-scroll-interpolate-down
-      :m "C-b" #'pixel-scroll-interpolate-up)
+(if i-want-evil
+    
+    (map! :m "C-f" #'pixel-scroll-interpolate-down
+          :m "C-b" #'pixel-scroll-interpolate-up)
+  (global-set-key (kbd "C-v") #'pixel-scroll-interpolate-down)
+  (global-set-key (kbd "M-v") #'pixel-scroll-interpolate-up))
 
 ;; (auto-save-visited-mode)
 ;; (setq auto-save-visited-interval 1)
