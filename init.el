@@ -181,6 +181,7 @@
        web               ; the tubes
        yaml              ; JSON, but readable
        (zig +lsp)        ; C, but simpler
+       just
 
        :email
        ;;(mu4e +org +gmail)
