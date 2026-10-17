@@ -914,9 +914,9 @@
 (if my-is-windows
     (global-set-key (kbd "<f12>") #'+eshell/toggle)
   (progn
-    (global-set-key (kbd "<f12>") #'+vterm/toggle)
-    (after! vterm
-      (define-key vterm-mode-map (kbd "<f12>") #'+vterm/toggle))))
+    (global-set-key (kbd "<f12>") #'+ghostel/toggle)
+    (after! ghostel
+      (define-key ghostel-mode-map (kbd "<f12>") #'+ghostel/toggle))))
 
 ;; (global-set-key (kbd "<f5>") #'recompile)
 ;; (global-set-key (kbd "<f12>") (lambda () "open config.el" (interactive)
