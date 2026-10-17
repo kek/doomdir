@@ -256,7 +256,7 @@
 ;; (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
 ;;               #'display-line-numbers-mode)
 
-(setq company-global-modes '(not org-mode erc-mode circe-mode message-mode help-mode gud-mode vterm-mode))
+(setq company-global-modes '(not org-mode erc-mode circe-mode message-mode help-mode gud-mode vterm-mode ghostel-mode))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -665,10 +665,16 @@
   (message "No evil mode init")
   (define-key global-map (kbd "§") doom-leader-map)
   ;; (define-key global-map (kbd "§") #'doom/leader)
+  ;;(define-key global-map (kbd "§") #'doom/leader)
   ;; (define-key global-map (kbd "<f9>") #'doom/leader)
   (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
   (define-key global-map (kbd "C-S-z") #'undo-fu-only-redo)
-  ;; (setq doom-leader-key "§")
+  ;;(setq doom-leader-key "§")
+
+  (define-key global-map (kbd "§") doom-leader-map)
+  (define-key doom-leader-map (kbd "§") #'projectile-find-file-dwim)
+  (global-set-key (kbd "½") #'+ghostel/toggle)
+  
   ;; (setq doom-leader-alt-key "§")
   ;; (setq doom-localleader-alt-key "§ l")
   ;; (setq! persp-keymap-prefix (kbd "§ z"))
@@ -725,6 +731,7 @@
 
   (global-set-key (kbd "C-§") #'+popup/toggle)
   (global-set-key (kbd "°") #'+ghostel/toggle)
+  (global-set-key (kbd "C-§") #'+popup/toggle)
   ;; (global-set-key (kbd "C-½") #'+popup/raise)
   (global-set-key (kbd "C-<tab>") #'other-window)
   (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
@@ -786,6 +793,8 @@
 
   ;;(global-set-key "§" #'projectile-find-file-dwim)
   (global-set-key (kbd "<f8>") #'projectile-find-file-dwim)
+  ;;(global-set-key "§" #'projectile-find-file-dwim)
+  ;;(global-set-key (kbd "<f8>") #'projectile-find-file-dwim)
 
   (defun my-copilot-complete ()
     (interactive)
