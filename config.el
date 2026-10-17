@@ -645,14 +645,14 @@
   (map! :after company :map company-active-map "<return>" #'newline-and-indent)
   (map! :after company :map company-active-map "<tab>" #'company-complete-selection)
   (map! :after company :map company-active-map "<backtab>" #'company-complete-common-or-cycle)
-  (use-package! copilot
-    :hook (prog-mode . copilot-mode)
-    :bind (("M-C-'" . 'copilot-accept-completion-by-word)
-           :map copilot-completion-map
-           ("M-C-<return>" . 'copilot-accept-completion)
-           ;; ("C-M-ä" . 'copilot-next-completion)
-           ;; ("C-M-ö" . 'copilot-previous-completion)
-           ("<escape>" . 'copilot-clear-overlay)))
+  ;; (use-package! copilot
+  ;;   :hook (prog-mode . copilot-mode)
+  ;;   :bind (("M-C-'" . 'copilot-accept-completion-by-word)
+  ;;          :map copilot-completion-map
+  ;;          ("M-C-<return>" . 'copilot-accept-completion)
+  ;;          ;; ("C-M-ä" . 'copilot-next-completion)
+  ;;          ;; ("C-M-ö" . 'copilot-previous-completion)
+  ;;          ("<escape>" . 'copilot-clear-overlay)))
 
   (after! yasnippet
     ;; (which-key-add-key-based-replacements "C-c &" nil)
@@ -743,13 +743,13 @@
   ;; f6
   ;; f7
 
-  (use-package! copilot
-    :hook (prog-mode . copilot-mode)
-    :config (progn (setq copilot-idle-delay nil))
-    :bind (("<f7>" . 'my-copilot-complete)
-           ("S-<f7>" . 'copilot-next-completion)
-           ("S-C-<f7>" . 'copilot-previous-completion)
-           ))
+  ;; (use-package! copilot
+  ;;   :hook (prog-mode . copilot-mode)
+  ;;   :config (progn (setq copilot-idle-delay nil))
+  ;;   :bind (("<f7>" . 'my-copilot-complete)
+  ;;          ("S-<f7>" . 'copilot-next-completion)
+  ;;          ("S-C-<f7>" . 'copilot-previous-completion)
+  ;;          ))
 
   (global-set-key "§" #'projectile-find-file-dwim)
   (global-set-key (kbd "<f8>") #'projectile-find-file-dwim)
