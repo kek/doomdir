@@ -474,7 +474,8 @@
 (after! kdl-ts-mode
   (unless (treesit-language-available-p 'kdl)
     ;; compile the treesit grammar file the first time
-    (treesit-install-language-grammar 'kdl)))
+    (treesit-install-language-grammar 'kdl))
+  (setq kdl-ts-mode-indent-offset 4))
 
 (after! flycheck
   (map! :leader
