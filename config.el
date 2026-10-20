@@ -45,6 +45,14 @@
     (unless (member asdf-shims (split-string (getenv "PATH") path-separator t))
       (setenv "PATH" (concat asdf-shims path-separator (getenv "PATH"))))))
 
+;; Zig 0.16's bundled libc++ fails to compile against the macOS 27 SDK
+;; ("use of undeclared identifier 'INFINITY'"). Targeting an explicit macOS
+;; version makes Zig use its own libc headers instead of the native SDK.
+(when (and (eq system-type 'darwin)
+           (string-prefix-p "aarch64" system-configuration))
+  (setq ghostel-module-compile-command
+        "zig build --prefix %s -Doptimize=ReleaseFast -Dcpu=baseline -Dtarget=aarch64-macos.15.0"))
+
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
