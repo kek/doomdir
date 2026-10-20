@@ -328,15 +328,13 @@
     ;; compile the treesit grammar file the first time
     (gleam-ts-install-grammar)))
 
-(use-package eglot
-  :config
-  ;; Remove default LSP server
+;; Don't load eglot at startup: its defcustoms call `char-displayable-p', which
+;; has segfaulted GUI Emacs when run before the initial frame is fully set up.
+(after! eglot
+  ;; Replace the default LSP server with ELP
   (setopt eglot-server-programs
-          (assq-delete-all 'erlang-mode eglot-server-programs)))
-
-;; Enable ELP
-(add-to-list 'eglot-server-programs
-             '(erlang-mode . ("elp" "server")))
+          (cons '(erlang-mode . ("elp" "server"))
+                (assq-delete-all 'erlang-mode eglot-server-programs))))
 
 (add-hook 'css-mode-hook #'my-disable-hl-line-mode)
 
