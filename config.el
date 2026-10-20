@@ -38,6 +38,13 @@
   (unless (member "/opt/homebrew/bin" (split-string (getenv "PATH") path-separator t))
     (setenv "PATH" (concat "/opt/homebrew/bin" path-separator (getenv "PATH")))))
 
+;; Make tools installed through asdf available, ahead of Homebrew's versions.
+(let ((asdf-shims (expand-file-name "shims" (or (getenv "ASDF_DATA_DIR") "~/.asdf"))))
+  (when (file-directory-p asdf-shims)
+    (add-to-list 'exec-path asdf-shims)
+    (unless (member asdf-shims (split-string (getenv "PATH") path-separator t))
+      (setenv "PATH" (concat asdf-shims path-separator (getenv "PATH"))))))
+
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
