@@ -53,6 +53,16 @@
   (setq ghostel-module-compile-command
         "zig build --prefix %s -Doptimize=ReleaseFast -Dcpu=baseline -Dtarget=aarch64-macos.15.0"))
 
+;; Doom's so-long check only runs after the major mode has started, but
+;; web-mode fontifies the whole buffer on startup and hangs on huge lines
+;; (e.g. base64 blobs in exported HTML). Pick so-long-mode before any
+;; auto-mode-alist entry gets a chance.
+(defun my-file-has-long-lines-p ()
+  (and buffer-file-name
+       (require 'so-long nil t)
+       (> (cadr (buffer-line-statistics)) so-long-threshold)))
+(add-to-list 'magic-mode-alist '(my-file-has-long-lines-p . so-long-mode))
+
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
