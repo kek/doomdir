@@ -648,7 +648,7 @@
   ;; (map! :i "M-<tab>" #'dabbrev-expand)
   (map! :i "<backtab>" #'hippie-expand)
   (map! :i "M-RET" #'hippie-expand)
-  ;; (global-set-key (kbd "§") #'+eshell/toggle)
+  (global-set-key (kbd "°") #'+ghostel/toggle)
   ;; (global-set-key (kbd "½") #'+eshell/here)
   (map! :n "g[" #'sp-forward-slurp-sexp)
   (map! :n "g]" #'sp-forward-barf-sexp)
@@ -663,7 +663,7 @@
 ;;; NO EVIL
 (when (not i-want-evil)
   (message "No evil mode init")
-  ;; (define-key global-map (kbd "§") doom-leader-map)
+  (define-key global-map (kbd "§") doom-leader-map)
   ;; (define-key global-map (kbd "§") #'doom/leader)
   ;; (define-key global-map (kbd "<f9>") #'doom/leader)
   (define-key global-map (kbd "C-z") #'undo-fu-only-undo)
@@ -723,7 +723,8 @@
   (global-set-key (kbd "<home>") #'doom/backward-to-bol-or-indent)
   (global-set-key (kbd "<end>") #'doom/forward-to-last-non-comment-or-eol)
 
-  ;; (global-set-key (kbd "C-§") #'+popup/toggle)
+  (global-set-key (kbd "C-§") #'+popup/toggle)
+  (global-set-key (kbd "°") #'+ghostel/toggle)
   ;; (global-set-key (kbd "C-½") #'+popup/raise)
   (global-set-key (kbd "C-<tab>") #'other-window)
   (global-set-key (kbd "C-<iso-lefttab>") (lambda () "other window previous" (interactive) (other-window -1)))
@@ -783,7 +784,7 @@
   ;;          ("S-C-<f7>" . 'copilot-previous-completion)
   ;;          ))
 
-  (global-set-key "§" #'projectile-find-file-dwim)
+  ;;(global-set-key "§" #'projectile-find-file-dwim)
   (global-set-key (kbd "<f8>") #'projectile-find-file-dwim)
 
   (defun my-copilot-complete ()
