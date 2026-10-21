@@ -71,6 +71,7 @@
 (package! org-bullets)
 (package! company-posframe)
 (package! chatgpt-shell :recipe (:host github :repo "akirak/chatgpt-shell"))
+(package! just-mode) ; Justfile syntax, indentation, and recipe navigation
 ;; Forked to fix a sustained CPU spin on any .kdl file: indent-rules
 ;; hardcoded the grammar's old root node name ("source_file", now
 ;; "document"), and separately, its comment font-lock query nested
