@@ -325,6 +325,7 @@
   (company-posframe-mode 1))
 
 (use-package! gleam-ts-mode
+  :hook (gleam-ts-mode . lsp-deferred)
   :config
   ;; setup formatter to be used by `SPC c f`
   (after! apheleia
