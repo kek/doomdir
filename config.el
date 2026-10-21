@@ -71,7 +71,10 @@
 (use-package! pilish
   :commands pilish
   :init
-  (setq pilish-executable (list (expand-file-name "~/bin/pi"))
+  (setq pilish-executable (let ((local-pi (expand-file-name "~/bin/pi")))
+                            (if (file-executable-p local-pi)
+                                (list local-pi)
+                              '("pi")))
         pilish-project-trust-policy 'default))
 
 (setq my-is-wsl (and (equal (system-name) "potato")
