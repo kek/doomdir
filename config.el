@@ -66,6 +66,14 @@
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
+;; Let Pi's saved project trust decisions govern Pilish's RPC sessions.
+;; Pilish otherwise starts Pi with --approve for every project.
+(use-package! pilish
+  :commands pilish
+  :init
+  (setq pilish-executable (list (expand-file-name "~/bin/pi"))
+        pilish-project-trust-policy 'default))
+
 (setq my-is-wsl (and (equal (system-name) "potato")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
