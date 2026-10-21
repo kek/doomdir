@@ -716,8 +716,8 @@
 
   (define-key doom-leader-map (kbd "p f") #'projectile-find-file-dwim)
   (define-key doom-leader-map (kbd "p i") #'projectile-invalidate-cache)
-  ;; (define-key doom-leader-map (kbd "§") #'projectile-find-file-dwim)
-  ;; (define-key doom-leader-map (kbd ",") #'consult-buffer)
+  (define-key doom-leader-map (kbd "§") #'projectile-find-file-dwim)
+  (define-key doom-leader-map (kbd ",") #'consult-buffer)
   (define-key doom-leader-map (kbd "p p") #'projectile-switch-project)
 
   (global-set-key (kbd "<home>") #'doom/backward-to-bol-or-indent)
