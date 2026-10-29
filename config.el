@@ -1314,6 +1314,13 @@ shell exits, the buffer is killed."
     (vterm-send-string command)
     (vterm-send-return)))
 
+(defun my/focus-client-frame ()
+  "Focus the frame selected for an emacsclient request."
+  (when (display-graphic-p)
+    (select-frame-set-input-focus (selected-frame))))
+
+(add-hook 'server-after-make-frame-hook #'my/focus-client-frame)
+
 (defun save-buffer-without-hooks ()
   (interactive)
   (let ((before-save-hook nil)
