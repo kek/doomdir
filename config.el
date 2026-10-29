@@ -1314,6 +1314,12 @@ shell exits, the buffer is killed."
     (vterm-send-string command)
     (vterm-send-return)))
 
+(defun save-buffer-without-hooks ()
+  (interactive)
+  (let ((before-save-hook nil)
+        (after-save-hook nil))
+    (save-buffer)))
+
 (defun set-selected-frame-dark ()
   (call-process-shell-command "xprop -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT \"dark\" -id \"$(xdotool getactivewindow)\""))
 
