@@ -593,9 +593,9 @@
   (map! :map emacs-lisp-mode-map :ni "<f5>" #'eros-eval-defun)
   (map! :map emacs-lisp-mode-map :ni "C-<f5>" #'eros-eval-last-sexp)
 
-  (map! :map go-mode-map :ni "C-å" (lambda () "" (interactive) (run-in-vterm "go run .; read -P 'Exited, press enter: '; exit")))
-  (map! :map rustic-mode-map :ni "C-å" #'rustic-cargo-test)
-  (map! :map rustic-mode-map :ni "C-Å" #'rustic-cargo-run)
+  ;; (map! :map go-mode-map :ni "C-å" (lambda () "" (interactive) (run-in-vterm "go run .; read -P 'Exited, press enter: '; exit")))
+  ;; (map! :map rustic-mode-map :ni "C-å" #'rustic-cargo-test)
+  ;; (map! :map rustic-mode-map :ni "C-Å" #'rustic-cargo-run)
 
   ;; (after! copilot
   ;;   (defun my-toggle-eshell-or-copilot-complete () (interactive)
@@ -776,6 +776,9 @@
      ("M-ä"     next-buffer)
 
      ("M-å"     projectile-find-file-dwim)
+     ("C-M-å"   (lambda () "invalidate cache and find file" (interactive)
+                  (projectile-invalidate-cache nil)
+                  (projectile-find-file-dwim)))
      ("M-Å"     projectile-find-file)
 
      ("C-å"     (lambda () "next (all) window" (interactive)
