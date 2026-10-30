@@ -77,6 +77,10 @@
                               '("pi")))
         pilish-project-trust-policy 'default))
 
+(use-package himalaya
+  :if (file-exists-p "~/src/x/himalaya-emacs")
+  :load-path "~/src/x/himalaya-emacs")
+
 (setq my-is-wsl (and (equal (system-name) "potato")
                      (equal system-type 'gnu/linux))
       my-is-mac (equal system-type 'darwin)
