@@ -50,6 +50,7 @@
                                         ;(unpin! t)
 
 
+(package! eyg-mode :recipe (:host github :repo "kek/eyg-mode"))
 (package! fish-mode) ; fish script file mode
 (package! elpher) ; Gopher and Gemini client
 (package! ace-window) ; window switching

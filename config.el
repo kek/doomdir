@@ -66,6 +66,10 @@
 (add-load-path! doom-user-dir)
 (require 'helpers)
 
+;; EYG text sources; leave .eyg.json files in JSON mode.
+(use-package! eyg-mode
+  :mode "\\.eyg\\'")
+
 ;; Let Pi's saved project trust decisions govern Pilish's RPC sessions.
 ;; Pilish otherwise starts Pi with --approve for every project.
 (use-package! pilish
