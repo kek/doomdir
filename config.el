@@ -763,9 +763,19 @@
   (define-key emacs-lisp-mode-map (kbd "C-M-ö") #'sp-forward-slurp-sexp)
   (define-key emacs-lisp-mode-map (kbd "C-M-ä") #'sp-forward-barf-sexp)
 
+  ;; GTK3/Wayland drops real Hyper: decode xremap's per-key F20 prefix.
+  (when (eq system-type 'gnu/linux)
+    (load! "hyper-wayland"))
+
   (magic-table
    `(global-set-key (kbd (,v 0)) (, v 1))
-   '(("M-p"     backward-paragraph)
+   '(("H-s"     save-buffer)
+     ("H-r"     revert-buffer)
+     ("H-p"     projectile-find-file-dwim)
+     ("H-o"     find-file)
+     ("H-d"     dired)
+
+     ("M-p"     backward-paragraph)
      ("M-n"     forward-paragraph)
      ("<f2>"    save-buffer)
      ("<f11>"   toggle-frame-fullscreen)
