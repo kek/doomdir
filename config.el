@@ -778,6 +778,7 @@
      ("H-p"     projectile-find-file-dwim)
      ("H-o"     find-file)
      ("H-d"     dired)
+     ("H-t"     +treemacs/toggle)
 
      ("M-p"     backward-paragraph)
      ("M-n"     forward-paragraph)
@@ -789,8 +790,8 @@
      ("M-ö"     previous-buffer)
      ("M-ä"     next-buffer)
 
-     ("M-å"     projectile-find-file-dwim)
-     ("C-M-å"   (lambda () "invalidate cache and find file" (interactive)
+     ("C-M-å"   projectile-find-file-dwim)
+     ("M-å"     (lambda () "invalidate cache and find file" (interactive)
                   (projectile-invalidate-cache nil)
                   (projectile-find-file-dwim)))
      ("M-Å"     projectile-find-file)
